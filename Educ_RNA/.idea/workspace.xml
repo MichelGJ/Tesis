@@ -2,13 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ce76d2d9-96af-4091-9124-68af0672dbe6" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/templates/usuarios/login.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Educ_RNA/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/Educ_RNA/settings.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/usuarios/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/usuarios/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/usuarios/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/usuarios/views.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/base/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/base/base.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/usuarios/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/usuarios/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/usuarios/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/usuarios/login.html" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -40,13 +36,13 @@
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="html" value="2038" />
+          <entry key="html" value="2642" />
           <entry key="py" value="632" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="HTML" value="2038" />
+          <entry key="HTML" value="2642" />
           <entry key="Python" value="632" />
         </counts>
       </usages-collector>
@@ -96,27 +92,27 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/templates/base/base.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="102">
-              <caret line="27" column="37" lean-forward="true" selection-start-line="27" selection-start-column="17" selection-end-line="27" selection-end-column="37" />
+            <state relative-caret-position="182">
+              <caret line="79" column="8" selection-start-line="79" selection-start-column="8" selection-end-line="79" selection-end-column="8" />
               <folding>
-                <element signature="e#1755#1761#1" expanded="true" />
-                <element signature="e#1773#1779#1" expanded="true" />
-                <element signature="e#2282#2288#1" expanded="true" />
+                <element signature="e#2412#2418#1" expanded="true" />
+                <element signature="e#2430#2436#1" expanded="true" />
+                <element signature="e#2448#2454#1" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/templates/usuarios/login.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="238">
-              <caret line="47" column="15" selection-start-line="47" selection-start-column="15" selection-end-line="47" selection-end-column="15" />
+            <state relative-caret-position="-459">
+              <caret line="24" column="24" selection-start-line="24" selection-start-column="24" selection-end-line="24" selection-end-column="24" />
               <folding>
-                <element signature="e#1635#1648#0" expanded="true" />
+                <element signature="e#1757#1770#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -141,13 +137,13 @@
         <option value="$PROJECT_DIR$/apps/usuarios/urls.py" />
         <option value="$PROJECT_DIR$/templates/usuarios/index.html" />
         <option value="$PROJECT_DIR$/Educ_RNA/settings.py" />
-        <option value="$PROJECT_DIR$/templates/base/base.html" />
         <option value="$PROJECT_DIR$/templates/usuarios/login.html" />
+        <option value="$PROJECT_DIR$/templates/base/base.html" />
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="7">
-    <option name="x" value="-8" />
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="952" />
     <option name="width" value="977" />
     <option name="height" value="1038" />
   </component>
@@ -215,11 +211,11 @@
     <editor active="true" />
     <layout>
       <window_info id="Favorites" side_tool="true" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.11566424" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.11566424" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="bottom" id="Version Control" show_stripe_button="false" />
       <window_info anchor="bottom" id="Python Console" />
-      <window_info anchor="bottom" id="Terminal" visible="true" weight="0.32624114" />
+      <window_info active="true" anchor="bottom" id="Terminal" visible="true" weight="0.19148937" />
       <window_info anchor="bottom" id="Event Log" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32998565" />
@@ -308,24 +304,24 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/templates/base/base.html">
+    <entry file="file://$PROJECT_DIR$/templates/usuarios/login.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="27" column="37" lean-forward="true" selection-start-line="27" selection-start-column="17" selection-end-line="27" selection-end-column="37" />
+        <state relative-caret-position="-459">
+          <caret line="24" column="24" selection-start-line="24" selection-start-column="24" selection-end-line="24" selection-end-column="24" />
           <folding>
-            <element signature="e#1755#1761#1" expanded="true" />
-            <element signature="e#1773#1779#1" expanded="true" />
-            <element signature="e#2282#2288#1" expanded="true" />
+            <element signature="e#1757#1770#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/templates/usuarios/login.html">
+    <entry file="file://$PROJECT_DIR$/templates/base/base.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="47" column="15" selection-start-line="47" selection-start-column="15" selection-end-line="47" selection-end-column="15" />
+        <state relative-caret-position="182">
+          <caret line="79" column="8" selection-start-line="79" selection-start-column="8" selection-end-line="79" selection-end-column="8" />
           <folding>
-            <element signature="e#1635#1648#0" expanded="true" />
+            <element signature="e#2412#2418#1" expanded="true" />
+            <element signature="e#2430#2436#1" expanded="true" />
+            <element signature="e#2448#2454#1" expanded="true" />
           </folding>
         </state>
       </provider>

@@ -23,6 +23,7 @@
 <style>
 body, html {
     font-family: Roboto;
+    margin: 0;
 }
 
 .bg {
@@ -43,8 +44,14 @@ body, html {
 
 .container2{
     margin: auto;
-    width: 70%;
-    padding: 10px;
+    width: 40%;
+}
+
+.link1{
+margin-right:165px;
+}
+.link2{
+margin-left:165px;
 }
 </style>
 {%endblock%}
@@ -73,18 +80,18 @@ body, html {
 {% block header %}
 {% endblock %}
 
-{% block content %}
+{%block content%}
     <div class="top-content">
 
             <div class="inner-bg">
                 <div class="container2">
                     <div class="row">
-                        <div class="col-sm-8 col-sm-offset-2 text">
+                        <div class="col-sm-12 col-sm-offset-2 text">
                             <h1><strong>Bienvenido</strong> </h1>
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-sm-6 col-sm-offset-3 form-box">
+                        <div class="col-sm-12 col-sm-offset-3 form-box">
                         	<div class="form-top">
                         		<div class="form-top-left">
                         			<h3>Ingrese a EDUCAB</h3>
@@ -105,12 +112,14 @@ body, html {
 			                        	<input type="password" name="form-password" placeholder="Contraseña..." class="form-password form-control" id="form-password">
 			                        </div>
 			                        <button type="submit" class="btn">Ingresar</button>
+                                    <a class="link1" href="#">Registrarse</a>
+                                    <a class="link2" href="#">Olvide la contraseña</a>
 			                    </form>
 		                    </div>
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-sm-6 col-sm-offset-3 social-login">
+                        <div class="col-sm-12 col-sm-offset-3 social-login">
                         	<h3>...o ingrese con:</h3>
                         	<div class="social-login-buttons">
 	                        	<a class="btn btn-link-1 btn-link-1-facebook" href="#">
@@ -129,7 +138,7 @@ body, html {
             </div>
 
         </div>
-{% endblock %}
+{%endblock%}
 
 {% block footer %}
 {% endblock %}
@@ -138,7 +147,7 @@ body, html {
 <script src="{% static 'js/jquery.backstretch.min.js'%}"></script>
 <script src="{% static 'js/scripts.js'%}"></script>
 <script src="{% static 'js/placeholder.js'%}"></script>
-    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+<script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
 
 {% endblock %}
