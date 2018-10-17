@@ -1,0 +1,153 @@
+{% extends 'base/base.html' %}
+{% load staticfiles %}
+
+<title>{% block title %} Registro {% endblock %}</title>
+
+{% block extrahead %}
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+{% endblock%}
+
+{% block extrastatic %}
+<link rel="stylesheet" href="{% static 'css/font-awesome.min.css'%}">
+<link rel="stylesheet" href="{% static 'css/form-elements.css'%}">
+<link rel="stylesheet" href="{% static 'css/style.css'%}">
+<link rel="shortcut icon" href="{% static 'images/favicon.png'%}">
+<link rel="apple-touch-icon-precomposed" sizes="144x144" href="{% static 'images/apple-touch-icon-144-precomposed.png'%}">
+<link rel="apple-touch-icon-precomposed" sizes="114x114" href="{% static 'images/apple-touch-icon-114-precomposed.png'%}">
+<link rel="apple-touch-icon-precomposed" sizes="72x72" href="{% static 'images/apple-touch-icon-72-precomposed.png'%}">
+<link rel="apple-touch-icon-precomposed" href="{% static 'images/apple-touch-icon-57-precomposed.png'%}">
+<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:400,100,300,500">
+{% endblock %}
+
+{%block style%}
+<style>
+body, html {
+    font-family: Roboto;
+    margin: 0;
+}
+
+input {
+border:1px solid #ccc;
+width:50&#37;;
+
+}
+label {
+width:25%;
+display:inline-block;
+}
+
+.bg {
+    /* The image used */
+    background-image: url({% static 'images/bg.png'%});
+
+    /* Full height */
+    height: 100%;
+
+    /* Center and scale the image nicely */
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.navbar-brand{
+    font-family: 'Anton', sans-serif;
+}
+
+.container2{
+    margin: auto;
+    width: 40%;
+}
+.errorlist
+    {
+        color: red;
+    }
+</style>
+{%endblock%}
+
+{% block navbar%}
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+      <div class="container">
+        <a class="navbar-brand" href="#"><font style="Anton" size=6px> EDUCAB <img class="logo" src="{% static 'images/logoucab3.png'%}"></font></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item active">
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+</nav>
+{% endblock %}
+
+{% block space%}
+
+{% endblock %}
+
+{% block header %}
+{% endblock %}
+
+{%block content%}
+    <div class="top-content">
+
+            <div class="inner-bg">
+                <div class="container2">
+                    <div class="row">
+                        <div class="col-sm-12 col-sm-offset-2 text">
+                            <h1><strong>Registro de Usuario</strong> </h1>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12 col-sm-offset-2 form-box">
+                        	<div class="form-top">
+                        		<div class="form-top-left">
+                        			<h3>Registrese en EDUCAB</h3>
+                            		<p>Ingrese los datos correspondientes</p>
+                        		</div>
+                                <div class="form-top-right col-sm-11">
+                        			<i><img class="logo" src="{% static 'images/register.png'%}"></i>
+                        		</div>
+                            </div>
+                            <div class="form-bottom">
+                                <div class="">
+                                </div>
+                                <div class="container3">
+			                    <form method="post">
+                                    {% csrf_token %}
+                                    {% for field in form %}
+                                    <div class="row">
+                                        <div class="col-md-10 col-md-offset-2">
+			                    	        <div class="form-row">
+			                    		         {{ field.label_tag }}
+                                                <div class="col-md-6">
+                                                {{ field }}
+                                                </div>
+                                                {{ field.errors }}
+			                                </div>
+                                        </div>
+                                    </div>
+                                    <p></p>
+                                    {% endfor %}
+			                        <button type="submit" class="btn">Registrar</button>
+			                    </form>
+                                </div>
+		                    </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+{%endblock%}
+
+{% block footer %}
+{% endblock %}
+
+{% block extrajs%}
+<script src="{% static 'js/jquery.backstretch.min.js'%}"></script>
+<script src="{% static 'js/scripts.js'%}"></script>
+<script src="{% static 'js/placeholder.js'%}"></script>
+<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+<script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+
+{% endblock %}

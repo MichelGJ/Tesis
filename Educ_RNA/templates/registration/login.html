@@ -1,0 +1,162 @@
+{% extends 'base/base.html' %}
+{% load staticfiles %}
+
+<title>{% block title %} Login EDUCAB {% endblock %}</title>
+
+{% block extrahead %}
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+{% endblock%}
+
+{% block extrastatic %}
+<link rel="stylesheet" href="{% static 'css/font-awesome.min.css'%}">
+<link rel="stylesheet" href="{% static 'css/form-elements.css'%}">
+<link rel="stylesheet" href="{% static 'css/style.css'%}">
+<link rel="shortcut icon" href="{% static 'images/favicon.png'%}">
+<link rel="apple-touch-icon-precomposed" sizes="144x144" href="{% static 'images/apple-touch-icon-144-precomposed.png'%}">
+<link rel="apple-touch-icon-precomposed" sizes="114x114" href="{% static 'images/apple-touch-icon-114-precomposed.png'%}">
+<link rel="apple-touch-icon-precomposed" sizes="72x72" href="{% static 'images/apple-touch-icon-72-precomposed.png'%}">
+<link rel="apple-touch-icon-precomposed" href="{% static 'images/apple-touch-icon-57-precomposed.png'%}">
+<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:400,100,300,500">
+{% endblock %}
+
+{%block style%}
+<style>
+body, html {
+    font-family: Roboto;
+    margin: 0;
+}
+
+.bg {
+    /* The image used */
+    background-image: url({% static 'images/bg.png'%});
+
+    /* Full height */
+    height: 100%;
+
+    /* Center and scale the image nicely */
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.navbar-brand{
+    font-family: 'Anton', sans-serif;
+}
+
+.container2{
+    margin: auto;
+    width: 40%;
+}
+
+.link1{
+margin-right:165px;
+}
+
+</style>
+{%endblock%}
+
+{% block navbar%}
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+      <div class="container">
+        <a class="navbar-brand" href="#"><font style="Anton" size=6px> EDUCAB <img class="logo" src="{% static 'images/logoucab3.png'%}"></font></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item active">
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+</nav>
+{% endblock %}
+
+{% block space%}
+
+{% endblock %}
+
+{% block header %}
+{% endblock %}
+
+{%block content%}
+    <div class="top-content">
+
+            <div class="inner-bg">
+                <div class="container2">
+                    <div class="row">
+                        <div class="col-sm-12 col-sm-offset-2 text">
+                            <h1><strong>Bienvenido</strong> </h1>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12 col-sm-offset-3 form-box">
+                        	<div class="form-top">
+                        		<div class="form-top-left">
+                        			<h3>Ingrese a EDUCAB</h3>
+                            		<p>Ingrese su nombre de usuario y contraseña:</p>
+                        		</div>
+                        		<div class="form-top-right">
+                        			<i class="fa fa-key"></i>
+                        		</div>
+                            </div>
+                            <div class="form-bottom">
+                                {% for message in messages %}
+
+                                     <div class="alert alert-success">
+                                    <a class="close" href="#" data-dismiss="alert">×</a>
+
+                                    {{ message }}
+
+                                    </div>
+                                {% endfor %}
+			                    <form role="form" action="" method="post" class="login-form">
+                                    {% csrf_token %}
+			                    	<div class="form-group">
+			                    		<label class="sr-only" for="form-username">Username</label>
+			                        	<input type="text" name="username" placeholder="Usuario..." class="form-username form-control" id="form-username">
+			                        </div>
+			                        <div class="form-group">
+			                        	<label class="sr-only" for="form-password">Password</label>
+			                        	<input type="password" name="password" placeholder="Contraseña..." class="form-password form-control" id="form-password">
+			                        </div>
+			                        <button type="submit" class="btn">Ingresar</button>
+                                    <div><a class="link1" href="usuarios/registrar">Registrarse</a></div>
+                                    <div><a class="link2" href="#">Olvide la contraseña</a></div>
+			                    </form>
+		                    </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12 col-sm-offset-3 social-login">
+                        	<h3>...o ingrese con:</h3>
+                        	<div class="social-login-buttons">
+	                        	<a class="btn btn-link-1 btn-link-1-facebook" href="#">
+	                        		<i class="fa fa-facebook"></i> Facebook
+	                        	</a>
+	                        	<a class="btn btn-link-1 btn-link-1-twitter" href="#">
+	                        		<i class="fa fa-twitter"></i> Twitter
+	                        	</a>
+	                        	<a class="btn btn-link-1 btn-link-1-google-plus" href="#">
+	                        		<i class="fa fa-google-plus"></i> Google Plus
+	                        	</a>
+                        	</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+{%endblock%}
+
+{% block footer %}
+{% endblock %}
+
+{% block extrajs%}
+<script src="{% static 'js/jquery.backstretch.min.js'%}"></script>
+<script src="{% static 'js/scripts.js'%}"></script>
+<script src="{% static 'js/placeholder.js'%}"></script>
+<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+<script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+
+{% endblock %}
