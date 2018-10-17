@@ -55,6 +55,7 @@ def login(request):
     else:
         return render(request, 'registration/login.html')
 
+
 class RegistroUsuario(CreateView):
     model = User
     template_name = "usuarios/registrar.html"
