@@ -111,6 +111,10 @@ AUTH_PASSWORD_VALIDATORS = [
 # https://docs.djangoproject.com/en/2.1/topics/i18n/
 
 LANGUAGE_CODE = 'es-us'
+LANGUAGES = [
+    ('en-us', 'English'),
+    ('es-us', 'Spanish')
+]
 
 TIME_ZONE = 'UTC'
 
@@ -131,3 +135,10 @@ STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'), 'Educ_RNA/static')
 LOGIN_URL = '/'
 LOGIN_REDIRECT_URL = 'index'
 LOGOUT_REDIRECT_URL = '/'
+
+EMAIL_USE_TLS = True
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 25
+EMAIL_HOST_USER = 'eeducab@gmail.com'
+EMAIL_HOST_PASSWORD = 'educab2018!'
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'

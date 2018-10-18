@@ -18,22 +18,3 @@ class BucketForm(forms.ModelForm):
         widgets = {
             'name': forms.TextInput(attrs={'class': 'form-control'}),
         }
-
-
-class UsuarioForm(UserCreationForm):
-
-    class Meta:
-        model = User
-
-        fields = [
-            'first_name',
-            'last_name',
-            'email',
-            'username',
-        ]
-        labels = {
-            'first_name': 'Nombre',
-            'last_name': 'Apellido',
-            'email': 'Correo',
-            'username': 'Usuario',
-        }

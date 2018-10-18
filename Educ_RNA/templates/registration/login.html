@@ -11,7 +11,7 @@
 <link rel="stylesheet" href="{% static 'css/font-awesome.min.css'%}">
 <link rel="stylesheet" href="{% static 'css/form-elements.css'%}">
 <link rel="stylesheet" href="{% static 'css/style.css'%}">
-<link rel="shortcut icon" href="{% static 'images/favicon.png'%}">
+<link rel="shortcut icon" href="{% static 'images/logoucab3.png'%}">
 <link rel="apple-touch-icon-precomposed" sizes="144x144" href="{% static 'images/apple-touch-icon-144-precomposed.png'%}">
 <link rel="apple-touch-icon-precomposed" sizes="114x114" href="{% static 'images/apple-touch-icon-114-precomposed.png'%}">
 <link rel="apple-touch-icon-precomposed" sizes="72x72" href="{% static 'images/apple-touch-icon-72-precomposed.png'%}">
@@ -48,8 +48,9 @@ body, html {
 }
 
 .link1{
-margin-right:165px;
+    margin-right:165px;
 }
+
 
 </style>
 {%endblock%}
@@ -57,7 +58,7 @@ margin-right:165px;
 {% block navbar%}
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
       <div class="container">
-        <a class="navbar-brand" href="#"><font style="Anton" size=6px> EDUCAB <img class="logo" src="{% static 'images/logoucab3.png'%}"></font></a>
+        <a class="navbar-brand" href="/usuarios/index"><font style="Anton" size=6px> EDUCAB <img class="logo" src="{% static 'images/logoucab3.png'%}"></font></a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
@@ -102,12 +103,9 @@ margin-right:165px;
                             </div>
                             <div class="form-bottom">
                                 {% for message in messages %}
-
-                                     <div class="alert alert-success">
+                                     <div class="alert alert-danger">
                                     <a class="close" href="#" data-dismiss="alert">×</a>
-
                                     {{ message }}
-
                                     </div>
                                 {% endfor %}
 			                    <form role="form" action="" method="post" class="login-form">
@@ -121,7 +119,7 @@ margin-right:165px;
 			                        	<input type="password" name="password" placeholder="Contraseña..." class="form-password form-control" id="form-password">
 			                        </div>
 			                        <button type="submit" class="btn">Ingresar</button>
-                                    <div><a class="link1" href="usuarios/registrar">Registrarse</a></div>
+                                    <div><a class="link1" href="/registration/registrar">Registrarse</a></div>
                                     <div><a class="link2" href="#">Olvide la contraseña</a></div>
 			                    </form>
 		                    </div>

@@ -26,16 +26,6 @@ body, html {
     margin: 0;
 }
 
-input {
-border:1px solid #ccc;
-width:50&#37;;
-
-}
-label {
-width:25%;
-display:inline-block;
-}
-
 .bg {
     /* The image used */
     background-image: url({% static 'images/bg.png'%});
@@ -56,10 +46,10 @@ display:inline-block;
     margin: auto;
     width: 40%;
 }
-.errorlist
-    {
-        color: red;
-    }
+
+.btn{
+
+}
 </style>
 {%endblock%}
 
@@ -112,31 +102,16 @@ display:inline-block;
                             <div class="form-bottom">
                                 <div class="">
                                 </div>
-                                <div class="container3">
 			                    <form method="post">
                                     {% csrf_token %}
-                                    {% for field in form %}
-                                    <div class="row">
-                                        <div class="col-md-10 col-md-offset-2">
-			                    	        <div class="form-row">
-			                    		         {{ field.label_tag }}
-                                                <div class="col-md-6">
-                                                {{ field }}
-                                                </div>
-                                                {{ field.errors }}
-			                                </div>
-                                        </div>
-                                    </div>
-                                    <p></p>
-                                    {% endfor %}
-			                        <button type="submit" class="btn">Registrar</button>
+                                    {{form.as_table}}
 			                    </form>
-                                </div>
 		                    </div>
                         </div>
                     </div>
                 </div>
             </div>
+
         </div>
 {%endblock%}
 
