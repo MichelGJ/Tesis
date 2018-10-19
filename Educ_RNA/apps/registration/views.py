@@ -37,3 +37,7 @@ class RegistroUsuario(CreateView):
     template_name = "registration/registrar.html"
     form_class = UsuarioForm
     success_url = '/'
+
+
+def password(request):
+    return render(request, 'registration/password_reset_form.html')
