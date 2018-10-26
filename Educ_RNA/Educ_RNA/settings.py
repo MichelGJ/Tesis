@@ -138,7 +138,7 @@ LOGOUT_REDIRECT_URL = '/'
 
 EMAIL_USE_TLS = True
 EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_PORT = 25
+EMAIL_PORT = 587
 EMAIL_HOST_USER = 'eeducab@gmail.com'
 EMAIL_HOST_PASSWORD = 'educab2018!'
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
