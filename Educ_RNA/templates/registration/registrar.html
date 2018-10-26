@@ -7,7 +7,10 @@
 <style>
 input {
 border:1px solid #ccc;
-width:50&#37;;
+
+width: 100%;
+max-width: 500px;
+box-sizing: border-box;
 }
 label {
 width:25%;
@@ -22,9 +25,7 @@ display:inline-block;
 </style>
 {%endblock%}
 
-{% block space%}
-<br>
-{% endblock %}
+
 
 {% block header %}
 {% endblock %}
@@ -61,7 +62,7 @@ display:inline-block;
                                         <div class="col-md-10 col-md-offset-2">
 			                    	        <div class="form-row">
 			                    		         {{ field.label_tag }}
-                                                <div class="col-md-6">
+                                                <div class="inputs col-md-6">
                                                 {{ field }}
                                                 </div>
                                                 {{ field.errors }}
