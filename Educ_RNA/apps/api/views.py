@@ -2,7 +2,6 @@ from django.shortcuts import render
 from django.contrib.auth import authenticate
 from django.contrib.auth.views import auth_login
 from django.http import HttpResponse, JsonResponse
-# Create your views here.
 from rest_framework import generics
 from .serializers import BucketlistSerializer
 from .models import Bucketlist
@@ -12,6 +11,7 @@ from rest_framework.response import Response
 from rest_framework import status
 
 
+# Create your views here.
 class CreateView(generics.ListCreateAPIView):
     """This class defines the create behavior of our rest api."""
     queryset = Bucketlist.objects.all()

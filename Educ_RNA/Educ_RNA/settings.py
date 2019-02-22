@@ -40,6 +40,8 @@ INSTALLED_APPS = [
     'apps.usuarios',
     'rest_framework',
     'apps.api',
+    'apps.lecciones',
+    'apps.evaluaciones',
 ]
 
 MIDDLEWARE = [
