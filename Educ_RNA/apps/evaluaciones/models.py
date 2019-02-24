@@ -22,3 +22,4 @@ class Pregunta(models.Model):
 class Respuesta(models.Model):
     contenido = models.CharField(max_length=120)
     id_pregunta = models.ForeignKey(Pregunta, on_delete=models.CASCADE, null=True)
+    respuestacorrecta = models.BooleanField()
