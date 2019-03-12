@@ -8,14 +8,17 @@ class UsuarioForm(UserCreationForm):
         model = User
 
         fields = [
+            'username',
             'first_name',
             'last_name',
             'email',
-            'username',
         ]
         labels = {
+            'username': 'Usuario',
             'first_name': 'Nombre',
             'last_name': 'Apellido',
             'email': 'Correo',
-            'username': 'Usuario',
         }
+
+
+

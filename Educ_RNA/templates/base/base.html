@@ -12,6 +12,8 @@
     <link rel="stylesheet" href="{% static 'css/simple-sidebar.css'%}">
     <link href="{% static 'css/full.css'%}" rel="stylesheet">
     <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:400,100,300,500">
+    <link rel="stylesheet" href="{% static 'css/form-elements.css'%}">
+<link rel="stylesheet" href="{% static 'css/style.css'%}">
     {% block extrahead %}
     {% endblock %}
 
@@ -75,7 +77,7 @@ body, html {
               <a class="nav-link" href="/usuarios/perfil">Perfil</a>
             </li>
             <li class="nav-item active">
-              <a class="nav-link" href="#">Nosotros</a>
+              <a class="nav-link" href="/usuarios/nosotros">Nosotros</a>
             </li>
               <li class="nav-item active">
               <a class="nav-link" href="{% url 'logout' %}">Salir</a>
@@ -88,18 +90,17 @@ body, html {
     {% block space%}
         <p>&nbsp</p>
         <p>&nbsp</p>
-        <p>&nbsp</p>
     {% endblock %}
     {% block header %}
-        <h4 align="center"><font color="white">HEADER</font></h4>
+
     {% endblock %}
 
     {% block content %}
-        <h4 align="center"><font color="white">CONTENIDO</font></h4>
+
     {% endblock %}
 
     {% block footer %}
-        <h4 align="center"><font color="white">FOOTER</font></h4>
+
     {% endblock %}
 
     {% block extrajs%}
