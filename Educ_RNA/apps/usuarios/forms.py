@@ -1,20 +1,22 @@
-from django import forms
-from apps.api.models import Bucketlist
 from django.contrib.auth.models import User
-from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.forms import UserCreationForm, UserChangeForm
 
-class BucketForm(forms.ModelForm):
 
+class ModificarUsuarioForm(UserChangeForm):
     class Meta:
-        model = Bucketlist
+        model = User
 
         fields = [
-            'name',
+            'username',
+            'first_name',
+            'last_name',
         ]
-
         labels = {
-            'name': 'Name',
+            'username': 'Usuario',
+            'first_name': 'Nombre',
+            'last_name': 'Apellido',
         }
-        widgets = {
-            'name': forms.TextInput(attrs={'class': 'form-control'}),
-        }
+
+    def __init__(self, *args, **kwargs):
+        super(ModificarUsuarioForm, self).__init__(*args, **kwargs)
+        del self.fields['password']

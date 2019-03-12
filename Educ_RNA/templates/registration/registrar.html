@@ -55,14 +55,20 @@ display:inline-block;
                                 <div class="">
                                 </div>
                                 <div class="container3">
-			                    <form method="post">
+                                    {% for message in messages %}
+                                     <div class="alert alert-danger">
+                                    <a class="close" href="#" data-dismiss="alert">×</a>
+                                    {{ message }}
+                                    </div>
+                                    {% endfor %}
+			                    <form method="POST" action="{% url 'registro'%}">
                                     {% csrf_token %}
                                     {% for field in form %}
                                     <div class="row">
                                         <div class="col-md-10 col-md-offset-2">
 			                    	        <div class="form-row">
 			                    		         {{ field.label_tag }}
-                                                <div class="inputs col-md-6">
+                                                <div class="inputs col-md-6" >
                                                 {{ field }}
                                                 </div>
                                                 {{ field.errors }}

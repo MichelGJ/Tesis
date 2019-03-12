@@ -1,0 +1,10 @@
+ALTER SEQUENCE lecciones_leccion_id_seq RESTART;
+
+INSERT INTO lecciones_leccion (nombre)
+VALUES
+ ('Introducción e Historia'),
+ ('El Perceptrón Simple'),
+ ('El Perceptrón Multicapa'),
+ ('Redes Neuronales Recurrentes'),
+ ('Redes de Creencia Profunda'),
+ ('Redes Generativas Antagónicas')

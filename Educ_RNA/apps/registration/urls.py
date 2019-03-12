@@ -1,11 +1,13 @@
 from django.urls import path, re_path
-from apps.registration.views import login, RegistroUsuario, password
+from apps.registration.views import login, RegistroUsuario, password, registro_usuario
+from apps.api.views import RegistrarUsuario
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.views import PasswordResetView, PasswordResetDoneView, PasswordResetConfirmView, PasswordResetCompleteView
 
 urlpatterns = [
     path('login/', login_required(login), name='plogin'),
     path('registrar/', RegistroUsuario.as_view(), name='registrar'),
+    path('registrousuario/', registro_usuario, name='registro'),
     path('reset/password_reset', PasswordResetView.as_view
          (template_name='registration/password_reset_form.html',
           email_template_name='registration/password_reset_email.html'), name='password_reset'),

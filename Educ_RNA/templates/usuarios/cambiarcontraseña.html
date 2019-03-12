@@ -1,0 +1,93 @@
+{% extends 'base/base.html' %}
+{% load staticfiles %}
+
+<title>{% block title %} Cambio Contraseña {% endblock %}</title>
+
+{% block extrahead %}
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+{% endblock %}
+
+{%block style%}
+<style>
+input {
+border:1px solid #ccc;
+
+width: 50%;
+max-width: 500px;
+box-sizing: border-box;
+}
+label {
+width:40%;
+display:inline-block;
+}
+</style>
+{%endblock%}
+
+{% block space %}
+{% endblock %}
+
+{% block header %}
+{% endblock %}
+
+{%block content%}
+    <div class="top-content">
+
+            <div class="inner-bg">
+                <div class="container2">
+                    <div class="row">
+                        <div class="col-md-12 col-sm-offset-2 text">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12 col-sm-offset-2 form-box">
+                        	<div class="form-top">
+                        		<div class="form-top-left">
+                        			<h3>Cambie su contraseña</h3>
+                            		<p>Ingrese los datos que se le piden:</p>
+                        		</div>
+                                <div class="form-top-right col-sm-11">
+                        			<i><img class="logo" src="{% static 'images/lock.png'%}"></i>
+                        		</div>
+                            </div>
+                            <div class="form-bottom">
+                                <div class="">
+                                </div>
+                                <div class="container3">
+                                    {% for message in messages %}
+                                     <div class="alert alert-danger">
+                                    <a class="close" href="#" data-dismiss="alert">×</a>
+                                    {{ message }}
+                                    </div>
+                                    {% endfor %}
+			                    <form method="post" action="{% url 'cambiar' %}">
+                                    {% csrf_token %}
+                                    <div class="row">
+                                        <div class="col-md-10 col-md-offset-2">
+			                    	        <div class="form-element">
+                                              <label for="opass">Contraseña Actual:</label>
+                                                <input type="password" name="oldpass" id="opass" />
+                                               <p></p>
+                                                <label for="npass">Contraseña Nueva:</label>
+                                                <input type="password" name="newpass" id="npass" />
+                                                <p></p>
+                                                <label for="npass2">Contraseña Nueva: (Confirmación)</label>
+                                                <input type="password" name="newpass2" id="npass2" />
+			                                </div>
+                                        </div>
+                                    </div>
+
+                                    <br>
+			                        <button type="submit" class="btn">Cambiar</button>
+			                    </form>
+                                </div>
+		                    </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+{%endblock%}
+
+{% block footer %}
+{% endblock %}

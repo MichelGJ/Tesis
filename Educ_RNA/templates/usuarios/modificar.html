@@ -1,0 +1,99 @@
+{% extends 'base/base.html' %}
+{% load staticfiles %}
+
+<title>{% block title %} Modificar {% endblock %}</title>
+
+{%block style%}
+<style>
+input {
+border:1px solid #ccc;
+
+width: 100%;
+max-width: 500px;
+box-sizing: border-box;
+}
+label {
+width:25%;
+display:inline-block;
+}
+.errorlist{
+    color: red;
+}
+.help{
+    color: navy;
+}
+</style>
+{%endblock%}
+
+{% block space %}
+{% endblock %}
+
+{% block header %}
+{% endblock %}
+
+{%block content%}
+    <div class="top-content">
+
+            <div class="inner-bg">
+                <div class="container2">
+                    <div class="row">
+                        <div class="col-md-12 col-sm-offset-2 text">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12 col-sm-offset-2 form-box">
+                        	<div class="form-top">
+                        		<div class="form-top-left">
+                        			<h3>Modifique el usuario</h3>
+                            		<p>Cambie los datos que desee</p>
+                        		</div>
+                                <div class="form-top-right col-sm-11">
+                        			<i><img class="logo" src="{% static 'images/register.png'%}"></i>
+                        		</div>
+                            </div>
+                            <div class="form-bottom">
+                                <div class="">
+                                </div>
+                                <div class="container3">
+                                    {% for message in messages %}
+                                     <div class="alert alert-danger">
+                                    <a class="close" href="#" data-dismiss="alert">×</a>
+                                    {{ message }}
+                                    </div>
+                                    {% endfor %}
+			                    <form method="POST" action="{% url 'modificar' %}">
+                                    {% csrf_token %}
+                                    {% for field in form %}
+                                    <div class="row">
+                                        <div class="col-md-10 col-md-offset-2">
+			                    	        <div class="form-row">
+			                    		         {{ field.label_tag }}
+                                                <div class="inputs col-md-6" >
+                                                {{ field }}
+                                                </div>
+                                                {{ field.errors }}
+                                                <div class="help">
+                                                    <div class="col-bg-14">
+                                                        <p></p>
+                                                        {{ field.help_text }}
+                                                    </div>
+                                                </div>
+			                                </div>
+                                        </div>
+                                    </div>
+                                    <p></p>
+                                    {% endfor %}
+                                    <br>
+			                        <button type="submit" class="btn">Modificar</button>
+			                    </form>
+                                </div>
+		                    </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+{%endblock%}
+
+{% block footer %}
+{% endblock %}
