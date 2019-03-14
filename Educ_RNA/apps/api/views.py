@@ -49,15 +49,8 @@ class ActualizarUsuario(UpdateAPIView):
     serializer_class = ModificarUsuarioSerializer
 
 
-@api_view(['GET'])
-def ver_lecciones(request):
-    queryset = Leccion.objects.all().values('nombre')
-    serializer = LeccionSerializer(queryset, many=True)
-    return Response(serializer.data)
-
-
 class VerLecciones(ListAPIView):
-    queryset = Leccion.objects.all().values('nombre')
+    queryset = Leccion.objects.all()
     serializer_class = LeccionSerializer
 
 

@@ -1,6 +1,5 @@
 from django.urls import path, re_path
-from apps.registration.views import login, RegistroUsuario, password, registro_usuario
-from apps.api.views import RegistrarUsuario
+from .views import login, RegistroUsuario, password, registro_usuario
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.views import PasswordResetView, PasswordResetDoneView, PasswordResetConfirmView, PasswordResetCompleteView
 

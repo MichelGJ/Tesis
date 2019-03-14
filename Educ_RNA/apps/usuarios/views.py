@@ -23,8 +23,8 @@ def index(request):
 
 # Funcion que renderiza la pagina del perfil del usuario
 def perfil(request):
-    request.user.lol = "hola"
-    return render(request, 'usuarios/perfil.html')
+    context_dict = {'email': "hola", 'nombre': "puto"}
+    return render(request, 'usuarios/perfil.html', context_dict)
 
 # Funcion que renderiza la pagina de informacion nuestra
 def nosotros(request):
@@ -49,7 +49,7 @@ class AbrirModificarUsuario(UpdateView):
 # Funcion que modifica la informacion del usuario
 def modificacion_usuario(request):
     # En caso de recibir un metodo POST se realiza la llamada al API
-    id_ = "(" + str(request.user.id) + ")"
+    id_ = str(request.user.id)
     if request.method == 'POST':
         # Obtiene todos los valores introducidos por el usuario en el formulario de modificacion
         username = request.POST.get('username', False)

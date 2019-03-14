@@ -46,16 +46,14 @@ color:#FFFFFF;
          <table class="table" >
              <thead>
              <tr>
-                 <th style="background-color: #1F1FD4; text-align: right; padding-right: 150px;">Número</th>
-                 <th style="background-color: #1F1FD4; text-align: left;">Lección</th>
+                 <th style="background-color: #1F1FD4; text-align: center;">Tema</th>
+                 <th style="background-color: #1F1FD4; text-align: left;padding-left: 200px;">Contenido</th>
              </tr>
              </thead>
              <tbody>
              {% for i in zipped_list %}
              <tr class="tr1">
-                 <td class="td1" style="text-align: right; padding-right: 150px;" >
-                     <a href="{% url 'vertema' leccion_id=i.0 %}">{{i.0}}</a></td>
-                 <td class="td2" style="text-align: left;"><a href="{% url 'vertema' leccion_id=i.0 %}">{{i.1}}</a></td>
+                 <td class="td2" style="text-align: center;"><a href="">{{i.1}}</a></td>
              </tr>
              {% endfor %}
              </tbody>
