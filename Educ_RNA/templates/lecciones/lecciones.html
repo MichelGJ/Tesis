@@ -7,7 +7,7 @@ table{
 box-shadow: 0px 0px 36px 15px rgba(0, 0, 0, 0.28);
 }
 
-.tr1:hover {background-color:#35DEFF;}
+.tr1:hover {background-color:#8BFFFF;}
 
 td{
 cursor: pointer;
@@ -19,22 +19,24 @@ color:#FFFFFF;
 }
 
 tr:nth-child(even) {
-background-color: #2885FF;
+background-color: #F0F0F0;
 }
 tr:nth-child(odd) {
-background-color: #2885FF;
+background-color: #FFFFFF;
 }
 
 .container3{
     margin: auto;
-    width: 90%;
+    width: 40%;
 }
 
 a {
   display: block;
-color:#FFFFFF;
+color:#000000;
 }
 {%endblock%}
+
+<title>{% block title %} Lecciones {% endblock %}</title>
 
 {% block space%}
 <p>&nbsp</p>
@@ -46,16 +48,15 @@ color:#FFFFFF;
          <table class="table" >
              <thead>
              <tr>
-                 <th style="background-color: #1F1FD4; text-align: right; padding-right: 150px;">Número</th>
-                 <th style="background-color: #1F1FD4; text-align: left;">Lección</th>
+
+                 <th style="background-color: #82ACFF;">Lección</th>
              </tr>
              </thead>
              <tbody>
              {% for i in zipped_list %}
              <tr class="tr1">
-                 <td class="td1" style="text-align: right; padding-right: 150px;" >
-                     <a href="{% url 'vertema' leccion_id=i.0 %}">{{i.0}}</a></td>
-                 <td class="td2" style="text-align: left;"><a href="{% url 'vertema' leccion_id=i.0 %}">{{i.1}}</a></td>
+
+                 <td class="td2" style=""><a href="{% url 'vertema' leccion_id=i.0 %}">{{i.1}}</a></td>
              </tr>
              {% endfor %}
              </tbody>
