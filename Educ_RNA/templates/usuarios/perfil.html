@@ -13,9 +13,10 @@
 {% endblock %}
 
     <title>{% block title %} Perfil {% endblock %}</title>
-{% block space%}
 
+{% block space%}
 {% endblock %}
+
 {% block content %}
 <div class="top-content">
             <div class="inner-bg">
@@ -66,11 +67,11 @@
                                     </div>
 			                    </form>
                                 <div align="center" class="form-group">
-                                    <a href="{% url 'cambiar' %}" class="btn btn-danger">Cambiar Contraseña</a>
-                                    <a href="{% url 'abrirmodificar' id=request.user.id %}" class="btn btn-warning">Modificar Información</a>
+                                    <a href="{% url 'cambiar' %}" ><button class="btn">Cambiar Contraseña</button></a>
+                                    <a href="{% url 'abrirmodificar' id=request.user.id %}" ><button style="background-color:#FFA500;" class="btn">Modificar Información</button></a>
                                 </div>
                                 <div align="center" class="form-group">
-                                    <a href="{% url 'progreso' %}" class="btn btn-success">Progreso</a>
+                                    <a href="{% url 'progreso' %}" ><button style="background-color:#0000FF;" class="btn">Progreso</button></a>
                                 </div>
 		                    </div>
                         </div>

@@ -23,8 +23,7 @@ def index(request):
 
 # Funcion que renderiza la pagina del perfil del usuario
 def perfil(request):
-    context_dict = {'email': "hola", 'nombre': "puto"}
-    return render(request, 'usuarios/perfil.html', context_dict)
+    return render(request, 'usuarios/perfil.html')
 
 # Funcion que renderiza la pagina de informacion nuestra
 def nosotros(request):

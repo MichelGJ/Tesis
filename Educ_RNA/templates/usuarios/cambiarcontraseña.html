@@ -20,6 +20,9 @@ label {
 width:40%;
 display:inline-block;
 }
+.help{
+    color: navy;
+}
 
 {%endblock%}
 
@@ -69,9 +72,25 @@ display:inline-block;
                                                <p></p>
                                                 <label for="npass">Contraseña Nueva:</label>
                                                 <input type="password" name="newpass" id="npass" />
+                                                <div class="help">
+                                                    <div class="col-bg-14">
+                                                        <p></p>
+                                                        <ul><li>Su contraseña no puede asemejarse tanto a su otra información personal.</li>
+                                                            <li>Su contraseña debe contener al menos 8 caracteres.</li>
+                                                            <li>Su contraseña no puede ser una clave utilizada comunmente.</li>
+                                                            <li>Su contraseña no puede ser completamente numérica.</li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
                                                 <p></p>
                                                 <label for="npass2">Contraseña Nueva: (Confirmación)</label>
                                                 <input type="password" name="newpass2" id="npass2" />
+                                                <div class="help">
+                                                    <div class="col-bg-14">
+                                                        <p></p>
+                                                        Para verificar, introduzca la misma contraseña anterior.
+                                                    </div>
+                                                </div>
 			                                </div>
                                         </div>
                                     </div>
