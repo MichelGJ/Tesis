@@ -48,14 +48,12 @@ color:#000000;
          <table class="table" >
              <thead>
              <tr>
-
                  <th style="background-color: #82ACFF;">Lección</th>
              </tr>
              </thead>
              <tbody>
-             {% for i in zipped_list %}
+             {% for i in lista %}
              <tr class="tr1">
-
                  <td class="td2" style=""><a href="{% url 'vertema' leccion_id=i.0 %}">{{i.1}}</a></td>
              </tr>
              {% endfor %}

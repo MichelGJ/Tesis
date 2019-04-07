@@ -1,5 +1,4 @@
 ALTER SEQUENCE lecciones_leccion_id_seq RESTART;
-
 INSERT INTO lecciones_leccion (nombre)
 VALUES
  ('Introducción e Historia'),
@@ -10,11 +9,11 @@ VALUES
  ('Redes Generativas Antagónicas')
  
 ALTER SEQUENCE lecciones_tema_id_seq RESTART;
-
 INSERT INTO lecciones_tema (nombre,leccion_id)
 VALUES
  ('Introducción', (SELECT id from lecciones_leccion where nombre='Introducción e Historia')),
  ('Historia', (SELECT id from lecciones_leccion where nombre='Introducción e Historia')),
+ ('Tipos de Redes', (SELECT id from lecciones_leccion where nombre='Introducción e Historia')),
  ('Definición y Limitaciones', (SELECT id from lecciones_leccion where nombre='El Perceptrón Simple')),
  ('Entrenamiento', (SELECT id from lecciones_leccion where nombre='El Perceptrón Simple')),
  ('Definición y Limitaciones', (SELECT id from lecciones_leccion where nombre='El Perceptrón Multicapa')),
@@ -26,11 +25,154 @@ VALUES
  ('Divergencia Contrastiva', (SELECT id from lecciones_leccion where nombre='Redes de Creencia Profunda')),
  ('Definición y Entrenamiento', (SELECT id from lecciones_leccion where nombre='Redes de Creencia Profunda')),
  ('Definición', (SELECT id from lecciones_leccion where nombre='Redes Generativas Antagónicas')),
- ('Entrenamiento y Limitaciones', (SELECT id from lecciones_leccion where nombre='Redes Generativas Antagónicas'))
+ ('Entrenamiento y Limitaciones', (SELECT id from lecciones_leccion where nombre='Redes Generativas Antagónicas')),
+ ('Usos', (SELECT id from lecciones_leccion where nombre='Redes Generativas Antagónicas'))
  
- 
- 
- 
+ALTER SEQUENCE lecciones_infotema_id_seq RESTART; 
+INSERT INTO public.lecciones_infotema(tema_id, presentacion, podcast, codigo)
+VALUES
+ ((SELECT id from lecciones_tema where nombre='Introducción'), True, True, False),
+ ((SELECT id from lecciones_tema where nombre='Historia'),  True,  True,  False),
+ ((SELECT id from lecciones_tema where nombre='Tipos de Redes'),  True,  True, False)
 
+ALTER SEQUENCE evaluaciones_prueba_id_seq RESTART; 
+INSERT INTO public.evaluaciones_prueba(leccion_id)
+VALUES
+((SELECT id from lecciones_leccion where nombre='Introducción e Historia')),
+((SELECT id from lecciones_leccion where nombre='El Perceptrón Simple')),
+((SELECT id from lecciones_leccion where nombre='El Perceptrón Multicapa')),
+((SELECT id from lecciones_leccion where nombre='Redes Neuronales Recurrentes')),
+((SELECT id from lecciones_leccion where nombre='Redes de Creencia Profunda')),
+((SELECT id from lecciones_leccion where nombre='Redes Generativas Antagónicas'))
 
+ALTER SEQUENCE evaluaciones_quiz_id_seq RESTART; 
+INSERT INTO public.evaluaciones_quiz(tema_id)
+VALUES
+((SELECT id from lecciones_tema where nombre='Introducción')),
+((SELECT id from lecciones_tema where nombre='Historia')),
+((SELECT id from lecciones_tema where nombre='Tipos de Redes')),
+((SELECT id from lecciones_tema where nombre='Definición y Limitaciones' AND leccion_id=2)),
+((SELECT id from lecciones_tema where nombre='Entrenamiento')),
+((SELECT id from lecciones_tema where nombre='Definición y Limitaciones' AND leccion_id=3)),
+((SELECT id from lecciones_tema where nombre='Diseño y Propagación de las entradas')),
+((SELECT id from lecciones_tema where nombre='Entrenamiento y Early Stopping')),
+((SELECT id from lecciones_tema where nombre='Definición' AND leccion_id=4)),
+((SELECT id from lecciones_tema where nombre='Entrenamiento y LSTM')),
+((SELECT id from lecciones_tema where nombre='Máquina de Boltzmann Restringida')),
+((SELECT id from lecciones_tema where nombre='Divergencia Contrastiva')),
+((SELECT id from lecciones_tema where nombre='Definición y Entrenamiento')),
+((SELECT id from lecciones_tema where nombre='Definición' AND leccion_id=6)),
+((SELECT id from lecciones_tema where nombre='Entrenamiento y Limitaciones')),
+((SELECT id from lecciones_tema where nombre='Usos'))
+
+ALTER SEQUENCE lecciones_link_id_seq RESTART; 
+INSERT INTO public.lecciones_link(presentacion, presentaciond, podcast, codigo, tema_id)
+VALUES
+('//www.slideshare.net/slideshow/embed_code/key/iG6RDTv0IRIFRo','Presentacion1.pdf',Null,Null,(SELECT id from lecciones_tema where nombre='Introducción')),
+('//www.slideshare.net/slideshow/embed_code/key/bhCVX1JbFJh9dJ','Presentacion2.pdf',Null,Null,(SELECT id from lecciones_tema where nombre='Historia')),
+(Null,Null,Null,Null,(SELECT id from lecciones_tema where nombre='Tipos de Redes')),
+(Null,Null,Null,Null,(SELECT id from lecciones_tema where nombre='Definición y Limitaciones' AND leccion_id=2)),
+(Null,Null,Null,Null,(SELECT id from lecciones_tema where nombre='Entrenamiento')),
+(Null,Null,Null,Null,(SELECT id from lecciones_tema where nombre='Definición y Limitaciones' AND leccion_id=3)),
+(Null,Null,Null,Null,(SELECT id from lecciones_tema where nombre='Diseño y Propagación de las entradas'),
+(Null,Null,Null,Null,(SELECT id from lecciones_tema where nombre='Entrenamiento y Early Stopping')),
+(Null,Null,Null,Null,(SELECT id from lecciones_tema where nombre='Definición' AND leccion_id=4)),
+(Null,Null,Null,Null,(SELECT id from lecciones_tema where nombre='Entrenamiento y LSTM')),
+(Null,Null,Null,Null,(SELECT id from lecciones_tema where nombre='Máquina de Boltzmann Restringida')),
+(Null,Null,Null,Null,(SELECT id from lecciones_tema where nombre='Divergencia Contrastiva')),
+(Null,Null,Null,Null,(SELECT id from lecciones_tema where nombre='Definición y Entrenamiento')),
+(Null,Null,Null,Null,(SELECT id from lecciones_tema where nombre='Definición' AND leccion_id=6)),
+(Null,Null,Null,Null,(SELECT id from lecciones_tema where nombre='Entrenamiento y Limitaciones')),
+(Null,Null,Null,Null,(SELECT id from lecciones_tema where nombre='Usos'))
+
+ALTER SEQUENCE evaluaciones_pregunta_id_seq RESTART; 
+INSERT INTO public.evaluaciones_pregunta(contenido, prueba_id, quiz_id)
+VALUES
+('¿Las redes neuronales conforman el elemento principal de cuál tecnología?',
+ (SELECT id from evaluaciones_prueba where leccion_id = (SELECT id from lecciones_leccion where nombre='Introducción e Historia')),
+ (SELECT id from evaluaciones_quiz where tema_id = (SELECT id from lecciones_tema where nombre='Introducción'))),
+('¿Cuál es el objetivo final de la Inteligencia Artificial? ',
+ (SELECT id from evaluaciones_prueba where leccion_id = (SELECT id from lecciones_leccion where nombre='Introducción e Historia')),
+ (SELECT id from evaluaciones_quiz where tema_id = (SELECT id from lecciones_tema where nombre='Introducción'))),
+('¿Es posible que, en un futuro, las maquinas tengan inteligencia propia y autentica?',
+ (SELECT id from evaluaciones_prueba where leccion_id = (SELECT id from lecciones_leccion where nombre='Introducción e Historia')),
+ (Null)),
+('Las principales características de las redes neuronales artificiales son:',
+ (SELECT id from evaluaciones_prueba where leccion_id = (SELECT id from lecciones_leccion where nombre='Introducción e Historia')),
+ (SELECT id from evaluaciones_quiz where tema_id = (SELECT id from lecciones_tema where nombre='Introducción'))),
+('La velocidad es más lenta después del entrenar una red neuronal ',
+ (SELECT id from evaluaciones_prueba where leccion_id = (SELECT id from lecciones_leccion where nombre='Introducción e Historia')),
+ (Null)),
+('¿A qué se refiere la robustez de una red?',
+ (SELECT id from evaluaciones_prueba where leccion_id = (SELECT id from lecciones_leccion where nombre='Introducción e Historia')),
+ (SELECT id from evaluaciones_quiz where tema_id = (SELECT id from lecciones_tema where nombre='Introducción'))),
+('¿Qué es la capacidad de aprendizaje de una red?',
+ (SELECT id from evaluaciones_prueba where leccion_id = (SELECT id from lecciones_leccion where nombre='Introducción e Historia')),
+ (SELECT id from evaluaciones_quiz where tema_id = (SELECT id from lecciones_tema where nombre='Introducción'))),
+('¿Qué se tiene que hacer para volver a entrenar una red para otra tarea? ',
+ (SELECT id from evaluaciones_prueba where leccion_id = (SELECT id from lecciones_leccion where nombre='Introducción e Historia')),
+ (Null)),
+('¿Cuál es la ventaja de la robustez en una red?',
+ (SELECT id from evaluaciones_prueba where leccion_id = (SELECT id from lecciones_leccion where nombre='Introducción e Historia')),
+ (SELECT id from evaluaciones_quiz where tema_id = (SELECT id from lecciones_tema where nombre='Introducción'))),
+('¿Cómo se asemeja una red con el cerebro humano en términos de velocidad?',
+ (SELECT id from evaluaciones_prueba where leccion_id = (SELECT id from lecciones_leccion where nombre='Introducción e Historia')),
+ (Null)),
+('¿Cómo definieron McCullough y Pitts a la neurona?',
+ (SELECT id from evaluaciones_prueba where leccion_id = (SELECT id from lecciones_leccion where nombre='Introducción e Historia')),
+ (SELECT id from evaluaciones_quiz where tema_id = (SELECT id from lecciones_tema where nombre='Historia'))),
+('Hebb definió la localización del aprendizaje, ¿En dónde?',
+ (SELECT id from evaluaciones_prueba where leccion_id = (SELECT id from lecciones_leccion where nombre='Introducción e Historia')),
+ (SELECT id from evaluaciones_quiz where tema_id = (SELECT id from lecciones_tema where nombre='Historia'))),
+('En que se basan los cambios de los pesos según Hebb:',
+ (SELECT id from evaluaciones_prueba where leccion_id = (SELECT id from lecciones_leccion where nombre='Introducción e Historia')),
+ (Null)),
+('El perceptrón es:',
+ (SELECT id from evaluaciones_prueba where leccion_id = (SELECT id from lecciones_leccion where nombre='Introducción e Historia')),
+ (SELECT id from evaluaciones_quiz where tema_id = (SELECT id from lecciones_tema where nombre='Historia'))),
+(' El primer uso de las redes neuronales en problemas reales fue:',
+ (SELECT id from evaluaciones_prueba where leccion_id = (SELECT id from lecciones_leccion where nombre='Introducción e Historia')),
+ (Null)),
+('El filtro adaptativo para eliminar ecos en las líneas telefónicas, ¿surgió a partir de qué?',
+ (SELECT id from evaluaciones_prueba where leccion_id = (SELECT id from lecciones_leccion where nombre='Introducción e Historia')),
+ (Null)),
+('¿De qué era capaz el perceptrón en sus inicios?',
+ (SELECT id from evaluaciones_prueba where leccion_id = (SELECT id from lecciones_leccion where nombre='Introducción e Historia')),
+ (SELECT id from evaluaciones_quiz where tema_id = (SELECT id from lecciones_tema where nombre='Historia'))),
+('¿Por qué en 1969 se perdió el interés por las redes neuronales?',
+ (SELECT id from evaluaciones_prueba where leccion_id = (SELECT id from lecciones_leccion where nombre='Introducción e Historia')),
+ (SELECT id from evaluaciones_quiz where tema_id = (SELECT id from lecciones_tema where nombre='Historia'))),
+('¿En cuál década se retoma el interés por las redes neuronales?',
+ (SELECT id from evaluaciones_prueba where leccion_id = (SELECT id from lecciones_leccion where nombre='Introducción e Historia')),
+(Null)),
+('¿Cuál fue el único avance importante en la década de los 70s?',
+ (SELECT id from evaluaciones_prueba where leccion_id = (SELECT id from lecciones_leccion where nombre='Introducción e Historia')),
+ (SELECT id from evaluaciones_quiz where tema_id = (SELECT id from lecciones_tema where nombre='Historia'))),
+('El algoritmo de retropropagación:',
+ (SELECT id from evaluaciones_prueba where leccion_id = (SELECT id from lecciones_leccion where nombre='Introducción e Historia')),
+ (Null)),
+('¿Cuál material vuelve a la red mucho más rápida que las de software?',
+ (SELECT id from evaluaciones_prueba where leccion_id = (SELECT id from lecciones_leccion where nombre='Introducción e Historia')),
+ (Null)),
+('En la actualidad se pueden encontrar redes neuronales en:',
+ (SELECT id from evaluaciones_prueba where leccion_id = (SELECT id from lecciones_leccion where nombre='Introducción e Historia')),
+ (SELECT id from evaluaciones_quiz where tema_id = (SELECT id from lecciones_tema where nombre='Historia'))),
+('En la actualidad se encuentran redes neuronales en:',
+ (SELECT id from evaluaciones_prueba where leccion_id = (SELECT id from lecciones_leccion where nombre='Introducción e Historia')),
+ (SELECT id from evaluaciones_quiz where tema_id = (SELECT id from lecciones_tema where nombre='Historia'))),
+('¿Cuáles son los tipos de perceptrones?',
+ (SELECT id from evaluaciones_prueba where leccion_id = (SELECT id from lecciones_leccion where nombre='Introducción e Historia')),
+ (SELECT id from evaluaciones_quiz where tema_id = (SELECT id from lecciones_tema where nombre='Tipos de Redes'))),
+('Las Redes Neuronales recurrentes:',
+ (SELECT id from evaluaciones_prueba where leccion_id = (SELECT id from lecciones_leccion where nombre='Introducción e Historia')),
+ (SELECT id from evaluaciones_quiz where tema_id = (SELECT id from lecciones_tema where nombre='Tipos de Redes'))),
+('¿Por cuantas redes están conformadas las Redes Generativas Antagónicas?',
+ (SELECT id from evaluaciones_prueba where leccion_id = (SELECT id from lecciones_leccion where nombre='Introducción e Historia')),
+ (SELECT id from evaluaciones_quiz where tema_id = (SELECT id from lecciones_tema where nombre='Tipos de Redes'))),
+('Red capaz de aprender distribuciones de probabilidades:',
+ (SELECT id from evaluaciones_prueba where leccion_id = (SELECT id from lecciones_leccion where nombre='Introducción e Historia')),
+ (SELECT id from evaluaciones_quiz where tema_id = (SELECT id from lecciones_tema where nombre='Tipos de Redes'))),
+('Red capaz de predecir:',
+ (SELECT id from evaluaciones_prueba where leccion_id = (SELECT id from lecciones_leccion where nombre='Introducción e Historia')),
+ (SELECT id from evaluaciones_quiz where tema_id = (SELECT id from lecciones_tema where nombre='Tipos de Redes'))),
 

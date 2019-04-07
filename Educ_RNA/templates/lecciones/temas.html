@@ -9,6 +9,8 @@ box-shadow: 0px 0px 36px 15px rgba(0, 0, 0, 0.28);
 
 .tr1:hover {background-color:#8BFFFF;}
 
+
+
 td{
 cursor: pointer;
 padding: 200px;
@@ -31,7 +33,7 @@ background-color: #FFFFFF;
 }
 
 a {
-  display: block;
+
 color:#000000;
 }
 {%endblock%}
@@ -53,11 +55,32 @@ color:#000000;
              </tr>
              </thead>
              <tbody>
-             {% for i in zipped_list %}
+             {% for i in lista %}
              <tr class="tr1">
-                 <td class="td2" style="text-align: center;"><a href="">{{i.1}}</a></td>
+                 <td class="td1" style="text-align: center;"><a href=""> {{i.1}}</a></td>
+                 <td class="td2" style="text-align: left;padding-left: 200px;">
+                     {% if i.2 == True %}
+                     <a href="{% url 'presentacion' tema_id=i.0 %}"><img title="Presentación" class="logo" src="{% static 'images/icono_presentacion.png'%}"></a>
+                      &#160; &#160;
+                     {% endif %}
+                     {% if i.3 == True %}
+                     <a href="JEJE"><img title="Podcast" class="logo" src="{% static 'images/icono_podcast.png'%}"></a>
+                      &#160; &#160;
+                     {% endif %}
+                     {% if i.4 == True %}
+                     <a href="JEJE"><img title="Codigo" class="logo" src="{% static 'images/icono_codigo.jpg'%}"></a>
+                     &#160; &#160;
+                     {% endif %}
+                     <a href="JEJE"><img title="Quiz" class="logo" src="{% static 'images/icono_quiz.png'%}"></a>
+                 </td>
+
              </tr>
              {% endfor %}
+              <tr class="tr1">
+                 <td class="td3" style="text-align: center;"><a href=""> Examen </a></td>
+                  <td class="td2" style="text-align: left;padding-left: 200px;">
+                     <a href="JEJE"><img title="Examen" class="logo" src="{% static 'images/icono_start.png'%}"></a>
+             </tr>
              </tbody>
          </table>
      </div>

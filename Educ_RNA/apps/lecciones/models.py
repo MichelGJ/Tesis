@@ -14,6 +14,15 @@ class Tema(models.Model):
 
 
 class InfoTema(models.Model):
-    orden = models.IntegerField()
-    contenido = models.CharField(max_length=1024)
-    tema = models.ForeignKey(Tema, on_delete=models.CASCADE)
+    presentacion = models.BooleanField(default=True)
+    podcast = models.BooleanField(default=True)
+    codigo = models.BooleanField(default=True)
+    tema = models.ForeignKey(Tema, on_delete=models.CASCADE, null=True)
+
+
+class Link(models.Model):
+    presentacion = models.CharField(max_length=1024, null=True)
+    presentaciond = models.CharField(max_length=1024, null=True)
+    podcast = models.CharField(max_length=1024, null=True)
+    codigo = models.CharField(max_length=1024, null=True)
+    tema = models.ForeignKey(Tema, on_delete=models.CASCADE, null=True)

@@ -1,0 +1,42 @@
+{% extends 'base/base.html' %}
+{% load staticfiles %}
+
+<title>{% block title %} Presentacion {% endblock %}</title>
+
+{%block style%}
+
+.info{
+margin-bottom:-20px;
+margin-top:-15px;
+text-align:center;
+}
+
+.form-bottom{
+margin-left:255px;
+width:600px;
+background-color:#323232;
+}
+
+{%endblock%}
+
+{% block space%}
+<p>&nbsp</p>
+{% endblock %}
+
+{% block content %}
+ <div class="inner-bg">
+     <div class="container">
+         <div class="form-bottom">
+        <iframe src="{{presentacion}}" width="595" height="485"
+                frameborder="0" marginwidth="0" marginheight="0" scrolling="no" style="border:1px ;
+                border-width:1px; margin-bottom:5px; max-width: 100%;" allowfullscreen> </iframe>
+            <div class="info" >
+                <strong>
+                    <a href="{% url 'descarga' nombre=presentaciond %}" target="_blank">Descargar</a>
+                </strong>
+            </div>
+         </div>
+     </div>
+ </div>
+{% endblock %}
+
