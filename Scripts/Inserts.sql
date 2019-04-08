@@ -31,9 +31,22 @@ VALUES
 ALTER SEQUENCE lecciones_infotema_id_seq RESTART; 
 INSERT INTO public.lecciones_infotema(tema_id, presentacion, podcast, codigo)
 VALUES
- ((SELECT id from lecciones_tema where nombre='Introducción'), True, True, False),
- ((SELECT id from lecciones_tema where nombre='Historia'),  True,  True,  False),
- ((SELECT id from lecciones_tema where nombre='Tipos de Redes'),  True,  True, False)
+((SELECT id from lecciones_tema where nombre='Introducción'), True, True, False),
+((SELECT id from lecciones_tema where nombre='Historia'),  True,  True,  False),
+((SELECT id from lecciones_tema where nombre='Tipos de Redes'),  True,  True, False),
+((SELECT id from lecciones_tema where nombre='Definición y Limitaciones'AND leccion_id=2),  True,  True, False),
+((SELECT id from lecciones_tema where nombre='Entrenamiento'),  True,  True, True),
+((SELECT id from lecciones_tema where nombre='Definición y Limitaciones' AND leccion_id=3),  True,  True, False),
+((SELECT id from lecciones_tema where nombre='Diseño y Propagación de las entradas'),  True,  True, False),
+((SELECT id from lecciones_tema where nombre='Entrenamiento y Early Stopping'),  True,  True, True),
+((SELECT id from lecciones_tema where nombre='Definición' AND leccion_id=4),  True,  True, False),
+((SELECT id from lecciones_tema where nombre='Entrenamiento y LSTM'),  True,  True, True),
+((SELECT id from lecciones_tema where nombre='Máquina de Boltzmann Restringida'),  True,  True, False),
+((SELECT id from lecciones_tema where nombre='Divergencia Contrastiva'),  True,  True, False),
+((SELECT id from lecciones_tema where nombre='Definición y Entrenamiento'),  True,  True, True),
+((SELECT id from lecciones_tema where nombre='Definición' AND leccion_id=6),  True,  True, False),
+((SELECT id from lecciones_tema where nombre='Entrenamiento y Limitaciones'),  True,  True, True),
+((SELECT id from lecciones_tema where nombre='Usos'),  True,  True, False)
 
 ALTER SEQUENCE evaluaciones_prueba_id_seq RESTART; 
 INSERT INTO public.evaluaciones_prueba(leccion_id)
@@ -70,20 +83,20 @@ INSERT INTO public.lecciones_link(presentacion, presentaciond, podcast, codigo, 
 VALUES
 ('//www.slideshare.net/slideshow/embed_code/key/iG6RDTv0IRIFRo','Presentacion1.pdf',Null,Null,(SELECT id from lecciones_tema where nombre='Introducción')),
 ('//www.slideshare.net/slideshow/embed_code/key/bhCVX1JbFJh9dJ','Presentacion2.pdf',Null,Null,(SELECT id from lecciones_tema where nombre='Historia')),
-(Null,Null,Null,Null,(SELECT id from lecciones_tema where nombre='Tipos de Redes')),
-(Null,Null,Null,Null,(SELECT id from lecciones_tema where nombre='Definición y Limitaciones' AND leccion_id=2)),
-(Null,Null,Null,Null,(SELECT id from lecciones_tema where nombre='Entrenamiento')),
-(Null,Null,Null,Null,(SELECT id from lecciones_tema where nombre='Definición y Limitaciones' AND leccion_id=3)),
-(Null,Null,Null,Null,(SELECT id from lecciones_tema where nombre='Diseño y Propagación de las entradas'),
-(Null,Null,Null,Null,(SELECT id from lecciones_tema where nombre='Entrenamiento y Early Stopping')),
-(Null,Null,Null,Null,(SELECT id from lecciones_tema where nombre='Definición' AND leccion_id=4)),
-(Null,Null,Null,Null,(SELECT id from lecciones_tema where nombre='Entrenamiento y LSTM')),
-(Null,Null,Null,Null,(SELECT id from lecciones_tema where nombre='Máquina de Boltzmann Restringida')),
-(Null,Null,Null,Null,(SELECT id from lecciones_tema where nombre='Divergencia Contrastiva')),
-(Null,Null,Null,Null,(SELECT id from lecciones_tema where nombre='Definición y Entrenamiento')),
-(Null,Null,Null,Null,(SELECT id from lecciones_tema where nombre='Definición' AND leccion_id=6)),
-(Null,Null,Null,Null,(SELECT id from lecciones_tema where nombre='Entrenamiento y Limitaciones')),
-(Null,Null,Null,Null,(SELECT id from lecciones_tema where nombre='Usos'))
+('//www.slideshare.net/slideshow/embed_code/key/r0awxqGENoumqJ','Presentacion3.pdf',Null,Null,(SELECT id from lecciones_tema where nombre='Tipos de Redes')),
+('//www.slideshare.net/slideshow/embed_code/key/gg1jYOVPa195Iw','Presentacion4.pdf',Null,Null,(SELECT id from lecciones_tema where nombre='Definición y Limitaciones' AND leccion_id=2)),
+('//www.slideshare.net/slideshow/embed_code/key/HoV2jCH8J16aTd','Presentacion5.pdf',Null,Null,(SELECT id from lecciones_tema where nombre='Entrenamiento')),
+('//www.slideshare.net/slideshow/embed_code/key/Hd5Ar17KRV75pC','Presentacion6.pdf',Null,Null,(SELECT id from lecciones_tema where nombre='Definición y Limitaciones' AND leccion_id=3)),
+('//www.slideshare.net/slideshow/embed_code/key/qz1ZhibfvijyGX','Presentacion7.pdf',Null,Null,(SELECT id from lecciones_tema where nombre='Diseño y Propagación de las entradas')),
+('//www.slideshare.net/slideshow/embed_code/key/z9TJHpT9ylY2rx','Presentacion8.pdf',Null,Null,(SELECT id from lecciones_tema where nombre='Entrenamiento y Early Stopping')),
+('//www.slideshare.net/slideshow/embed_code/key/Drv7dgFyNhctMO','Presentacion9.pdf',Null,Null,(SELECT id from lecciones_tema where nombre='Definición' AND leccion_id=4)),
+('//www.slideshare.net/slideshow/embed_code/key/zM80GmZshdeekR','Presentacion10.pdf',Null,Null,(SELECT id from lecciones_tema where nombre='Entrenamiento y LSTM')),
+('//www.slideshare.net/slideshow/embed_code/key/g4TcFohKWsMWw8','Presentacion11.pdf',Null,Null,(SELECT id from lecciones_tema where nombre='Máquina de Boltzmann Restringida')),
+('//www.slideshare.net/slideshow/embed_code/key/9hNox8fiSen1MD','Presentacion12.pdf',Null,Null,(SELECT id from lecciones_tema where nombre='Divergencia Contrastiva')),
+('//www.slideshare.net/slideshow/embed_code/key/fkBoEY6VUss3I','Presentacion13.pdf',Null,Null,(SELECT id from lecciones_tema where nombre='Definición y Entrenamiento')),
+('//www.slideshare.net/slideshow/embed_code/key/yBijxw4Ql2qIPy','Presentacion14.pdf',Null,Null,(SELECT id from lecciones_tema where nombre='Definición' AND leccion_id=6)),
+('//www.slideshare.net/slideshow/embed_code/key/FYzXiJtcu509Qq','Presentacion15.pdf',Null,Null,(SELECT id from lecciones_tema where nombre='Entrenamiento y Limitaciones')),
+('//www.slideshare.net/slideshow/embed_code/key/xVVLV4MVusMdpL','Presentacion16.pdf',Null,Null,(SELECT id from lecciones_tema where nombre='Usos'))
 
 ALTER SEQUENCE evaluaciones_pregunta_id_seq RESTART; 
 INSERT INTO public.evaluaciones_pregunta(contenido, prueba_id, quiz_id)
