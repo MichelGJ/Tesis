@@ -1,7 +1,8 @@
 from django.urls import path, re_path
-from .views import login, RegistroUsuario, password, registro_usuario
+from .views import login, RegistroUsuario, registro_usuario
 from django.contrib.auth.decorators import login_required
-from django.contrib.auth.views import PasswordResetView, PasswordResetDoneView, PasswordResetConfirmView, PasswordResetCompleteView
+from django.contrib.auth.views import PasswordResetView, PasswordResetDoneView, PasswordResetConfirmView,\
+    PasswordResetCompleteView
 
 urlpatterns = [
     path('login/', login_required(login), name='plogin'),

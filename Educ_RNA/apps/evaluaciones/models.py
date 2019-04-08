@@ -6,22 +6,20 @@ from apps.lecciones.models import Leccion, Tema
 
 
 class Prueba(models.Model):
-    nombre = models.CharField(max_length=120)
-    modelo = models.IntegerField()
-    leccion = models.ForeignKey(Leccion, on_delete=models.CASCADE)
+    leccion = models.OneToOneField(Leccion, on_delete=models.CASCADE)
 
 
 class Quiz(models.Model):
-    tema = models.ForeignKey(Leccion, on_delete=models.CASCADE)
+    tema = models.OneToOneField(Tema, on_delete=models.CASCADE, null=True)
 
 
 class Pregunta(models.Model):
-    contenido = models.CharField(max_length=120)
+    contenido = models.CharField(max_length=150)
     prueba = models.ForeignKey(Prueba, on_delete=models.CASCADE, null=True)
     quiz = models.ForeignKey(Quiz, on_delete=models.CASCADE, null=True)
 
 
 class Respuesta(models.Model):
-    contenido = models.CharField(max_length=120)
+    contenido = models.CharField(max_length=320)
     pregunta = models.ForeignKey(Pregunta, on_delete=models.CASCADE, null=True)
-    respuestacorrecta = models.BooleanField()
+    correcta = models.BooleanField()

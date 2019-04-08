@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from django.conf import settings
 from django.http import HttpResponse
 from django.contrib import messages
 from django.shortcuts import redirect
@@ -23,7 +24,7 @@ def login(request):
         password = request.POST.get('password', False)
         data = {'username': username, 'password': password}
         # Llamada al metodo del API que realizara la autenticacion, con los respectivos creedenciales
-        r = requests.post('http://127.0.0.1:8000/api/login/', data=data)
+        r = requests.post(settings.API_PATH + 'login/', data=data)
         # En caso de recibir el codigo 404 se dispondra un mensaje de error
         if r.status_code == 404:
             messages.error(request, 'usuario o contraseña incorrecto')
@@ -63,7 +64,7 @@ def registro_usuario(request):
         data = {'username': username, 'password': password, 'confirm_password': confirm_password,
                 'first_name': first_name, 'last_name': last_name, 'email': email}
         # Llamada al API con los datos para que se registre el usuario en la base de datos
-        r = requests.post('http://127.0.0.1:8000/api/registrar-usuario/', data=data)
+        r = requests.post(settings.API_PATH + 'registrar-usuario/', data=data)
         # Se revisa la respuesta del API para determinar si ocurrieron errores con la contraseña
         # errorpass = r.text.partition("error[")[2].partition("]")[0]
         # Se revisa la respuesta del API para determinar si ocurrieron otros errores
@@ -72,13 +73,9 @@ def registro_usuario(request):
         if error:
             messages.error(request, error)
             return redirect('/registration/registrar')
-        # En caso de no tener errores se redirige al login, siendo exitoso el
-        # registro
+        # En caso de no tener errores se redirige al login, siendo exitoso el registro
         return redirect('/')
     else:
         return HttpResponse()
 
-
-def password(request):
-    return render(request, 'registration/password_reset_form.html')
 
