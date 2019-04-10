@@ -1,14 +1,15 @@
 {% extends 'base/base.html' %}
 {% load staticfiles %}
 
+
 <title>{% block title %} Presentacion {% endblock %}</title>
 
 {%block style%}
 
 .info{
 margin-bottom:-20px;
-margin-top:-15px;
-text-align:center;
+margin-top:-10px;
+text-align:right;
 }
 
 .form-bottom{
@@ -30,9 +31,9 @@ background-color:#323232;
         <iframe src="{{presentacion}}" width="595" height="485"
                 frameborder="0" marginwidth="0" marginheight="0" scrolling="no" style="border:1px ;
                 border-width:1px; margin-bottom:5px; max-width: 100%;" allowfullscreen> </iframe>
-            <div class="info" >
+              <div class="info" >
                 <strong>
-                    <a href="{% url 'descarga' nombre=presentaciond %}" target="_blank">Descargar</a>
+                    <a  href="{% url 'descargapres' tema_id=id_%}" target="_blank"> <img class="logo" src="{% static 'images/download.png'%}"></a>
                 </strong>
             </div>
          </div>

@@ -1,23 +1,19 @@
+import os
 from django.contrib.auth import authenticate
 from django.http import HttpResponse, JsonResponse
-from apps.lecciones.serializers import LeccionSerializer, TemaSerializer, InfoTemaSerializer, PresentacionesSerializer
+from apps.lecciones.serializers import LeccionSerializer, TemaSerializer, InfoTemaSerializer, PresentacionesSerializer,\
+                                        PodcastSerializer
 from apps.registration.serializers import UsuarioSerializer
 from apps.usuarios.serializers import PasswordChangeSerializer
 from django.utils.decorators import method_decorator
 from django.views.decorators.csrf import csrf_exempt
-from rest_framework.response import Response
 from apps.lecciones.models import Leccion, Tema, InfoTema, Link
-from rest_framework.decorators import api_view
-from django.contrib.auth.models import User
-from rest_framework.views import APIView
 from rest_framework.generics import CreateAPIView, UpdateAPIView, ListAPIView, RetrieveAPIView
 from apps.usuarios.serializers import ModificarUsuarioSerializer
 from rest_framework import status
 from rest_framework.response import Response
 from django.contrib.auth.models import User
-from rest_framework.permissions import IsAuthenticated
-from django.contrib.auth.views import auth_login
-
+from django.http import HttpResponse
 # Vistas del API, en este caso se trata de la logica y las llamadas a las funciones necesarias
 
 
@@ -69,6 +65,7 @@ class VerTemas(ListAPIView):
         return queryset.order_by('id')
 
 
+# Metodo que obtiene la lista de infotemas de un tema determinado, dado su id
 class VerInfoTema(RetrieveAPIView):
     model = InfoTema
     serializer_class = InfoTemaSerializer
@@ -76,9 +73,18 @@ class VerInfoTema(RetrieveAPIView):
     queryset = InfoTema.objects.all()
 
 
+# Metodo que obtiene los links de las presentaciones de un tema determinado, dado su id
 class VerLinksPresentaciones(RetrieveAPIView):
     model = Link
     serializer_class = PresentacionesSerializer
+    lookup_field = "tema_id"
+    queryset = Link.objects.all()
+
+
+# Metodo que obtiene el link del podcast de un tema determinado, dado su id
+class VerLinkPodcast(RetrieveAPIView):
+    model = Link
+    serializer_class = PodcastSerializer
     lookup_field = "tema_id"
     queryset = Link.objects.all()
 
@@ -114,5 +120,4 @@ class CambioContrasena(UpdateAPIView):
                 return Response({"new_password": ["Claves no coinciden."]}, status=status.HTTP_400_BAD_REQUEST)
         # Si el serializador no es valido se envia el mensaje de error correspondiete
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-
 

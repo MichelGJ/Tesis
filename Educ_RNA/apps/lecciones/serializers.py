@@ -35,3 +35,10 @@ class PresentacionesSerializer(serializers.ModelSerializer):
     class Meta:
         model = Link
         fields = ('presentacion', 'presentaciond')
+
+
+class PodcastSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = Link
+        fields = ('podcast',)
