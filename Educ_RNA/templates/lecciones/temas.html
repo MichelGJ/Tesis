@@ -64,7 +64,7 @@ color:#000000;
                       &#160; &#160;
                      {% endif %}
                      {% if i.3 == True %}
-                     <a href="JEJE"><img title="Podcast" class="logo" src="{% static 'images/icono_podcast.png'%}"></a>
+                     <a href="{% url 'podcast' tema_id=i.0  %}"><img title="Podcast" class="logo" src="{% static 'images/icono_podcast.png'%}"></a>
                       &#160; &#160;
                      {% endif %}
                      {% if i.4 == True %}

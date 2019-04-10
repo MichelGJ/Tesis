@@ -141,9 +141,8 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'), 'Educ_RNA/static')
+STATICFILES_URL = (os.path.join(BASE_DIR, 'static'))
 
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
-MEDIA_URL = '/media/'
 
 API_PATH = 'http://127.0.0.1:8000/api/'
 

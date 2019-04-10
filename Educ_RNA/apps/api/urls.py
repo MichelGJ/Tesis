@@ -1,6 +1,7 @@
 from django.urls import path
 from rest_framework.urlpatterns import format_suffix_patterns
-from .views import login, RegistrarUsuario, ActualizarUsuario, VerLecciones, VerTemas, CambioContrasena, VerInfoTema, VerLinksPresentaciones
+from .views import login, RegistrarUsuario, ActualizarUsuario, VerLecciones, VerTemas, CambioContrasena, VerInfoTema, \
+    VerLinksPresentaciones, VerLinkPodcast
 from rest_auth.views import PasswordResetView, PasswordResetConfirmView
 
 # Direcciones URL del API
@@ -14,6 +15,7 @@ urlpatterns = {
     path('actualizar-usuario/<id>', ActualizarUsuario.as_view(), name="actualizarusuario"),
     path('cambio-contrasena/', CambioContrasena.as_view(), name="cambiocontrasena"),
     path('ver-linkspresent/<tema_id>', VerLinksPresentaciones.as_view(), name="verpresentaciones"),
+    path('ver-linkpod/<tema_id>', VerLinkPodcast.as_view(), name="verpodcast"),
 }
 
 urlpatterns = format_suffix_patterns(urlpatterns)
