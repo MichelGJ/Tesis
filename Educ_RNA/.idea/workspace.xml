@@ -24,49 +24,10 @@
 >>>>>>> michel
 =======
     <list default="true" id="17642153-bc64-442e-b4ac-6de4b6252776" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/templates/lecciones/podcasts.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/lecciones/error.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Educ_RNA/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/Educ_RNA/settings.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/api/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/api/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/api/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/api/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/lecciones/serializers.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/lecciones/serializers.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/lecciones/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/lecciones/urls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/apps/lecciones/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/lecciones/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/media/podcasts/1.1.m4a" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/media/podcasts/1.2.m4a" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/media/podcasts/1.3.m4a" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/media/podcasts/2.1.m4a" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/media/podcasts/2.2.m4a" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/media/podcasts/3.1.m4a" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/media/podcasts/3.2.m4a" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/media/podcasts/3.3.m4a" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/media/podcasts/4.1.m4a" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/media/podcasts/4.2.m4a" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/media/podcasts/5.1.m4a" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/media/podcasts/5.2.m4a" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/media/podcasts/5.3.m4a" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/media/podcasts/6.1.m4a" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/media/podcasts/6.2.m4a" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/media/podcasts/6.3.m4a" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/media/presentaciones/Presentacion1.pdf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/media/presentaciones/Presentacion10.pdf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/media/presentaciones/Presentacion11.pdf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/media/presentaciones/Presentacion12.pdf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/media/presentaciones/Presentacion13.pdf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/media/presentaciones/Presentacion14.pdf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/media/presentaciones/Presentacion15.pdf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/media/presentaciones/Presentacion16.pdf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/media/presentaciones/Presentacion2.pdf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/media/presentaciones/Presentacion3.pdf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/media/presentaciones/Presentacion4.pdf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/media/presentaciones/Presentacion5.pdf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/media/presentaciones/Presentacion6.pdf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/media/presentaciones/Presentacion7.pdf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/media/presentaciones/Presentacion8.pdf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/media/presentaciones/Presentacion9.pdf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/lecciones/presentaciones.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/lecciones/presentaciones.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/lecciones/temas.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/lecciones/temas.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Scripts/Inserts.sql" beforeDir="false" afterPath="$PROJECT_DIR$/../Scripts/Inserts.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/lecciones/podcasts.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/lecciones/podcasts.html" afterDir="false" />
     </list>
 >>>>>>> michel
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -79,49 +40,50 @@
     <session id="341201909">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="8" />
+          <entry key="project.closed" value="9" />
           <entry key="project.open.time.24" value="1" />
           <entry key="project.open.time.31" value="2" />
+          <entry key="project.open.time.34" value="1" />
           <entry key="project.open.time.37" value="1" />
           <entry key="project.open.time.4" value="1" />
           <entry key="project.open.time.5" value="1" />
           <entry key="project.open.time.55" value="1" />
           <entry key="project.open.time.64" value="1" />
           <entry key="project.open.time.8" value="1" />
-          <entry key="project.opened" value="9" />
+          <entry key="project.opened" value="10" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
-          <entry key="html" value="177" />
+          <entry key="html" value="180" />
           <entry key="jpg" value="1" />
           <entry key="png" value="2" />
-          <entry key="py" value="368" />
+          <entry key="py" value="371" />
           <entry key="rnc" value="1" />
           <entry key="xml" value="2" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
-          <entry key="HTML" value="175" />
+          <entry key="HTML" value="178" />
           <entry key="Image" value="3" />
           <entry key="PLAIN_TEXT" value="2" />
-          <entry key="Python" value="368" />
+          <entry key="Python" value="371" />
           <entry key="RNG Compact" value="1" />
           <entry key="XML" value="2" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="html" value="10537" />
-          <entry key="py" value="29097" />
+          <entry key="html" value="10795" />
+          <entry key="py" value="31837" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="HTML" value="10533" />
+          <entry key="HTML" value="10791" />
           <entry key="PLAIN_TEXT" value="4" />
-          <entry key="Python" value="29097" />
+          <entry key="Python" value="31837" />
         </counts>
       </usages-collector>
     </session>
@@ -137,9 +99,10 @@
               <caret line="27" column="29" selection-start-line="27" selection-start-column="29" selection-end-line="27" selection-end-column="29" />
 =======
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/templates/lecciones/podcasts.html">
           <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -158,6 +121,10 @@
             <state relative-caret-position="235">
               <caret line="45" column="78" selection-start-line="45" selection-start-column="78" selection-end-line="45" selection-end-column="78" />
 >>>>>>> michel
+=======
+            <state relative-caret-position="286">
+              <caret line="52" column="156" selection-start-line="52" selection-start-column="98" selection-end-line="52" selection-end-column="156" />
+>>>>>>> michel
             </state>
           </provider>
         </entry>
@@ -165,18 +132,20 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/apps/lecciones/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="388">
-              <caret line="106" column="33" selection-start-line="106" selection-start-column="33" selection-end-line="106" selection-end-column="33" />
+            <state relative-caret-position="82">
+              <caret line="83" column="50" selection-start-line="83" selection-start-column="50" selection-end-line="83" selection-end-column="50" />
               <folding>
                 <element signature="e#0#45#0" expanded="true" />
-                <marker date="1554910699616" expanded="true" signature="3976:3977" ph="..." />
-                <marker date="1554910699616" expanded="true" signature="3976:3981" ph="..." />
+                <marker date="1554989326000" expanded="true" signature="5902:5903" ph="..." />
+                <marker date="1554989326000" expanded="true" signature="5902:5907" ph="..." />
+                <marker date="1554989326000" expanded="true" signature="7351:7352" ph="..." />
               </folding>
 >>>>>>> michel
             </state>
           </provider>
         </entry>
       </file>
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
       <file pinned="false" current-in-tab="true">
@@ -197,13 +166,15 @@
 =======
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/apps/api/views.py">
+=======
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/templates/lecciones/error.html">
+>>>>>>> michel
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="17">
-              <caret line="72" column="37" selection-start-line="72" selection-start-column="37" selection-end-line="72" selection-end-column="37" />
+            <state relative-caret-position="272">
+              <caret line="16" column="18" lean-forward="true" selection-start-line="16" selection-start-column="18" selection-end-line="16" selection-end-column="18" />
               <folding>
-                <element signature="e#0#9#0" expanded="true" />
-                <marker date="1554866225199" expanded="true" signature="5543:5544" ph="..." />
-                <marker date="1554866225199" expanded="true" signature="5543:5545" ph="..." />
+                <element signature="n#style#0;n#button#0;n#a#0;n#div#2;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
               </folding>
 >>>>>>> michel
             </state>
@@ -211,25 +182,27 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/apps/lecciones/urls.py">
+        <entry file="file://$PROJECT_DIR$/templates/usuarios/perfil.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="238">
-              <caret line="14" column="49" selection-start-line="14" selection-start-column="49" selection-end-line="14" selection-end-column="49" />
-              <folding>
-                <element signature="e#0#37#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="289">
+              <caret line="74" column="30" lean-forward="true" selection-start-line="74" selection-start-column="30" selection-end-line="74" selection-end-column="30" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/apps/api/urls.py">
+        <entry file="file://$PROJECT_DIR$/apps/lecciones/urls.py">
           <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
             <state relative-caret-position="323">
               <caret line="19" selection-start-line="19" selection-end-line="19" />
               <folding>
                 <element signature="e#0#28#0" expanded="true" />
               </folding>
+>>>>>>> michel
+=======
+            <state relative-caret-position="34">
+              <caret line="2" column="105" selection-start-line="2" selection-start-column="105" selection-end-line="2" selection-end-column="105" />
 >>>>>>> michel
             </state>
           </provider>
@@ -292,16 +265,17 @@
         <option value="$PROJECT_DIR$/apps/lecciones/serializers.py" />
         <option value="$PROJECT_DIR$/apps/api/views.py" />
         <option value="$PROJECT_DIR$/templates/lecciones/temas.html" />
+        <option value="$PROJECT_DIR$/templates/lecciones/podcasts.html" />
         <option value="$PROJECT_DIR$/apps/lecciones/urls.py" />
         <option value="$PROJECT_DIR$/apps/lecciones/views.py" />
-        <option value="$PROJECT_DIR$/templates/lecciones/podcasts.html" />
+        <option value="$PROJECT_DIR$/templates/lecciones/error.html" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="336" />
-    <option name="y" value="286" />
-    <option name="width" value="979" />
+    <option name="x" value="335" />
+    <option name="y" value="285" />
+    <option name="width" value="980" />
     <option name="height" value="1040" />
   </component>
   <component name="ProjectInspectionProfilesVisibleTreeState">
@@ -326,7 +300,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -342,18 +315,25 @@
             <path>
               <item name="Educ_RNA" type="b2602c69:ProjectViewProjectNode" />
               <item name="Educ_RNA" type="462c0819:PsiDirectoryNode" />
+              <item name="apps" type="462c0819:PsiDirectoryNode" />
+              <item name="lecciones" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Educ_RNA" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Educ_RNA" type="462c0819:PsiDirectoryNode" />
               <item name="templates" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="Educ_RNA" type="b2602c69:ProjectViewProjectNode" />
               <item name="Educ_RNA" type="462c0819:PsiDirectoryNode" />
               <item name="templates" type="462c0819:PsiDirectoryNode" />
-              <item name="lecciones" type="462c0819:PsiDirectoryNode" />
+              <item name="usuarios" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -436,13 +416,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/../../env/Lib/site-packages/django/views/generic/edit.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="73">
-          <caret line="128" column="6" selection-start-line="128" selection-start-column="6" selection-end-line="128" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/apps/api/apps.py">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
@@ -661,26 +634,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="680">
           <caret line="97" column="9" lean-forward="true" selection-start-line="97" selection-start-column="9" selection-end-line="97" selection-end-column="9" />
-          <folding>
-            <element signature="e#0#35#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/apps/registration/views.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="867">
-          <caret line="66" column="46" selection-start-line="66" selection-start-column="46" selection-end-line="66" selection-end-column="46" />
-          <folding>
-            <element signature="e#0#35#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/usuarios/perfil.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="29" column="99" selection-start-line="29" selection-start-column="61" selection-end-line="29" selection-end-column="99" />
         </state>
       </provider>
     </entry>
@@ -749,8 +702,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/apps/api/urls.py">
+    <entry file="file://$PROJECT_DIR$/apps/lecciones/serializers.py">
       <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
         <state relative-caret-position="323">
           <caret line="19" selection-start-line="19" selection-end-line="19" />
 >>>>>>> michel
@@ -758,11 +712,16 @@
             <element signature="e#0#28#0" expanded="true" />
           </folding>
 >>>>>>> michel
+=======
+        <state relative-caret-position="462">
+          <caret line="44" lean-forward="true" selection-start-line="44" selection-end-line="44" />
+>>>>>>> michel
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/apps/lecciones/serializers.py">
+    <entry file="file://$PROJECT_DIR$/templates/lecciones/presentaciones.html">
       <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -781,61 +740,86 @@
         <state relative-caret-position="462">
           <caret line="44" lean-forward="true" selection-start-line="44" selection-end-line="44" />
 >>>>>>> michel
+=======
+        <state relative-caret-position="371">
+          <caret line="39" column="11" lean-forward="true" selection-start-line="39" selection-start-column="11" selection-end-line="39" selection-end-column="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/apps/registration/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="388">
+          <caret line="66" column="46" selection-start-line="66" selection-start-column="46" selection-end-line="66" selection-end-column="46" />
+>>>>>>> michel
           <folding>
-            <element signature="e#0#38#0" expanded="true" />
+            <element signature="e#0#35#0" expanded="true" />
           </folding>
 >>>>>>> michel
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/apps/lecciones/urls.py">
+    <entry file="file://$PROJECT_DIR$/apps/api/urls.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="14" column="49" selection-start-line="14" selection-start-column="49" selection-end-line="14" selection-end-column="49" />
+        <state relative-caret-position="323">
+          <caret line="19" selection-start-line="19" selection-end-line="19" />
           <folding>
-            <element signature="e#0#37#0" expanded="true" />
+            <element signature="e#0#28#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/apps/api/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
+        <state relative-caret-position="714">
           <caret line="72" column="37" selection-start-line="72" selection-start-column="37" selection-end-line="72" selection-end-column="37" />
           <folding>
             <element signature="e#0#9#0" expanded="true" />
-            <marker date="1554866225199" expanded="true" signature="5543:5544" ph="..." />
-            <marker date="1554866225199" expanded="true" signature="5543:5545" ph="..." />
+            <marker date="1554912857181" expanded="true" signature="5543:5544" ph="..." />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/templates/lecciones/presentaciones.html">
+    <entry file="file://$PROJECT_DIR$/apps/lecciones/urls.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="371">
-          <caret line="39" column="11" lean-forward="true" selection-start-line="39" selection-start-column="11" selection-end-line="39" selection-end-column="11" />
-          <folding>
-            <element signature="n#style#0;n#iframe#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
-          </folding>
+        <state relative-caret-position="34">
+          <caret line="2" column="105" selection-start-line="2" selection-start-column="105" selection-end-line="2" selection-end-column="105" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/apps/lecciones/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="388">
-          <caret line="106" column="33" selection-start-line="106" selection-start-column="33" selection-end-line="106" selection-end-column="33" />
+        <state relative-caret-position="82">
+          <caret line="83" column="50" selection-start-line="83" selection-start-column="50" selection-end-line="83" selection-end-column="50" />
           <folding>
             <element signature="e#0#45#0" expanded="true" />
-            <marker date="1554910699616" expanded="true" signature="3976:3977" ph="..." />
-            <marker date="1554910699616" expanded="true" signature="3976:3981" ph="..." />
+            <marker date="1554989326000" expanded="true" signature="5902:5903" ph="..." />
+            <marker date="1554989326000" expanded="true" signature="5902:5907" ph="..." />
+            <marker date="1554989326000" expanded="true" signature="7351:7352" ph="..." />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/usuarios/perfil.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="289">
+          <caret line="74" column="30" lean-forward="true" selection-start-line="74" selection-start-column="30" selection-end-line="74" selection-end-column="30" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/templates/lecciones/podcasts.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="235">
-          <caret line="45" column="78" selection-start-line="45" selection-start-column="78" selection-end-line="45" selection-end-column="78" />
+        <state relative-caret-position="286">
+          <caret line="52" column="156" selection-start-line="52" selection-start-column="98" selection-end-line="52" selection-end-column="156" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/lecciones/error.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="272">
+          <caret line="16" column="18" lean-forward="true" selection-start-line="16" selection-start-column="18" selection-end-line="16" selection-end-column="18" />
+          <folding>
+            <element signature="n#style#0;n#button#0;n#a#0;n#div#2;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

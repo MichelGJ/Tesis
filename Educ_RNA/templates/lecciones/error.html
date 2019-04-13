@@ -1,33 +1,32 @@
 {% extends 'base/base.html' %}
 {% load staticfiles %}
 
-<title>{% block title %} Podcast {% endblock %}</title>
+<title>{% block title %} Error {% endblock %}</title>
 
 {%block style%}
 
 .info{
-margin-bottom:-20px;
+margin-bottom:15px;
 margin-top:-15px;
-text-align:right;
+text-align:center;
 }
 
 .info2{
 margin-bottom:25px;
-margin-top:5px;
+margin-top:-5px;
 text-align:center;
 }
 
 .form-bottom{
 margin-top:100px;
-margin-left:35px;
-width:1050px;
+margin-left:190px;
+width:700px;
 background-color:#323232;
 }
 
-.player{
-width:1000px;
+.form-group{
+margin-bottom:-15px;
 }
-
 {%endblock%}
 
 {% block space%}
@@ -41,18 +40,18 @@ width:1000px;
          <div class="form-bottom">
              <div class="info2" >
                 <strong>
-                    <a class="descarga"><font color=#76d7c4  size=8px>Podcast: {{nombre}}</font></a>
+                    <a class="titulo"><font color=#DC143C  size=8px>Error <img class="logo" src="{% static 'images/error.png'%}"></font></a>
                 </strong>
              </div>
-       <audio class="player" controls>
-            <source src="{% static podcast%}" type="audio/mpeg">
-       </audio>
              <p></p>
              <div class="info" >
                 <strong>
-                    <a class="descarga" href="{% url 'descargapod' tema_id=id_%}" target="_blank"><img class="logo" src="{% static 'images/download.png'%}"></a>
+                    <a class="mensaje" href="" target="_blank"><font color=#FF0000  size=5px>{{error}}</font></a>
                 </strong>
             </div>
+             <div align="center" class="form-group">
+                 <a href="/usuarios/index" ><button style="background-color:#0000FF;" class="btn">Regresar al Inicio</button></a>
+             </div>
          </div>
      </div>
  </div>
