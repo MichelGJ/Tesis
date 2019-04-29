@@ -43,7 +43,7 @@ class UsuarioSerializer(serializers.ModelSerializer):
                 return user
             # Si las contraseñas no coinciden se envia el mensaje de error correspondiente
             else:
-                error = {'username': "[Claves no coinciden]"}
+                error = {'username': ["Claves no coinciden"]}
                 return error
         # Si las validaciones de la contraseña no son exitosas, se detecta la excepcion y se envia el mensaje de error
         except ValidationError as error:
@@ -54,6 +54,3 @@ class UsuarioSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
         fields = ('first_name', 'last_name', 'username', 'password', 'confirm_password', 'email')
-
-
-

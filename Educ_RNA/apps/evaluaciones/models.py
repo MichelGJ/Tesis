@@ -14,7 +14,7 @@ class Quiz(models.Model):
 
 
 class Pregunta(models.Model):
-    contenido = models.CharField(max_length=150)
+    contenido = models.CharField(max_length=150, unique=True)
     prueba = models.ForeignKey(Prueba, on_delete=models.CASCADE, null=True)
     quiz = models.ForeignKey(Quiz, on_delete=models.CASCADE, null=True)
 

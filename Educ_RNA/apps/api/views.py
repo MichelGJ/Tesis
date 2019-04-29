@@ -1,19 +1,19 @@
-import os
 from django.contrib.auth import authenticate
-from django.http import HttpResponse, JsonResponse
+from django.http import JsonResponse
 from apps.lecciones.serializers import LeccionSerializer, TemaSerializer, InfoTemaSerializer, PresentacionesSerializer,\
                                         PodcastSerializer
+from apps.evaluaciones.serializers import QuizSerializer, PreguntaSerializer, RespuestaSerializer, PruebaSerializer
 from apps.registration.serializers import UsuarioSerializer
 from apps.usuarios.serializers import PasswordChangeSerializer
 from django.utils.decorators import method_decorator
 from django.views.decorators.csrf import csrf_exempt
-from apps.lecciones.models import Leccion, Tema, InfoTema, Link
 from rest_framework.generics import CreateAPIView, UpdateAPIView, ListAPIView, RetrieveAPIView
 from apps.usuarios.serializers import ModificarUsuarioSerializer
 from rest_framework import status
 from rest_framework.response import Response
 from django.contrib.auth.models import User
 from django.http import HttpResponse
+from django.core.exceptions import ValidationError
 # Vistas del API, en este caso se trata de la logica y las llamadas a las funciones necesarias
 
 
@@ -46,49 +46,6 @@ class ActualizarUsuario(UpdateAPIView):
     serializer_class = ModificarUsuarioSerializer
 
 
-# Metodo que obtiene de la base de datos la lista completa de lecciones
-class VerLecciones(ListAPIView):
-    queryset = Leccion.objects.all()
-    serializer_class = LeccionSerializer
-
-
-# Metodo que obtiene la lista de temas de una leccion determinada, dado su id
-class VerTemas(ListAPIView):
-    serializer_class = TemaSerializer
-    model = serializer_class.Meta.model
-    paginate_by = 100
-
-    # Funcion que busca con el id dado la lista de temas correspondiente
-    def get_queryset(self):
-        leccion_id = self.kwargs['leccion_id']
-        queryset = self.model.objects.filter(leccion_id=leccion_id)
-        return queryset.order_by('id')
-
-
-# Metodo que obtiene la lista de infotemas de un tema determinado, dado su id
-class VerInfoTema(RetrieveAPIView):
-    model = InfoTema
-    serializer_class = InfoTemaSerializer
-    lookup_field = "tema_id"
-    queryset = InfoTema.objects.all()
-
-
-# Metodo que obtiene los links de las presentaciones de un tema determinado, dado su id
-class VerLinksPresentaciones(RetrieveAPIView):
-    model = Link
-    serializer_class = PresentacionesSerializer
-    lookup_field = "tema_id"
-    queryset = Link.objects.all()
-
-
-# Metodo que obtiene el link del podcast de un tema determinado, dado su id
-class VerLinkPodcast(RetrieveAPIView):
-    model = Link
-    serializer_class = PodcastSerializer
-    lookup_field = "tema_id"
-    queryset = Link.objects.all()
-
-
 # Metodo que realiza el cambio de contraseñaa de un usuario
 class CambioContrasena(UpdateAPIView):
     serializer_class = PasswordChangeSerializer
@@ -117,7 +74,113 @@ class CambioContrasena(UpdateAPIView):
                 return Response("Success.", status=status.HTTP_200_OK)
             else:
                 # Si la contraseña de confirmacion no es igual a la nueva se envia el mensaje de error correspondiente
-                return Response({"new_password": ["Claves no coinciden."]}, status=status.HTTP_400_BAD_REQUEST)
+                return Response({"new_password": ["Claves no coinciden"]}, status=status.HTTP_400_BAD_REQUEST)
         # Si el serializador no es valido se envia el mensaje de error correspondiete
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
+
+# Metodo que obtiene de la base de datos la lista completa de lecciones
+class VerLecciones(ListAPIView):
+    serializer_class = LeccionSerializer
+    queryset = serializer_class.Meta.model.objects.all()
+
+
+# Metodo que obtiene la lista de temas de una leccion determinada, dado su id
+class VerTemas(ListAPIView):
+    serializer_class = TemaSerializer
+    model = serializer_class.Meta.model
+    paginate_by = 100
+
+    # Funcion que busca con el id dado la lista de temas correspondiente
+    def get_queryset(self):
+        leccion_id = self.kwargs['leccion_id']
+        queryset = self.model.objects.filter(leccion_id=leccion_id)
+        return queryset.order_by('id')
+
+
+# Metodo que obtiene la info un tema determinado, dado su id
+class VerInfoTema(RetrieveAPIView):
+    serializer_class = InfoTemaSerializer
+    lookup_field = "tema_id"
+    queryset = serializer_class.Meta.model.objects.all()
+
+
+# Metodo que obtiene los links de las presentaciones de un tema determinado, dado su id
+class VerLinksPresentaciones(RetrieveAPIView):
+    serializer_class = PresentacionesSerializer
+    lookup_field = "tema_id"
+    queryset = serializer_class.Meta.model.objects.all()
+
+
+# Metodo que obtiene el link del podcast de un tema determinado, dado su id
+class VerLinkPodcast(RetrieveAPIView):
+    serializer_class = PodcastSerializer
+    lookup_field = "tema_id"
+    queryset = serializer_class.Meta.model.objects.all()
+
+
+# Metodo que obtiene el quiz de un tema dado su id
+class GetQuiz(RetrieveAPIView):
+    serializer_class = QuizSerializer
+    lookup_field = "tema_id"
+    queryset = serializer_class.Meta.model.objects.all()
+
+
+# Metodo que obtiene la prueba de una leccion dado su id
+class GetPrueba(RetrieveAPIView):
+    serializer_class = PruebaSerializer
+    lookup_field = "leccion_id"
+    queryset = serializer_class.Meta.model.objects.all()
+
+
+# Metodo que obtiene la lista de preguntas de un quiz dado su id
+class GetPreguntaQuiz(ListAPIView):
+    serializer_class = PreguntaSerializer
+    model = serializer_class.Meta.model
+    queryset = serializer_class.Meta.model.objects.all()
+
+    # Funcion que busca con el id del quiz la lista de preguntas correspondiente
+    def get_queryset(self):
+        quiz_id = self.kwargs['quiz_id']
+        queryset = self.model.objects.filter(quiz_id=quiz_id)
+        return queryset.order_by('id')
+
+
+# Metodo que obtiene la lista de preguntas de una prueba dado su id
+class GetPreguntaPrueba(ListAPIView):
+    serializer_class = PreguntaSerializer
+    model = serializer_class.Meta.model
+    queryset = serializer_class.Meta.model.objects.all()
+
+    # Funcion que busca con el id del quiz la lista de preguntas correspondiente
+    def get_queryset(self):
+        prueba_id = self.kwargs['prueba_id']
+        queryset = self.model.objects.filter(prueba_id=prueba_id)
+        return queryset.order_by('id')
+
+
+# Metodo que consulta una pregunta por su propio id
+class GetPreguntaId(RetrieveAPIView):
+    serializer_class = PreguntaSerializer
+    lookup_field = "id"
+    queryset = serializer_class.Meta.model.objects.all()
+
+
+# Metodo que obtiene la lista de respuestas de una pregunta dado su id
+class GetRespuesta(ListAPIView):
+    serializer_class = RespuestaSerializer
+    model = serializer_class.Meta.model
+    queryset = serializer_class.Meta.model.objects.all()
+
+    # Funcion que busca con el id del quiz la lista de preguntas correspondiente
+    def get_queryset(self):
+        pregunta_id = self.kwargs['pregunta_id']
+        queryset = self.model.objects.filter(pregunta_id=pregunta_id)
+        return queryset.order_by('id')
+
+
+# Metodo que consulta una respuesta por su propio id
+class GetRespuestaId(RetrieveAPIView):
+    serializer_class = RespuestaSerializer
+    lookup_field = "id"
+    queryset = serializer_class.Meta.model.objects.all()

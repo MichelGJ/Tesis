@@ -66,7 +66,7 @@ def modificacion_usuario(request):
         # Si el codigo es 400, se muestra el error en pantalla
         if r.status_code == 400:
             messages.error(request, error)
-            return redirect('/usuarios/abrir-modificar/'+id_)
+            return redirect('/usuarios/abrir-modificar/%3Fid='+id_)
         # En caso de no recibir codigo 400  se redirige al perfil, siendo exitosa la modificacion
         messages.success(request, "Usuario modificado exitosamente")
         return redirect('/usuarios/perfil')
@@ -86,6 +86,7 @@ def cambio_constrasena(request):
         r = requests.put(settings.API_PATH + 'cambio-contrasena/', data=data)
         # Se revisa la respuesta del API para determinar si ocurrieron errores
         error = r.text.partition("[")[2].partition("]")[0]
+        print(r.text)
         # Si el codigo es 400, se muestra el error en pantalla
         if error:
             messages.error(request, error)

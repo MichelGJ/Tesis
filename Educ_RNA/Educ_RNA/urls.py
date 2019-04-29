@@ -27,6 +27,7 @@ urlpatterns = [
     path('registration/', include('apps.registration.urls')),
     path('api/', include('apps.api.urls')),
     path('lecciones/', include('apps.lecciones.urls')),
+    path('evaluaciones/', include('apps.evaluaciones.urls')),
     path('rest-auth/', include('rest_auth.urls')),
     path('rest-auth/registration/', include('rest_auth.registration.urls'))
 ]
