@@ -1,0 +1,98 @@
+{% extends 'base/base.html' %}
+{% load staticfiles %}
+
+<title>{% block title %} Quiz {% endblock %}</title>
+
+{%block style%}
+
+
+.info{
+margin-bottom:15px;
+margin-top:-15px;
+text-align:center;
+}
+
+
+
+.form-bottom{
+margin-top:0px;
+margin-left:125px;
+width:900px;
+background-color:#eee;
+box-shadow: 0px 0px 36px 15px rgba(0, 0, 0, 0.28);
+}
+
+.form-top{
+margin-top:50px;
+margin-left:125px;
+width:900px;
+text-align:center;
+background-color:#82ACFF;
+box-shadow: 0px 0px 36px 15px rgba(0, 0, 0, 0.28);
+}
+
+.form-group{
+margin-bottom:-15px;
+}
+{%endblock%}
+
+{% block space%}
+
+{% endblock %}
+
+{% block content %}
+<div class="inner-bg">
+     <div class="container">
+         <div class="form-top">
+              <strong>
+                  <p></p>
+                    <a class="pregunta" href="" target="_blank"><font color=#000000 size=6px>Quiz #{{tema_id}}</font></a>
+                </strong>
+         </div>
+         <div class="form-bottom">
+             <div class="info" >
+                 {% if mensaje == "true" %}
+                 {% for success in messages %}
+                 <div class="alert alert-success">
+                     {{ success }}
+                 </div>
+                 {% endfor %}
+                 {% elif mensaje == "false" %}
+                 {% for message in messages %}
+                 <div class="alert alert-danger">
+
+                     {{ message }}
+                 </div>
+                 {% endfor %}
+                 {% endif %}
+                <strong>
+                    <a class="pregunta"><font color=#000000  size=5px>{{pregunta}}</font></a>
+                    <br>
+                    <p></p>
+                </strong>
+                 {% for i in listaresp %}
+                  <strong>
+                    {% if i.1 %}
+                    <a class="respuesta"><font color=#32CD32  size=4px>
+                        {{i.0}}
+                    </font></a>
+                      <br>
+                      <p></p>
+                    {% elif not i.1 %}
+                      <a class="respuesta"><font color=#FF0000  size=4px>
+                        {{i.0}}
+                    </font></a>
+                      <br>
+                      <p></p>
+                    {% endif %}
+                </strong>
+                 {% endfor %}
+            </div>
+             <div align="center" class="form-group">
+                 <a href="{% url 'quiz' tema_id=tema_id  %}" ><button style="background-color:#0000FF;" class="btn">Siguiente</button></a>
+             </div>
+         </div>
+     </div>
+ </div>
+{% endblock %}
+

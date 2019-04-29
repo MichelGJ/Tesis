@@ -71,7 +71,7 @@ color:#000000;
                      <a href="JEJE"><img title="Codigo" class="logo" src="{% static 'images/icono_codigo.jpg'%}"></a>
                      &#160; &#160;
                      {% endif %}
-                     <a href="JEJE"><img title="Quiz" class="logo" src="{% static 'images/icono_quiz.png'%}"></a>
+                     <a href="{% url 'quiz' tema_id=i.0  %}"><img title="Quiz" class="logo" src="{% static 'images/icono_quiz.png'%}"></a>
                  </td>
 
              </tr>
