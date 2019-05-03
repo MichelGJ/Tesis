@@ -1328,7 +1328,7 @@ VALUES
 ('Falso', True, (SELECT id from evaluaciones_pregunta where contenido='Se pueden utilizar para identificar personas')),
 ('-', False, (SELECT id from evaluaciones_pregunta where contenido='Se pueden utilizar para identificar personas')),
 ('-', False, (SELECT id from evaluaciones_pregunta where contenido='Se pueden utilizar para identificar personas')),
-('Verdadero', True, (SELECT id from evaluaciones_pregunta where contenido=' Se pueden utilizar para acelerar la investigación en cualquier área donde se encuentre la Inteligencia Artificial')),
-('Falso', False, (SELECT id from evaluaciones_pregunta where contenido=' Se pueden utilizar para acelerar la investigación en cualquier área donde se encuentre la Inteligencia Artificial')),
-('-', False, (SELECT id from evaluaciones_pregunta where contenido=' Se pueden utilizar para acelerar la investigación en cualquier área donde se encuentre la Inteligencia Artificial')),
-('-', False, (SELECT id from evaluaciones_pregunta where contenido=' Se pueden utilizar para acelerar la investigación en cualquier área donde se encuentre la Inteligencia Artificial'))
+('Verdadero', True, (SELECT id from evaluaciones_pregunta where contenido='Se pueden utilizar para acelerar la investigación en cualquier área donde se encuentre la Inteligencia Artificial')),
+('Falso', False, (SELECT id from evaluaciones_pregunta where contenido='Se pueden utilizar para acelerar la investigación en cualquier área donde se encuentre la Inteligencia Artificial')),
+('-', False, (SELECT id from evaluaciones_pregunta where contenido='Se pueden utilizar para acelerar la investigación en cualquier área donde se encuentre la Inteligencia Artificial')),
+('-', False, (SELECT id from evaluaciones_pregunta where contenido='Se pueden utilizar para acelerar la investigación en cualquier área donde se encuentre la Inteligencia Artificial'))
