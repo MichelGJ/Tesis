@@ -3,6 +3,8 @@ from rest_framework.test import APIClient
 from rest_framework import status
 from django.urls import reverse
 from django.contrib.auth.models import User
+from apps.lecciones.models import Leccion, Tema, InfoTema, Link
+from apps.evaluaciones.models import Quiz, Pregunta, Prueba, Respuesta
 
 # Create your tests here.
 
@@ -148,3 +150,148 @@ class UsuariosTests(TestCase):
         error = "'Clave actual incorrecta'"
         self.assertEquals(respuesta, error)
         self.assertEquals(response.status_code, 400)
+
+
+class LeccionesTests(TestCase):
+
+    def setUp(self):
+        self.leccion = 'Leccion'
+        self.leccion2 = 'Leccion2'
+        self.tema = 'Tema'
+        self.tema2 = 'Tema2'
+        self.presentacion = True
+        self.podcast = True
+        self.codigo = False
+        self.linkpres = 'LinkPresentacion'
+        self.linkpod = 'LinkPodcast'
+        self.linkcod = 'LinkCodigo'
+        leccion = Leccion.objects.create(id=1, nombre=self.leccion)
+        leccion2 = Leccion.objects.create(id=2, nombre=self.leccion2)
+        tema = Tema.objects.create(id=1, nombre=self.tema, leccion=leccion)
+        tema2 = Tema.objects.create(id=2, nombre=self.tema2, leccion=leccion)
+        InfoTema.objects.create(presentacion=self.presentacion, podcast=self.podcast, codigo=self.codigo, tema=tema)
+        Link.objects.create(presentacion=self.linkpres, podcast=self.linkpod, codigo=self.linkcod, tema=tema)
+
+    def test_api_ver_lecciones(self):
+        response = self.client.get(reverse('verlec'))
+        responsejson = response.json()[0]['nombre']
+        responsejson2 = response.json()[1]['nombre']
+        self.assertEquals(responsejson, self.leccion)
+        self.assertEquals(responsejson2, self.leccion2)
+        self.assertEquals(response.status_code, 200)
+
+    def test_api_ver_temas(self):
+        response = self.client.get(reverse('vertemas', args='1'))
+        responsejson = response.json()[0]['nombre']
+        responsejson2 = response.json()[1]['nombre']
+        self.assertEquals(responsejson, self.tema)
+        self.assertEquals(responsejson2, self.tema2)
+        self.assertEquals(response.status_code, 200)
+
+    def test_api_ver_infotema(self):
+        response = self.client.get(reverse('verinfotema', args='1'))
+        responsejson = response.json()['presentacion']
+        responsejson2 = response.json()['podcast']
+        responsejson3 = response.json()['codigo']
+        self.assertEquals(responsejson, self.presentacion)
+        self.assertEquals(responsejson2, self.podcast)
+        self.assertEquals(responsejson3, self.codigo)
+        self.assertEquals(response.status_code, 200)
+
+    def test_api_ver_link_presentacion(self):
+        response = self.client.get(reverse('verpresentaciones', args='1'))
+        responsejson = response.json()['presentacion']
+        self.assertEquals(responsejson, self.linkpres)
+        self.assertEquals(response.status_code, 200)
+
+    def test_api_ver_link_podcast(self):
+        response = self.client.get(reverse('verpodcast', args='1'))
+        responsejson = response.json()['podcast']
+        self.assertEquals(responsejson, self.linkpod)
+        self.assertEquals(response.status_code, 200)
+
+
+class EvaluacionesTests(TestCase):
+
+    def setUp(self):
+        self.leccion = 'Leccion'
+        self.leccion2 = 'Leccion2'
+        self.tema = 'Tema'
+        self.tema2 = 'Tema2'
+        self.pregunta1 = 'PruebaPregunta1'
+        self.pregunta2 = 'PruebaPregunta2'
+        self.respuesta1 = 'PruebaRespuesta1'
+        self.respuesta2 = 'PruebaRespuesta2'
+        leccion = Leccion.objects.create(id=1, nombre=self.leccion)
+        leccion2 = Leccion.objects.create(id=2, nombre=self.leccion2)
+        tema = Tema.objects.create(id=1, nombre=self.tema, leccion=leccion)
+        quiz = Quiz.objects.create(id=1, tema=tema)
+        prueba = Prueba.objects.create(id=2, leccion=leccion2)
+        pregunta1 = Pregunta.objects.create(id=1, contenido=self.pregunta1, quiz=quiz)
+        pregunta2 = Pregunta.objects.create(id=2, contenido=self.pregunta2, prueba=prueba, quiz=quiz)
+        Respuesta.objects.create(id=1, contenido=self.respuesta1, pregunta=pregunta1, correcta=True)
+        Respuesta.objects.create(id=2, contenido=self.respuesta2, pregunta=pregunta1, correcta=False)
+
+    def test_api_get_quiz(self):
+        response = self.client.get(reverse('verquiz', args='1'))
+        responsejson = response.json()['id']
+        self.assertEquals(responsejson, 1)
+        self.assertEquals(response.status_code, 200)
+
+    def test_api_fail_get_quiz(self):
+        response = self.client.get(reverse('verquiz', args='2'))
+        self.assertEquals(response.status_code, 404)
+
+    def test_api_get_prueba(self):
+        response = self.client.get(reverse('verprueba', args='2'))
+        responsejson = response.json()['id']
+        self.assertEquals(responsejson, 2)
+        self.assertEquals(response.status_code, 200)
+
+    def test_api_fail_get_prueba(self):
+        response = self.client.get(reverse('verprueba', args='1'))
+        self.assertEquals(response.status_code, 404)
+
+    def test_api_get_pregunta_quiz(self):
+        response = self.client.get(reverse('verpregquiz', args='1'))
+        responsejson = response.json()[0]['contenido']
+        responsejson2 = response.json()[1]['contenido']
+        pregunta1 = self.pregunta1
+        pregunta2 = self.pregunta2
+        self.assertEquals(responsejson, pregunta1)
+        self.assertEquals(responsejson2, pregunta2)
+        self.assertEquals(response.status_code, 200)
+
+
+    def test_api_get_pregunta_prueba(self):
+        response = self.client.get(reverse('verpregprueba', args='2'))
+        responsejson = response.json()[0]['contenido']
+        pregunta = self.pregunta2
+        self.assertEquals(responsejson, pregunta)
+        self.assertEquals(response.status_code, 200)
+
+    def test_get_pregunta_id(self):
+        response = self.client.get(reverse('verpregunta', args='2'))
+        responsejson = response.json()['contenido']
+        pregunta = self.pregunta2
+        self.assertEquals(responsejson, pregunta)
+        self.assertEquals(response.status_code, 200)
+
+    def test_get_respuesta(self):
+        response = self.client.get(reverse('verresp', args='1'))
+        responsejson = response.json()[0]['contenido']
+        responsejson2 = response.json()[1]['contenido']
+        respuesta1 = self.respuesta1
+        respuesta2 = self.respuesta2
+        self.assertEquals(responsejson, respuesta1)
+        self.assertEquals(responsejson2, respuesta2)
+        self.assertEquals(response.status_code, 200)
+
+    def test_get_respuesta_id(self):
+        response = self.client.get(reverse('verrespid', args='2'))
+        responsejson = response.json()['contenido']
+        respuesta = self.respuesta2
+        self.assertEquals(responsejson, respuesta)
+        self.assertEquals(response.status_code, 200)
+
+
