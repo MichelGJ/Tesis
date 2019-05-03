@@ -10,7 +10,7 @@ from rest_auth.views import PasswordResetView, PasswordResetConfirmView
 urlpatterns = {
     path('login/', login, name="login"),
     path('ver-lecciones/', VerLecciones.as_view(), name="verlec"),
-    path('ver-temas/<leccion_id>', VerTemas.as_view(), name="vertema"),
+    path('ver-temas/<leccion_id>', VerTemas.as_view(), name="vertemas"),
     path('ver-infotemas/<tema_id>', VerInfoTema.as_view(), name="verinfotema"),
     path('registrar-usuario/', RegistrarUsuario.as_view(), name="registrarusuario"),
     path('actualizar-usuario/<id>', ActualizarUsuario.as_view(), name="actualizarusuario"),

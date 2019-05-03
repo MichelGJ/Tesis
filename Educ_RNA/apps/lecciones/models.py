@@ -17,7 +17,7 @@ class InfoTema(models.Model):
     presentacion = models.BooleanField(default=True)
     podcast = models.BooleanField(default=True)
     codigo = models.BooleanField(default=True)
-    tema = models.ForeignKey(Tema, on_delete=models.CASCADE, null=True)
+    tema = models.OneToOneField(Tema, on_delete=models.CASCADE, null=True)
 
 
 class Link(models.Model):
@@ -25,4 +25,4 @@ class Link(models.Model):
     presentaciond = models.CharField(max_length=1024, null=True)
     podcast = models.CharField(max_length=1024, null=True)
     codigo = models.CharField(max_length=1024, null=True)
-    tema = models.ForeignKey(Tema, on_delete=models.CASCADE, null=True)
+    tema = models.OneToOneField(Tema, on_delete=models.CASCADE, null=True, unique=True)
