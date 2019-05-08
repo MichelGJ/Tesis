@@ -3,8 +3,7 @@ from django.contrib.auth.models import User
 from apps.lecciones.models import Tema
 from apps.evaluaciones.models import Prueba
 
-# Create your models here.
-# Modelos para el modulo de usuarios
+# Entidades del modulo usuarios
 
 
 class Calificacion(models.Model):
@@ -16,6 +15,7 @@ class Calificacion(models.Model):
 
     class Meta:
         unique_together = ("usuario", "prueba")
+        managed = False
 
 
 class Progreso(models.Model):
@@ -24,5 +24,4 @@ class Progreso(models.Model):
 
     class Meta:
         unique_together = ("usuario", "tema")
-
-
+        managed = False

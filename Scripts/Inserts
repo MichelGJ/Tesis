@@ -1,6 +1,6 @@
-ALTER SEQUENCE lecciones_leccion_id_seq RESTART;
+ALTER SEQUENCE api_leccion_id_seq RESTART;
 
-INSERT INTO lecciones_leccion (nombre)
+INSERT INTO api_leccion (nombre)
 VALUES
  ('Introducción e Historia'),
  ('El Perceptrón Simple'),

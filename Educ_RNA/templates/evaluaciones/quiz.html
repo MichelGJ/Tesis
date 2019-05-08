@@ -50,14 +50,14 @@ margin-bottom:-15px;
          <div class="form-bottom">
              <div class="info" >
                 <strong>
-                    <a class="pregunta"><font color=#000000  size=5px>{{pregunta.1}}</font></a>
+                    <a class="pregunta"><font color=#000000  size=5px>{{pregunta.contenido}}</font></a>
                     <br>
                     <p></p>
                 </strong>
                  {% for i in listaresp %}
                   <strong>
-                    <a class="respuesta" href="{% url 'quiz2' respuesta_id=i.0 pregunta_id=pregunta.0 tema_id=tema_id %}"><font color=#000000  size=4px>
-                        {{i.1}}
+                    <a class="respuesta" href="{% url 'quiz2' respuesta_id=i.pk pregunta_id=pregunta.pk tema_id=tema_id %}"><font color=#000000  size=4px>
+                        {{i.contenido}}
                     </font></a>
                       <br>
                       <p></p>

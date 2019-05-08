@@ -72,15 +72,15 @@ margin-bottom:-15px;
                 </strong>
                  {% for i in listaresp %}
                   <strong>
-                    {% if i.1 %}
+                    {% if i.correcta %}
                     <a class="respuesta"><font color=#32CD32  size=4px>
-                        {{i.0}}
+                        {{i.contenido}}
                     </font></a>
                       <br>
                       <p></p>
-                    {% elif not i.1 %}
+                    {% elif not i.correcta %}
                       <a class="respuesta"><font color=#FF0000  size=4px>
-                        {{i.0}}
+                        {{i.contenido}}
                     </font></a>
                       <br>
                       <p></p>

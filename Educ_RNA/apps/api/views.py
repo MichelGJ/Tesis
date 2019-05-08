@@ -1,20 +1,15 @@
 from django.contrib.auth import authenticate
 from django.http import JsonResponse
-from apps.lecciones.serializers import LeccionSerializer, TemaSerializer, InfoTemaSerializer, PresentacionesSerializer,\
-                                        PodcastSerializer
-from apps.evaluaciones.serializers import QuizSerializer, PreguntaSerializer, RespuestaSerializer, PruebaSerializer
-from apps.registration.serializers import UsuarioSerializer
-from apps.usuarios.serializers import PasswordChangeSerializer
+from .serializers import LeccionesSerializer, EvaluacionesSerializer, RegistrationSerializer, UsuariosSerializer
 from django.utils.decorators import method_decorator
 from django.views.decorators.csrf import csrf_exempt
 from rest_framework.generics import CreateAPIView, UpdateAPIView, ListAPIView, RetrieveAPIView
-from apps.usuarios.serializers import ModificarUsuarioSerializer
 from rest_framework import status
 from rest_framework.response import Response
 from django.contrib.auth.models import User
 from django.http import HttpResponse
-from django.core.exceptions import ValidationError
-# Vistas del API, en este caso se trata de la logica y las llamadas a las funciones necesarias
+
+# Vistas del API, en este caso se trata de la logica y la comunicacion
 
 
 # Funcion que recibe las creedenciales de un usuario y determina si esta registrado
@@ -36,19 +31,19 @@ def login(request):
 
 # Metodo que registra el usuario en la base de datos
 class RegistrarUsuario(CreateAPIView):
-    serializer_class = UsuarioSerializer
+    serializer_class = RegistrationSerializer.UsuarioSerializer
 
 
 # Metodo que actualiza informacion del usuario en la base de datos
 class ActualizarUsuario(UpdateAPIView):
     queryset = User.objects.all()
     lookup_field = 'id'
-    serializer_class = ModificarUsuarioSerializer
+    serializer_class = UsuariosSerializer.ModificarUsuarioSerializer
 
 
 # Metodo que realiza el cambio de contraseñaa de un usuario
 class CambioContrasena(UpdateAPIView):
-    serializer_class = PasswordChangeSerializer
+    serializer_class = UsuariosSerializer.PasswordChangeSerializer
     model = User
 
     # Funcion que recibe los datos necesarios, y realiza el cambio de contraseña si todos los requerimientos se cumplen
@@ -81,13 +76,13 @@ class CambioContrasena(UpdateAPIView):
 
 # Metodo que obtiene de la base de datos la lista completa de lecciones
 class VerLecciones(ListAPIView):
-    serializer_class = LeccionSerializer
+    serializer_class = LeccionesSerializer.LeccionSerializer
     queryset = serializer_class.Meta.model.objects.all()
 
 
 # Metodo que obtiene la lista de temas de una leccion determinada, dado su id
 class VerTemas(ListAPIView):
-    serializer_class = TemaSerializer
+    serializer_class = LeccionesSerializer.TemaSerializer
     model = serializer_class.Meta.model
     paginate_by = 100
 
@@ -100,42 +95,42 @@ class VerTemas(ListAPIView):
 
 # Metodo que obtiene la info un tema determinado, dado su id
 class VerInfoTema(RetrieveAPIView):
-    serializer_class = InfoTemaSerializer
+    serializer_class = LeccionesSerializer.InfoTemaSerializer
     lookup_field = "tema_id"
     queryset = serializer_class.Meta.model.objects.all()
 
 
 # Metodo que obtiene los links de las presentaciones de un tema determinado, dado su id
 class VerLinksPresentaciones(RetrieveAPIView):
-    serializer_class = PresentacionesSerializer
+    serializer_class = LeccionesSerializer.PresentacionesSerializer
     lookup_field = "tema_id"
     queryset = serializer_class.Meta.model.objects.all()
 
 
 # Metodo que obtiene el link del podcast de un tema determinado, dado su id
 class VerLinkPodcast(RetrieveAPIView):
-    serializer_class = PodcastSerializer
+    serializer_class = LeccionesSerializer.PodcastSerializer
     lookup_field = "tema_id"
     queryset = serializer_class.Meta.model.objects.all()
 
 
 # Metodo que obtiene el quiz de un tema dado su id
 class GetQuiz(RetrieveAPIView):
-    serializer_class = QuizSerializer
+    serializer_class = EvaluacionesSerializer.QuizSerializer
     lookup_field = "tema_id"
     queryset = serializer_class.Meta.model.objects.all()
 
 
 # Metodo que obtiene la prueba de una leccion dado su id
 class GetPrueba(RetrieveAPIView):
-    serializer_class = PruebaSerializer
+    serializer_class = EvaluacionesSerializer.PruebaSerializer
     lookup_field = "leccion_id"
     queryset = serializer_class.Meta.model.objects.all()
 
 
 # Metodo que obtiene la lista de preguntas de un quiz dado su id
 class GetPreguntaQuiz(ListAPIView):
-    serializer_class = PreguntaSerializer
+    serializer_class = EvaluacionesSerializer.PreguntaSerializer
     model = serializer_class.Meta.model
     queryset = serializer_class.Meta.model.objects.all()
 
@@ -148,7 +143,7 @@ class GetPreguntaQuiz(ListAPIView):
 
 # Metodo que obtiene la lista de preguntas de una prueba dado su id
 class GetPreguntaPrueba(ListAPIView):
-    serializer_class = PreguntaSerializer
+    serializer_class = EvaluacionesSerializer.PreguntaSerializer
     model = serializer_class.Meta.model
     queryset = serializer_class.Meta.model.objects.all()
 
@@ -161,14 +156,14 @@ class GetPreguntaPrueba(ListAPIView):
 
 # Metodo que consulta una pregunta por su propio id
 class GetPreguntaId(RetrieveAPIView):
-    serializer_class = PreguntaSerializer
+    serializer_class = EvaluacionesSerializer.PreguntaSerializer
     lookup_field = "id"
     queryset = serializer_class.Meta.model.objects.all()
 
 
 # Metodo que obtiene la lista de respuestas de una pregunta dado su id
 class GetRespuesta(ListAPIView):
-    serializer_class = RespuestaSerializer
+    serializer_class = EvaluacionesSerializer.RespuestaSerializer
     model = serializer_class.Meta.model
     queryset = serializer_class.Meta.model.objects.all()
 
@@ -181,6 +176,6 @@ class GetRespuesta(ListAPIView):
 
 # Metodo que consulta una respuesta por su propio id
 class GetRespuestaId(RetrieveAPIView):
-    serializer_class = RespuestaSerializer
+    serializer_class = EvaluacionesSerializer.RespuestaSerializer
     lookup_field = "id"
     queryset = serializer_class.Meta.model.objects.all()

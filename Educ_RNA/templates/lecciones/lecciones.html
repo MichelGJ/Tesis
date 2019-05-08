@@ -54,7 +54,7 @@ color:#000000;
              <tbody>
              {% for i in lista %}
              <tr class="tr1">
-                 <td class="td2" style=""><a href="{% url 'vertema' leccion_id=i.0 %}">{{i.1}}</a></td>
+                 <td class="td2" style=""><a href="{% url 'vertema' leccion_id=i.pk %}">{{i.nombre}}</a></td>
              </tr>
              {% endfor %}
              </tbody>
