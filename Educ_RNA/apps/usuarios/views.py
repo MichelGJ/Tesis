@@ -48,12 +48,10 @@ class LogicaUsuarios:
     def modificacion_usuario(self):
         # En caso de recibir un metodo POST se realiza la llamada al API
         id_ = str(self.user.id)
-        usuario = User()
         if self.method == 'POST':
             # Obtiene todos los valores introducidos por el usuario en el formulario de modificacion
-            usuario.username = self.POST.get('username', False)
-            usuario.first_name = self.POST.get('first_name', False)
-            usuario.last_name = self.POST.get('last_name', False)
+            usuario = User(username=self.POST.get('username', False), first_name=self.POST.get('first_name', False),
+                           last_name=self.POST.get('last_name', False))
             data = {'username': usuario.username, 'first_name': usuario.first_name, 'last_name': usuario.last_name}
             # Llamada al API con los datos para que se modifique el usuario en la base de datos
             r = requests.put(settings.API_PATH + 'actualizar-usuario/'+id_, data=data)
@@ -69,14 +67,13 @@ class LogicaUsuarios:
 
     # Funcion que realiza el cambio de contraseña del usuario
     def cambio_constrasena(self):
-        usuario = User()
         if self.method == 'POST':
             # Obtiene todos los valores introducidos por el usuario en el formulario de cambio de contraseña
-            usuario.username = self.user.username
-            old_password = self.POST.get('oldpass', False)
+            usuario = User(username=self.user.username, password=self.POST.get('oldpass', False))
             new_password = self.POST.get('newpass', False)
             new_password2 = self.POST.get('newpass2', False)
-            data = {'username': usuario.username, 'old_password': old_password, 'new_password': new_password, 'new_password2': new_password2}
+            data = {'username': usuario.username, 'old_password': usuario.password, 'new_password': new_password,
+                    'new_password2': new_password2}
             # Llamada al API con los datos para que se cambie la contraseña en la base de datos
             r = requests.put(settings.API_PATH + 'cambio-contrasena/', data=data)
             # Se revisa la respuesta del API para determinar si ocurrieron errores
