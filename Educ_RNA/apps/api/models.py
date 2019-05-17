@@ -3,6 +3,7 @@ from django.contrib.auth.models import User
 
 # Modelos para migrar a la base de datos
 
+
 class Leccion(models.Model):
     nombre = models.CharField(max_length=120)
 
@@ -59,7 +60,7 @@ class Calificacion(models.Model):
 
 
 class Progreso(models.Model):
-    usuario = models.ForeignKey(User, on_delete=models.CASCADE, related_name='P_U_FK')
+    usuario = models.ForeignKey(User, on_delete=models.CASCADE, related_name='P_U_FK', unique=True)
     tema = models.ForeignKey(Tema, on_delete=models.CASCADE, related_name='P_T_FK')
 
     class Meta:

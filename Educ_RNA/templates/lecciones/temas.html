@@ -59,6 +59,7 @@ color:#000000;
              <tr class="tr1">
                  <td class="td1" style="text-align: center;"><a href=""> {{i.0.nombre}}</a></td>
                  <td class="td2" style="text-align: left;padding-left: 200px;">
+                 {% if progreso >= i.0.pk %}
                      {% if i.1.presentacion == True %}
                      <a href="{% url 'presentacion' tema_id=i.0.pk %}"><img title="Presentación" class="logo" src="{% static 'images/icono_presentacion.png'%}"></a>
                       &#160; &#160;
@@ -72,14 +73,16 @@ color:#000000;
                      &#160; &#160;
                      {% endif %}
                      <a href="{% url 'quiz' tema_id=i.0.pk  %}"><img title="Quiz" class="logo" src="{% static 'images/icono_quiz.png'%}"></a>
+                 {% endif %}
                  </td>
-
              </tr>
              {% endfor %}
               <tr class="tr1">
                  <td class="td3" style="text-align: center;"><a href=""> Examen </a></td>
                   <td class="td2" style="text-align: left;padding-left: 200px;">
+                      {% if progreso >= examen %}
                      <a href="JEJE"><img title="Examen" class="logo" src="{% static 'images/icono_start.png'%}"></a>
+                      {% endif %}
              </tr>
              </tbody>
          </table>

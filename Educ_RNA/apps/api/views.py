@@ -8,6 +8,7 @@ from rest_framework import status
 from rest_framework.response import Response
 from django.contrib.auth.models import User
 from django.http import HttpResponse
+from django.db.models import F
 
 # Vistas del API, en este caso se trata de la logica y la comunicacion
 
@@ -32,6 +33,40 @@ def login(request):
 # Metodo que registra el usuario en la base de datos
 class RegistrarUsuario(CreateAPIView):
     serializer_class = RegistrationSerializer.UsuarioSerializer
+
+
+# Metodo que registra el progreso de un usuario en la base de datos
+class RegistrarProgreso(CreateAPIView):
+    serializer_class = UsuariosSerializer.ProgresoSerializer
+
+
+# Metdodo que actualiza el progreso en la base de datos
+class ActualizarProgreso(UpdateAPIView):
+    serializer_class = UsuariosSerializer.ProgresoSerializer
+    model = serializer_class.Meta.model
+
+    # Funcion con la logica de la actualizacion del progrso
+    def update(self, request, *args, **kwargs):
+        serializer = self.get_serializer(data=request.data)
+        # Si el serializador es valido se extraen los datos que contiene
+        if serializer.is_valid():
+            usuario = serializer.data.get("usuario_id")
+            nuevotema = serializer.data.get("tema_id")
+            tema = self.model.objects.get(usuario_id=usuario).tema_id
+            # Si el id del tema nuevo es mayor al actual, se procede a actualizar el progreso
+            if nuevotema > tema:
+                self.model.objects.filter(usuario_id=usuario).update(tema_id=nuevotema)
+                return Response(serializer.data)
+            # En cualquier caso contrario solo de devuelve el estado 400
+            else:
+                return Response(status=400)
+
+
+# Metodo que obtiene de la base de datos el progreso de un determinado usuario
+class ConsultarProgreso(RetrieveAPIView):
+    serializer_class = UsuariosSerializer.ProgresoSerializer
+    lookup_field = "usuario_id"
+    queryset = serializer_class.Meta.model.objects.all()
 
 
 # Metodo que actualiza informacion del usuario en la base de datos
@@ -80,6 +115,20 @@ class VerLecciones(ListAPIView):
     queryset = serializer_class.Meta.model.objects.all()
 
 
+# Metodo que obtiene de la base de datos una leccion dado su id
+class VerLeccionId(RetrieveAPIView):
+    serializer_class = LeccionesSerializer.LeccionSerializer
+    lookup_field = "id"
+    queryset = serializer_class.Meta.model.objects.all()
+
+
+# Metodo que obtiene de la base de datos un tema dado su id
+class VerTemaId(RetrieveAPIView):
+    serializer_class = LeccionesSerializer.TemaSerializer
+    lookup_field = "id"
+    queryset = serializer_class.Meta.model.objects.all()
+
+
 # Metodo que obtiene la lista de temas de una leccion determinada, dado su id
 class VerTemas(ListAPIView):
     serializer_class = LeccionesSerializer.TemaSerializer
@@ -125,6 +174,13 @@ class GetQuiz(RetrieveAPIView):
 class GetPrueba(RetrieveAPIView):
     serializer_class = EvaluacionesSerializer.PruebaSerializer
     lookup_field = "leccion_id"
+    queryset = serializer_class.Meta.model.objects.all()
+
+
+# Metodo que obtiene la prueba de una leccion dado su id
+class GetPruebaId(RetrieveAPIView):
+    serializer_class = EvaluacionesSerializer.PruebaSerializer
+    lookup_field = "id"
     queryset = serializer_class.Meta.model.objects.all()
 
 
@@ -179,3 +235,66 @@ class GetRespuestaId(RetrieveAPIView):
     serializer_class = EvaluacionesSerializer.RespuestaSerializer
     lookup_field = "id"
     queryset = serializer_class.Meta.model.objects.all()
+
+
+class ConsultarCalificacion(ListAPIView):
+    serializer_class = UsuariosSerializer.CalificacionSerializer
+    model = serializer_class.Meta.model
+    queryset = serializer_class.Meta.model.objects.all()
+
+    # Funcion que busca con el id del quiz la lista de preguntas correspondiente
+    def get_queryset(self):
+        usuario_id = self.kwargs['usuario_id']
+        queryset = self.model.objects.filter(usuario_id=usuario_id)
+        return queryset.order_by('id')
+
+
+class ConsultarCalificacionPrueba(RetrieveAPIView):
+    serializer_class = UsuariosSerializer.CalificacionSerializer
+    model = serializer_class.Meta.model
+    lookup_field = 'usuario_id'
+    queryset = serializer_class.Meta.model.objects.all()
+
+    # Funcion que busca con el id del quiz la lista de preguntas correspondiente
+    def get_queryset(self):
+        usuario_id = self.kwargs['usuario_id']
+        prueba_id = self.kwargs['prueba_id']
+        queryset = self.model.objects.filter(usuario_id=usuario_id, prueba_id=prueba_id)
+        return queryset.order_by('id')
+
+
+class RegistrarCalificacion(CreateAPIView):
+    serializer_class = UsuariosSerializer.CalificacionSerializer
+    model = serializer_class.Meta.model
+
+    def create(self, request, *args, **kwargs):
+        serializer = self.get_serializer(data=request.data)
+        # Si el serializador es valido se extraen los datos que contiene
+        if serializer.is_valid():
+            usuario = serializer.data.get("usuario_id")
+            prueba = serializer.data.get("prueba_id")
+            nota = serializer.data.get("nota")
+            self.model.objects.create(usuario_id=usuario, prueba_id=prueba, nota=nota, mejor_nota=nota, intentos=1)
+            return Response(serializer.data)
+
+
+class ActualizarCalificacion(UpdateAPIView):
+    serializer_class = UsuariosSerializer.CalificacionSerializer
+    model = serializer_class.Meta.model
+
+    # Funcion con la logica de la actualizacion del progrso
+    def update(self, request, *args, **kwargs):
+        serializer = self.get_serializer(data=request.data)
+        # Si el serializador es valido se extraen los datos que contiene
+        if serializer.is_valid():
+            usuario = serializer.data.get("usuario_id")
+            prueba = serializer.data.get("prueba_id")
+            nuevanota = serializer.data.get("nota")
+            nota_actual = self.model.objects.get(usuario_id=usuario, prueba_id=prueba)
+            # Si el id del tema nuevo es mayor al actual, se procede a actualizar el progreso
+            if int(nuevanota) > int(nota_actual.mejor_nota):
+                nota_final = nuevanota
+            else:
+                nota_final = nota_actual.mejor_nota
+            self.model.objects.filter(usuario_id=usuario, prueba_id=prueba).update(nota=nuevanota, mejor_nota=nota_final, intentos=F('intentos')+1)
+            return Response(serializer.data)

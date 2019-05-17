@@ -12,8 +12,15 @@
 
     <title>{% block title %} Perfil {% endblock %}</title>
 
+{% block style %}
+.btn{
+width:250px;
+}
+{% endblock %}
+
 {% block space%}
 {% endblock %}
+
 
 {% block content %}
 <div class="top-content">
@@ -70,6 +77,7 @@
                                 </div>
                                 <div align="center" class="form-group">
                                     <a href="{% url 'progreso' %}" ><button style="background-color:#0000FF;" class="btn">Progreso</button></a>
+                                    <a href="{% url 'calificacion' %}" ><button style="background-color:#0000FF;" class="btn">Calificaciones</button></a>
                                 </div>
 		                    </div>
                         </div>

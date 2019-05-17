@@ -1,8 +1,10 @@
 from rest_framework import serializers
-from .models import Leccion, Tema, InfoTema, Link, Quiz, Pregunta, Prueba, Respuesta
+from .models import Leccion, Tema, InfoTema, Link, Quiz, Pregunta, Prueba, Respuesta, Progreso, Calificacion
 from django.contrib.auth.password_validation import validate_password
 from django.core.exceptions import ValidationError
 from django.contrib.auth.models import User
+from rest_framework.response import Response
+from django.db import IntegrityError
 
 
 # Serializers del modulo de lecciones, que permiten mapear las instancias de los Modelos en formato JSON, para su envio
@@ -60,7 +62,7 @@ class EvaluacionesSerializer:
         # Clase Meta para mapear los campos del serializador con los campos del modelo
         class Meta:
             model = Prueba
-            fields = ('id',)
+            fields = ('id', 'leccion_id')
 
     # Serializador para mapear el modelo Pregunta
     class PreguntaSerializer(serializers.ModelSerializer):
@@ -148,3 +150,21 @@ class UsuariosSerializer:
         def validate_new_password(self, value):
             validate_password(value)
             return value
+
+    # Serializador para mapear el modelo Progreso
+    class ProgresoSerializer(serializers.ModelSerializer):
+        usuario_id = serializers.IntegerField(required=True)
+        tema_id = serializers.IntegerField(required=True)
+
+        class Meta:
+            model = Progreso
+            fields = ('id', 'usuario_id', 'tema_id')
+
+    class CalificacionSerializer(serializers.ModelSerializer):
+        usuario_id = serializers.IntegerField(required=True)
+        prueba_id = serializers.IntegerField(required=True)
+
+        class Meta:
+            model = Calificacion
+            fields = ('id', 'usuario_id', 'prueba_id', 'nota', 'mejor_nota', 'intentos')
+

@@ -48,14 +48,20 @@ color:#000000;
          <table class="table" >
              <thead>
              <tr>
-                 <th style="background-color: #82ACFF;">Lección</th>
+                 <th style="background-color: #82ACFF;">Lecciones</th>
              </tr>
              </thead>
              <tbody>
              {% for i in lista %}
+             {% if i.0.pk == 1 %}
              <tr class="tr1">
-                 <td class="td2" style=""><a href="{% url 'vertema' leccion_id=i.pk %}">{{i.nombre}}</a></td>
+                 <td class="td2" style=""><a href="{% url 'vertema' leccion_id=i.0.pk %}">{{i.0.nombre}}</a></td>
              </tr>
+             {% elif leccion_actual >= i.1 and i.2 >= 10%}
+             <tr class="tr1">
+                 <td class="td2" style=""><a href="{% url 'vertema' leccion_id=i.0.pk %}">{{i.0.nombre}}</a></td>
+             </tr>
+             {% endif %}
              {% endfor %}
              </tbody>
          </table>

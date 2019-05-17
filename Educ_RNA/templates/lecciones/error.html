@@ -46,11 +46,13 @@ margin-bottom:-15px;
              <p></p>
              <div class="info" >
                 <strong>
-                    <a class="mensaje" href="" target="_blank"><font color=#FF0000  size=5px>{{error}}</font></a>
+                    {% for message in messages %}
+                    <a class="mensaje" href="" target="_blank"><font color=#FF0000  size=5px>{{message}}</font></a>
+                    {% endfor %}
                 </strong>
             </div>
              <div align="center" class="form-group">
-                 <a href="/usuarios/index" ><button style="background-color:#0000FF;" class="btn">Regresar al Inicio</button></a>
+                 <a href="/lecciones/ver" ><button style="background-color:#0000FF;" class="btn">Regresar</button></a>
              </div>
          </div>
      </div>

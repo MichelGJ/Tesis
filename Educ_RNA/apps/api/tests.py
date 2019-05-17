@@ -3,9 +3,7 @@ from rest_framework.test import APIClient
 from rest_framework import status
 from django.urls import reverse
 from django.contrib.auth.models import User
-from apps.lecciones.models import Leccion, Tema, InfoTema, Link
-from apps.evaluaciones.models import Quiz, Pregunta, Prueba, Respuesta
-
+from .models import Leccion, Tema, InfoTema, Link, Quiz, Pregunta, Prueba, Respuesta
 # Create your tests here.
 
 
@@ -261,7 +259,6 @@ class EvaluacionesTests(TestCase):
         self.assertEquals(responsejson, pregunta1)
         self.assertEquals(responsejson2, pregunta2)
         self.assertEquals(response.status_code, 200)
-
 
     def test_api_get_pregunta_prueba(self):
         response = self.client.get(reverse('verpregprueba', args='2'))

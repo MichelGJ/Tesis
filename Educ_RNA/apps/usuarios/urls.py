@@ -10,4 +10,5 @@ urlpatterns = [
     path('cambiar-contrasena/', login_required(LogicaUsuarios.cambio_constrasena), name='cambiar'),
     path('nosotros/', login_required(LogicaUsuarios.nosotros), name='nosotros'),
     path('progreso/', login_required(LogicaUsuarios.progreso), name='progreso'),
+    path('calificacion/', login_required(LogicaUsuarios.calificacion), name='calificacion'),
 ]

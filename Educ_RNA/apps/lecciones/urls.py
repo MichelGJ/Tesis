@@ -10,6 +10,7 @@ urlpatterns = [
     path('descargapres/?id=<tema_id>', login_required(LogicaLecciones.descargapresentacion), name="descargapres"),
     path('podcast/?id=<tema_id>', login_required(LogicaLecciones.podcast), name="podcast"),
     path('descargapod/?id=<tema_id>', login_required(LogicaLecciones.descargapodcast), name="descargapod"),
+    path('error/', login_required(LogicaLecciones.error), name="error")
 ]
 
 urlpatterns = format_suffix_patterns(urlpatterns)
