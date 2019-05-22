@@ -45,6 +45,12 @@ class LeccionesSerializer:
             model = Link
             fields = ('podcast',)
 
+    class CodigoSerializer(serializers.ModelSerializer):
+
+        class Meta:
+            model = Link
+            fields = ('codigo',)
+
 
 # Serializers del modulo de evaluaciones, que permiten mapear las instancias de los Modelos en formato JSON,
 # para su envio a traves de los metodos

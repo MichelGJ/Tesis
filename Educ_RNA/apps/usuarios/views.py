@@ -24,6 +24,9 @@ class LogicaUsuarios:
     user = User()
     method = HttpResponse()
     POST = method
+    """
+    Funciones de renderizacion
+    """
 
     # Funcion que renderiza la pagina de inicio
     def index(self):
@@ -37,10 +40,14 @@ class LogicaUsuarios:
     def nosotros(self):
         return render(self, 'usuarios/nosotros.html')
 
+    # Funcion que renderiza la pagina de las calificaciones del usuario
     def calificacion(self):
         try:
+            # Se consultan las calificaciones del usuario
             calificacion = LogicaUsuarios.consultar_calificacion(self.user.pk)
+            # Se arma un dictionary para pasar los datos a la interfaz
             cdict = {'calificacion': calificacion.data}
+            # Se renderiza la plantilla con los datos generados
             return render(self, 'usuarios/calificaciones.html', cdict)
         except ConnectionError as e:
             messages.error(self, 'Error de conexion')
@@ -49,9 +56,32 @@ class LogicaUsuarios:
     # Funcion que renderiza la pagina del progreso del usuario
     def progreso(self):
         try:
-            progreso = LogicaUsuarios.consultar_progreso(self.user.pk)
-            cdict = {'progreso': progreso.data}
-            return render(self, 'usuarios/progreso.html', cdict)
+            # Se consulta el progreso del usuario
+            tema_progreso = LogicaUsuarios.consultar_progreso(self.user.pk)
+            # Si la consulta es exitosa se buscan los datos necesarios
+            if tema_progreso.status_code == 200:
+                # El id del tema es el obtenido en la consulta del progreso
+                tema_id = tema_progreso.data.tema_id
+                # Con este id se buca el tema
+                tema = LogicaUsuarios.consultar_tema_id(tema_id)
+                # De la consulta del tema se obtiene su nombre
+                nombre_tema = tema.data.nombre
+                # Se busca la leccion con el id de leccion del tema consultado
+                leccion = LogicaUsuarios.consultar_leccion_id(tema.data.leccion_id)
+                # De la consulta de la leccion se obtiene su nombre
+                nombre_leccion = leccion.data.nombre
+                # Se arma un tuple con ambos nombres
+                progreso = (nombre_leccion, nombre_tema)
+                # Se coloca el tuple en un dictionary para pasarlo a la interfaz
+                cdict = {'progreso': progreso}
+                # Se renderiza la plantilla con los datos generados
+                return render(self, 'usuarios/progreso.html', cdict)
+            # Si la consulta no fue exitosa se arma un tuple con datos arbitrarios
+            else:
+                progreso = ('No ha empezado', 'No ha empezado')
+                cdict = {'progreso': progreso}
+                # Se renderiza la plantilla con los datos generados
+                return render(self, 'usuarios/progreso.html', cdict)
         except ConnectionError as e:
             messages.error(self, 'Error de conexion')
             return redirect('/usuarios/perfil')
@@ -121,6 +151,10 @@ class LogicaUsuarios:
             messages.error(self, 'Error de conexion')
             return redirect('/usuarios/perfil')
 
+    """
+    Funciones Complementarias
+    """
+
     # Funcion que consulta las calificacioes de un determinado usuario
     @staticmethod
     def consultar_calificacion(usuario_id):
@@ -146,15 +180,19 @@ class LogicaUsuarios:
                 # Se intancia un objeto tipo Calificacion con todos los datos
                 calificacion = Calificacion(pk=id_, nota=nota_actual, mejor_nota=mejor_nota, intentos=intentos,
                                             prueba_id=prueba_id)
+                if int(mejor_nota) >= 10:
+                    aprobado = True
+                else:
+                    aprobado = False
                 # Se agregan a la lista el objeto calificacion y el nombre de la leccion a la cual pertenece
-                lista.append((calificacion, nombre_leccion))
+                lista.append((calificacion, nombre_leccion, aprobado))
             # Si la lista no esta vacia se devuelve un Response, con la lista y el codigo 200
             if len(lista) != 0:
                 return Response(lista, 200)
             # Si la lista esta vacia se devuelve el mensaje de error correspondiente y un objeto vacio, con codigo 404
             else:
                 nombre_leccion = "No ha hecho examenes"
-                calificacion = Calificacion()
+                calificacion = Calificacion(intentos=0)
                 lista.append((calificacion, nombre_leccion))
                 return Response(lista, 404)
         except ConnectionError as e:
@@ -169,26 +207,21 @@ class LogicaUsuarios:
         try:
             # Llamada al metodo del api que consulta el progreso de un usuario determinado por su id
             r = requests.get(settings.API_PATH + 'ver-progreso/' + str(usuario_id))
-            # Se convierte la respuesta en json para poder extraer sus datos
-            rjson = r.json()
-            # Se extra el id del tema del progreso y con el se instancia un objeto tipo Progreso
             if r.status_code == 200:
+                # Se convierte la respuesta en json para poder extraer sus datos
+                rjson = r.json()
+                # Se extra el id del tema del progreso y con el se instancia un objeto tipo Progreso
                 progreso = Progreso(tema_id=rjson["tema_id"])
-                tema_id = progreso.tema
-                tema = LogicaUsuarios.consultar_tema_id(tema_id)
-                nombre_tema = tema.data.nombre
-                leccion = LogicaUsuarios.consultar_leccion_id(tema.data.leccion_id)
-                nombre_leccion = leccion.data.nombre
-                resp = (nombre_leccion, nombre_tema)
+                # Se devuelve un Response, con el objeto y el codigo 200
+                return Response(progreso, 200)
             else:
-                resp = ('No ha empezado', 'No ha empezado')
-            # Se devuelve un Response, con el objeto y el codigo 200
-            return Response(resp, 200)
+                progreso = Progreso(tema_id=0)
+                return Response(progreso, 404)
         except ConnectionError as e:
             raise e
         except KeyError as e:
             detail = rjson["detail"]
-            return Response(detail, 404)
+            return Response(detail, 400)
 
     # Funcion que consulta una leccion por el id
     @staticmethod
@@ -204,7 +237,7 @@ class LogicaUsuarios:
                 # Se devuelve un Response con el objeto y el codigo 200
                 return Response(calificacion, 200)
             else:
-                calificacion = Calificacion()
+                calificacion = Calificacion(mejor_nota=0)
                 # Se devuelve un Response con el objeto y el codigo 200
                 return Response(calificacion, 404)
         except ConnectionError as e:
@@ -255,12 +288,13 @@ class LogicaUsuarios:
         try:
             # Llamada al metodo del api que consulta en la base de datos una leccion de un determinado id
             r = requests.get(settings.API_PATH + 'ver-leccion/' + str(leccion_id))
-            # Se convierte la respuesta en json para poder extraer sus datos
-            rjson = r.json()
-            # Se instancia un objeto tipo Leccion con los datos obtenidos de la llamada al api
-            leccion = Leccion(pk=rjson["id"], nombre=rjson["nombre"])
-            # Se devuelve un Response con el objeto y el codigo 200
-            return Response(leccion, 200)
+            if r.status_code == 200:
+                # Se convierte la respuesta en json para poder extraer sus datos
+                rjson = r.json()
+                # Se instancia un objeto tipo Leccion con los datos obtenidos de la llamada al api
+                leccion = Leccion(pk=rjson["id"], nombre=rjson["nombre"])
+                # Se devuelve un Response con el objeto y el codigo 200
+                return Response(leccion, 200)
         except ConnectionError as e:
             # En caso de excepcion se devuelve el codigo de error 400
             raise e

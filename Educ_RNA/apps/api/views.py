@@ -60,6 +60,8 @@ class ActualizarProgreso(UpdateAPIView):
             # En cualquier caso contrario solo de devuelve el estado 400
             else:
                 return Response(status=400)
+        else:
+            return Response(status=400)
 
 
 # Metodo que obtiene de la base de datos el progreso de un determinado usuario
@@ -159,6 +161,13 @@ class VerLinksPresentaciones(RetrieveAPIView):
 # Metodo que obtiene el link del podcast de un tema determinado, dado su id
 class VerLinkPodcast(RetrieveAPIView):
     serializer_class = LeccionesSerializer.PodcastSerializer
+    lookup_field = "tema_id"
+    queryset = serializer_class.Meta.model.objects.all()
+
+
+# Metodo que obtiene el link del podcast de un tema determinado, dado su id
+class VerLinkCodigo(RetrieveAPIView):
+    serializer_class = LeccionesSerializer.CodigoSerializer
     lookup_field = "tema_id"
     queryset = serializer_class.Meta.model.objects.all()
 
@@ -276,6 +285,8 @@ class RegistrarCalificacion(CreateAPIView):
             nota = serializer.data.get("nota")
             self.model.objects.create(usuario_id=usuario, prueba_id=prueba, nota=nota, mejor_nota=nota, intentos=1)
             return Response(serializer.data)
+        else:
+            return Response(status=400)
 
 
 class ActualizarCalificacion(UpdateAPIView):
@@ -296,5 +307,8 @@ class ActualizarCalificacion(UpdateAPIView):
                 nota_final = nuevanota
             else:
                 nota_final = nota_actual.mejor_nota
-            self.model.objects.filter(usuario_id=usuario, prueba_id=prueba).update(nota=nuevanota, mejor_nota=nota_final, intentos=F('intentos')+1)
+            self.model.objects.filter(usuario_id=usuario, prueba_id=prueba).update(nota=nuevanota, mejor_nota=nota_final
+                                                                                   , intentos=F('intentos')+1)
             return Response(serializer.data)
+        else:
+            return Response(status=400)

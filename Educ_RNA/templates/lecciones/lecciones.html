@@ -57,7 +57,7 @@ color:#000000;
              <tr class="tr1">
                  <td class="td2" style=""><a href="{% url 'vertema' leccion_id=i.0.pk %}">{{i.0.nombre}}</a></td>
              </tr>
-             {% elif leccion_actual >= i.1 and i.2 >= 10%}
+             {% elif i.1 %}
              <tr class="tr1">
                  <td class="td2" style=""><a href="{% url 'vertema' leccion_id=i.0.pk %}">{{i.0.nombre}}</a></td>
              </tr>

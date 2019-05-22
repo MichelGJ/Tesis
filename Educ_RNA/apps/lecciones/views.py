@@ -28,10 +28,9 @@ class LogicaLecciones:
             # Si no existe un registro de progreso de este usuario se procede a llamar al metodo que lo crea
             if progreso.status_code == 404:
                 LogicaUsuarios.registrar_progreso(self.user.pk, 1)
-            leccion_actual_id = LogicaLecciones.leccion_actual(self)
             lista = LogicaLecciones.consultar_lecciones(self)
             # Se crea un dictionary con la lista , para poder pasarla a la vista
-            cdict = {'lista': lista, 'leccion_actual': leccion_actual_id}
+            cdict = {'lista': lista}
             # Se renderiza la vista con las lecciones
             return render(self, 'lecciones/lecciones.html', cdict)
         # Manejo de excepciones
@@ -42,24 +41,11 @@ class LogicaLecciones:
     # Funcion que llama a una funcion del API, la cual le envia la lista completa de temas dado una leccion.
     def ver_temas(self, leccion_id):
         try:
-            # Llamada al metodo que consulta el progreso del usuario con fines de saber cuales temas habilitar
+            # Llamada a la funcion que consulta el progreso del usuario con fines de saber cuales temas habilitar
             progreso = LogicaUsuarios.consultar_progreso(self.user.pk)
-            if progreso.status_code == 200:
-                tema_progreso = progreso.data.tema_id
-            else:
-                tema_progreso = 0
-            lista = []
-            # Llamada al API para obtener los temas de una leccion seleccionada pasando el id
-            page = requests.get(settings.API_PATH + 'ver-temas/' + leccion_id)
-            # Convierte la respuesta en un json
-            pagejson = page.json()
-            # Se recorre la respuesta del api, instanciando objetos tipo Tema con los datos obtenidos
-            for item in pagejson:
-                otema = Tema(nombre=item["nombre"], pk=item["id"])
-                # Llamada al metodo que consulta el infotema de un tema determinado
-                infotema = LogicaLecciones.verinfotemas(item["id"], otema)
-                # Se construye una lista de Temas e Infotemas
-                lista.append((otema, infotema))
+            tema_progreso = progreso.data.tema_id
+            # Llamada a la funcion que consulta los temas y devuelve su lista
+            lista = LogicaLecciones.consultar_temas(leccion_id)
             # Variable auxiliar con el fin de determinar si se habilita el examen de la leccion
             aux = lista[-1][0].pk + 1
             # Se crea un dictionary con la lista, el id del tema del progreso y la variable auxiliar
@@ -77,23 +63,6 @@ class LogicaLecciones:
         except KeyError as e:
             messages.error(self, 'No se encontro la informacion de los temas')
             return redirect('/lecciones/error')
-
-    # Funcion que llama a una funcion del API, la cual le envia la lista completa de infotemas dado un tema.
-    @staticmethod
-    def verinfotemas(tema_id, otema):
-        try:
-            # Llamada al API para obtener la informacion de un tema seleccionada pasando el id
-            page = requests.get(settings.API_PATH + 'ver-infotemas/' + str(tema_id))
-            # Se convierte en json la respuesta del API, para su lectura
-            pagejson = page.json()
-            infotema = InfoTema(pk=pagejson["id"], presentacion=pagejson["presentacion"], podcast=pagejson["podcast"],
-                                codigo=pagejson["codigo"], tema=otema)
-            # Se devuelve el json de la respuesta del API
-            return infotema
-        except ConnectionError as e:
-            raise e
-        except KeyError as e:
-            raise e
 
     # Funcion que llama a una funcion del API, la cual le envia el link para la visualizacion y la ruta para la descarga
     # de la presentacion
@@ -199,19 +168,47 @@ class LogicaLecciones:
             messages.error(self, 'No se encontro el podcast')
             return redirect('/lecciones/error')
 
+    """
+    Funciones Complementarias
+    """
+
+    # Funcion que llama a una funcion del API, la cual le envia la lista completa de infotemas dado un tema.
+    @staticmethod
+    def verinfotemas(tema_id, otema):
+        try:
+            # Llamada al API para obtener la informacion de un tema seleccionada pasando el id
+            page = requests.get(settings.API_PATH + 'ver-infotemas/' + str(tema_id))
+            # Se convierte en json la respuesta del API, para su lectura
+            pagejson = page.json()
+            infotema = InfoTema(pk=pagejson["id"], presentacion=pagejson["presentacion"], podcast=pagejson["podcast"],
+                                codigo=pagejson["codigo"], tema=otema)
+            # Se devuelve el json de la respuesta del API
+            return infotema
+        except ConnectionError as e:
+            raise e
+        except KeyError as e:
+            raise e
+
+    # Funcion que devuelve la leccion en la que se encuentre el usuario
     def leccion_actual(self):
         try:
+            # Se consulta las calificaciones del usuario
             calificaciones = LogicaUsuarios.consultar_calificacion(self.user.pk)
+            # Si la consulta es exitosa se toma la ultima calificacion y con ella se consulta el id de la leccion
+            #  a la que corresponda
             if calificaciones.status_code == 200:
                 prueba = LogicaUsuarios.consultar_prueba_id(calificaciones.data[-1][0].prueba_id)
                 leccion_actual = LogicaUsuarios.consultar_leccion_id(prueba.data.leccion_id)
                 leccion_actual_id = leccion_actual.data.pk
+            # Si no hay calificaciones se asigna id 0
             else:
                 leccion_actual_id = 0
+            # Se devuelve el id de la leccion
             return leccion_actual_id
         except ConnectionError as e:
             raise e
 
+    # Funcion que devuelve la lista de las lecciones y si se deben habilitar o no
     def consultar_lecciones(self):
         try:
             lista = []
@@ -219,16 +216,49 @@ class LogicaLecciones:
             page = requests.get(settings.API_PATH + 'ver-lecciones/')
             # Convierte la respuesta en un json
             pagejson = page.json()
+            leccion_actual_id = LogicaLecciones.leccion_actual(self)
             # Se recorre la respuesta del api, obteniendo el id y nombre de las lecciones
             for item in pagejson:
                 leccion = Leccion(nombre=item["nombre"], pk=item["id"])
+                # Por cada leccion se consulta la prueba de la leccion anterior
                 prueba = LogicaUsuarios.consultar_prueba(leccion.pk - 1)
+                # Por cada leccion se consulta la calificacion de la prueba anterior
                 calificacion = LogicaUsuarios.consultar_calificacion_prueba(self.user.pk, prueba.data.pk)
-                if calificacion.status_code == 200:
-                    mejor_nota = int(calificacion.data.mejor_nota)
+                # Se obtiene la mejor nota de la prueba anterior
+                mejor_nota = int(calificacion.data.mejor_nota)
+                # Si el la leccion del progreso es mayor a la leccion anterior y la mejor nota es mayor a 10
+                # se desbloquea la leccion
+                if leccion_actual_id >= int(item["id"] - 1) and mejor_nota >= 10:
+                    desbloquear = True
+                # Si no se cumplen las condiciones la leccion se queda bloqueada
                 else:
-                    mejor_nota = 0
-                lista.append((leccion, int(item["id"] - 1), mejor_nota))
+                    desbloquear = False
+                # Se arma una lista con los datos a pasar a la interfaz
+                lista.append((leccion, desbloquear))
             return lista
         except ConnectionError as e:
             raise e
+
+    @staticmethod
+    def consultar_temas(leccion_id):
+        try:
+            lista = []
+            # Llamada al API para obtener los temas de una leccion seleccionada pasando el id
+            page = requests.get(settings.API_PATH + 'ver-temas/' + leccion_id)
+            # Convierte la respuesta en un json
+            pagejson = page.json()
+            # Se recorre la respuesta del api, instanciando objetos tipo Tema con los datos obtenidos
+            for item in pagejson:
+                otema = Tema(nombre=item["nombre"], pk=item["id"])
+                # Llamada al metodo que consulta el infotema de un tema determinado
+                infotema = LogicaLecciones.verinfotemas(item["id"], otema)
+                # Se construye una lista de Temas e Infotemas
+                lista.append((otema, infotema))
+            return lista
+        except ConnectionError as e:
+            raise e
+        except IndexError as e:
+            raise e
+        except KeyError as e:
+            raise e
+

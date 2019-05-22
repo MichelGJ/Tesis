@@ -47,7 +47,11 @@ width:250px;
                                         <tr>
                                             <th scope="row">{{i.1}}</th>
                                             <td>{{i.0.nota}}</td>
-                                            <td>{{i.0.mejor_nota}}</td>
+                                            {% if i.2 %}
+                                            <td><a style="color:#32CD32"><strong>{{i.0.mejor_nota}}</strong></a></td>
+                                            {% elif not i.2%}
+                                            <td><a style="color:#FF0000"><strong>{{i.0.mejor_nota}}</strong></a></td>
+                                            {% endif %}
                                             <td>{{i.0.intentos}}</td>
                                         </tr>
                                     {% endfor %}

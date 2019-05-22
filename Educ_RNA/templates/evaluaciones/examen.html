@@ -1,7 +1,7 @@
 {% extends 'base/base.html' %}
 {% load staticfiles %}
 
-<title>{% block title %} Quiz {% endblock %}</title>
+<title>{% block title %} Examen {% endblock %}</title>
 
 {%block style%}
 
@@ -39,25 +39,8 @@ margin-bottom:-15px;
 }
 {%endblock%}
 
-{% block navbar%}
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
-      <div class="container">
-        <a class="navbar-brand"><font size=6px> EducRNA <img class="logo" src="{% static 'images/logoucab3.png'%}"></font></a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarResponsive">
-          <ul class="navbar-nav ml-auto">
-            <li class="nav-item active">
-              </a>
-            </li>
-          </ul>
-        </div>
-      </div>
-</nav>
-{% endblock %}
-
 {% block space%}
+
 {% endblock %}
 
 {% block content %}
@@ -66,7 +49,7 @@ margin-bottom:-15px;
          <div class="form-top">
               <strong>
                   <p></p>
-                    <a class="titulo" target="_blank"><font color=#000000 size=6px>Quiz #{{tema_id}}</font></a>
+                    <a class="titulo" target="_blank"><font color=#000000 size=6px>Quiz #{{tema_id}}  <p id="demo"></p></font></a>
                 </strong>
          </div>
          <div class="form-bottom">
@@ -77,18 +60,38 @@ margin-bottom:-15px;
                     <p></p>
                 </strong>
                  {% for i in listaresp %}
-
+                  <strong>
                     <a class="respuesta" href="{% url 'quiz2' respuesta_id=i.pk pregunta_id=pregunta.pk tema_id=tema_id %}"><font color=#000000  size=4px>
                         {{i.contenido}}
                     </font></a>
                       <br>
                       <p></p>
-
+                </strong>
                  {% endfor %}
             </div>
          </div>
      </div>
  </div>
+<!-- Display the countdown timer in an element -->
+<script>
+var timeLeft = 30;
+var elem = document.getElementById('demo');
+var timerId = setInterval(countdown, 1000);
+
+function countdown() {
+    if (timeLeft == -1) {
+        clearTimeout(timerId);
+        doSomething();
+    } else {
+        elem.innerHTML = timeLeft + ' s';
+        timeLeft--;
+    }
+}
+
+function doSomething() {
+    alert("Hi");
+}
+</script>
 {% endblock %}
 
 

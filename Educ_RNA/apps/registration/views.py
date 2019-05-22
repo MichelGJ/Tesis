@@ -33,13 +33,12 @@ class LogicaRegistration:
                 if r.status_code == 404:
                     messages.error(self, 'usuario o contraseña incorrecto')
                     return redirect('/')
-                else:
-                    # En caso de recibir el codigo 200 se autenticara el usuario
-                    # y se le permitira el ingreso a la aplicacion
-                    if r.status_code == 200:
-                        user = authenticate(username=usuario.username, password=usuario.password)
-                        auth_login(self, user)
-                        return redirect('usuarios/index/')
+                # En caso de recibir el codigo 200 se autenticara el usuario
+                # y se le permitira el ingreso a la aplicacion
+                elif r.status_code == 200:
+                    user = authenticate(username=usuario.username, password=usuario.password)
+                    auth_login(self, user)
+                    return redirect('usuarios/index/')
             # Si no recibe un metodo POST solo se renderizara la ventana
             else:
                 return render(self, 'registration/login.html')

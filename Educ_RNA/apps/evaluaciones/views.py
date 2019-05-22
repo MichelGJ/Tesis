@@ -8,38 +8,64 @@ from .models import Pregunta, Quiz, Respuesta, Prueba
 from apps.usuarios.views import LogicaUsuarios
 
 
+listaquiz = []
+aux_quiz = 0
+listaprueba = []
+aux_pregunta = 0
+nota = 0
+
+
 class LogicaEvaluaciones:
+
+    def instrucciones_quiz(self, tema_id):
+        global listaquiz
+        global aux_quiz
+        instrucciones = ('El siguiente quiz tiene 5 preguntas, no hay tiempo límite ni nota.',
+                         'Así que no te preocupes y escoge la opción que más te parezca,'
+                         ' y nosotros te indicaremos si fue correcta o no.')
+        cdict = {'tema_id': tema_id, 'instrucciones': instrucciones}
+        aux_quiz = 0
+        listaquiz = []
+        return render(self, 'evaluaciones/instruccionesquiz.html', cdict)
 
     # Funcion que renderiza las preguntas del quiz del tema seleccionado
     def quiz(self, tema_id):
         try:
+            global listaquiz
+            global aux_quiz
             # Se obtienen todos los datos necesarios para desplegar una pregunta
             quiz = LogicaEvaluaciones.verquiz(tema_id)
-            preguntas = LogicaEvaluaciones.verpreguntasquiz(quiz.pk)
-            pregunta = random.choice(preguntas)
-            respuestas = LogicaEvaluaciones.verrespuestas(pregunta.pk)
+            if aux_quiz == 0:
+                listaquiz = LogicaEvaluaciones.verpreguntasquiz(quiz.pk)
+                pregunta = random.choice(listaquiz)
+                respuestas = LogicaEvaluaciones.verrespuestas(pregunta.pk)
+            elif 1 <= aux_quiz < 5:
+                pregunta = random.choice(listaquiz)
+                respuestas = LogicaEvaluaciones.verrespuestas(pregunta.pk)
             # En el caso de que alguna de las listas no tenga elementos se abre una pagina de error
-            if len(preguntas) == 0 or len(respuestas) == 0:
+            if len(listaquiz) == 0 or len(respuestas) == 0:
+                listaquiz = []
+                aux_quiz = 0
                 messages.error(self, 'No se enconcontraron las preguntas o respuestas')
                 return redirect('/lecciones/error')
             # Se crea un dictionary con los datos , para poder pasarla a la vista
             cdict = {'pregunta': pregunta, 'listaresp': respuestas, 'tema_id': tema_id}
-            # Se consulta el progreso del usuario en la base de datos
-            progreso = LogicaUsuarios.consultar_progreso(self.user.pk)
-            # Si existe el registro se actualiza el progreso si es un tema mayor
-            if progreso.status_code == 200:
-                tema_actualizar = str(int(tema_id) + 1)
-                LogicaUsuarios.actualizar_progreso(self.user.pk, tema_actualizar)
             # Se renderiza la vista con las lecciones
             return render(self, 'evaluaciones/quiz.html', cdict)
             # Manejo de excepciones
         except ConnectionError as e:
+            listaquiz = []
+            aux_quiz = 0
             messages.error(self, 'Error de conexion')
             return redirect('/lecciones/error')
         except KeyError as e:
+            listaquiz = []
+            aux_quiz = 0
             messages.error(self, 'No se encontro el quiz')
             return redirect('/lecciones/error')
         except IndexError as e:
+            listaquiz = []
+            aux_quiz = 0
             messages.error(self, 'No se encontraron las preguntas y/o respuestas')
             return redirect('/lecciones/error')
 
@@ -69,6 +95,7 @@ class LogicaEvaluaciones:
             page = requests.get(settings.API_PATH + 'ver-pregquiz/' + str(quiz_id))
             # Se convierte la respuesta en json para poder extraer sus datos
             pagejson = page.json()
+            print(pagejson)
             # Se recorre la lista de preguntas y se forma una lista de preguntas con objetos tipo Pregunta
             for item in pagejson:
                 opregunta = Pregunta(pk=item["id"], contenido=item["contenido"])
@@ -89,7 +116,7 @@ class LogicaEvaluaciones:
             # Se convierte la respuesta en json para poder extraer sus datos
             pagejson = page.json()
             # Se instancia un objeto tipo Pregunta con el contenido devuelto por el api
-            pregunta = Pregunta(contenido=pagejson["contenido"])
+            pregunta = Pregunta(id=pagejson["id"], contenido=pagejson["contenido"])
             # Se devuelve un objeto tipo Pregunta
             return pregunta
         except ConnectionError as e:
@@ -137,25 +164,55 @@ class LogicaEvaluaciones:
     # Funcion que renderiza la pagina de correcion de una pregunta del quiz
     def corregirquiz(self, respuesta_id, pregunta_id, tema_id):
         try:
+            global aux_quiz
+            global listaquiz
             # Se llaman a los metodos necesarios para obtener los datos que se requieren
             respuesta = LogicaEvaluaciones.verrespuestacorrecta(respuesta_id)
             pregunta = LogicaEvaluaciones.verpreguntaid(pregunta_id)
             respuestas = LogicaEvaluaciones.verrespuestas(pregunta_id)
             incorrecto = 'RESPUESTA INCORRECTA'
             correcto = 'RESPUESTA CORRECTA'
-            # Si la respuesta es correcta se arma el dictionary y se indica que la respuesta es correcta mandando true
-            # como mensaje
+            tema = LogicaUsuarios.consultar_tema_id(tema_id)
+            leccion = LogicaUsuarios.consultar_leccion_id(tema.data.leccion_id)
+            aux_quiz = aux_quiz + 1
             if respuesta.correcta:
-                cdict = {'pregunta': pregunta.contenido, 'listaresp': respuestas, 'tema_id': tema_id, 'mensaje': 'true'}
+                cdict = {'pregunta': pregunta.contenido, 'listaresp': respuestas, 'tema_id': tema_id,
+                         'mensaje': 'true', 'leccion': leccion.data.id}
                 messages.success(self, correcto)
-                # Se renderiza la pagina de correccion de pregunta con todos los datos necesarios
-                return render(self, 'evaluaciones/quiz2.html', cdict)
-            else:
-                # Si la respuesta no es correcta se arma el dictionary y se indica que la respuesta es incorrecta
-                # mandando false como mensaje
-                if not respuesta.correcta:
-                    cdict = {'pregunta': pregunta.contenido, 'listaresp': respuestas, 'tema_id': tema_id, 'mensaje': 'false'}
-                    messages.error(self, incorrecto)
+                if aux_quiz == 5:
+                    aux_quiz = 0
+                    listaquiz = []
+                    # Se consulta el progreso del usuario en la base de datos
+                    progreso = LogicaUsuarios.consultar_progreso(self.user.pk)
+                    # Si existe el registro se actualiza el progreso si es un tema mayor
+                    if progreso.status_code == 200:
+                        tema_actualizar = str(int(tema_id) + 1)
+                        LogicaUsuarios.actualizar_progreso(self.user.pk, tema_actualizar)
+                    # Se renderiza la pagina de correccion de pregunta con todos los datos necesarios
+                    return render(self, 'evaluaciones/quiz3.html', cdict)
+                else:
+                    listaquiz.remove(pregunta)
+                    # Se renderiza la pagina de correccion de pregunta con todos los datos necesarios
+                    return render(self, 'evaluaciones/quiz2.html', cdict)
+                    # Si la respuesta no es correcta se arma el dictionary y se indica que la respuesta es incorrecta
+                    # mandando false como mensaje
+            elif not respuesta.correcta:
+                cdict = {'pregunta': pregunta.contenido, 'listaresp': respuestas, 'tema_id': tema_id,
+                         'mensaje': 'false', 'leccion': leccion.data.id}
+                messages.error(self, incorrecto)
+                if aux_quiz == 5:
+                    aux_quiz = 0
+                    listaquiz = []
+                    # Se consulta el progreso del usuario en la base de datos
+                    progreso = LogicaUsuarios.consultar_progreso(self.user.pk)
+                    # Si existe el registro se actualiza el progreso si es un tema mayor
+                    if progreso.status_code == 200:
+                        tema_actualizar = str(int(tema_id) + 1)
+                        LogicaUsuarios.actualizar_progreso(self.user.pk, tema_actualizar)
+                    # Se renderiza la pagina de correccion de preguntas con todos los datos necesarios
+                    return render(self, 'evaluaciones/quiz3.html', cdict)
+                else:
+                    listaquiz.remove(pregunta)
                     # Se renderiza la pagina de correccion de preguntas con todos los datos necesarios
                     return render(self, 'evaluaciones/quiz2.html', cdict)
         except ConnectionError as e:
