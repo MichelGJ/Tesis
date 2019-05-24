@@ -1,10 +1,20 @@
 {% extends 'base/base.html' %}
 {% load staticfiles %}
 
-<title>{% block title %} Quiz {% endblock %}</title>
+{% block extrahead %}
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+{% endblock %}
+
+ <title>{% block title %} Progreso {% endblock %}</title>
 
 {%block style%}
 
+p {
+  text-align: right;
+  font-size: 30px;
+  margin-top: 0px;
+}
 
 .info{
 margin-bottom:15px;
@@ -12,20 +22,12 @@ margin-top:-15px;
 text-align:center;
 }
 
-
-
 .form-bottom{
-margin-top:0px;
-margin-left:125px;
-width:900px;
 background-color:#eee;
 box-shadow: 0px 0px 36px 15px rgba(0, 0, 0, 0.28);
 }
 
 .form-top{
-margin-top:50px;
-margin-left:125px;
-width:900px;
 text-align:center;
 background-color:#82ACFF;
 box-shadow: 0px 0px 36px 15px rgba(0, 0, 0, 0.28);
@@ -54,8 +56,8 @@ margin-bottom:-15px;
 </nav>
 {% endblock %}
 
-
 {% block space%}
+<p>&nbsp</p>
 {% endblock %}
 
 {% block content %}
@@ -64,7 +66,7 @@ margin-bottom:-15px;
          <div class="form-top">
               <strong>
                   <p></p>
-                    <a class="pregunta" href="" target="_blank"><font color=#000000 size=6px>Quiz #{{tema_id}}</font></a>
+                    <a class="pregunta" href="" target="_blank"><font color=#000000 size=6px>Quiz {{tema_id}}</font></a>
                 </strong>
          </div>
          <div class="form-bottom">
@@ -107,10 +109,11 @@ margin-bottom:-15px;
                  {% endfor %}
             </div>
              <div align="center" class="form-group">
-                 <a href="{% url 'vertema' leccion_id=leccion  %}" ><button style="background-color:#0000FF;" class="btn">Finalizar</button></a>
+                 <a href="{% url 'vertema' leccion_id=leccion curso_id=curso_id  %}" ><button style="background-color:#0000FF;" class="btn">Finalizar</button></a>
              </div>
          </div>
      </div>
  </div>
 {% endblock %}
+
 

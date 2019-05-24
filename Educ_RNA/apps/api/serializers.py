@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Leccion, Tema, InfoTema, Link, Quiz, Pregunta, Prueba, Respuesta, Progreso, Calificacion
+from .models import Leccion, Tema, InfoTema, Link, Quiz, Pregunta, Prueba, Respuesta, Progreso, Calificacion, Curso
 from django.contrib.auth.password_validation import validate_password
 from django.core.exceptions import ValidationError
 from django.contrib.auth.models import User
@@ -12,12 +12,19 @@ from django.db import IntegrityError
 class LeccionesSerializer:
 
     # Serializador para mapear el modelo Leccion
+    class CursoSerializer(serializers.ModelSerializer):
+        # Clase Meta para mapear los campos del serializador con los campos del modelo
+        class Meta:
+            model = Curso
+            fields = ('id', 'nombre')
+
+    # Serializador para mapear el modelo Leccion
     class LeccionSerializer(serializers.ModelSerializer):
 
         # Clase Meta para mapear los campos del serializador con los campos del modelo
         class Meta:
             model = Leccion
-            fields = ('id', 'nombre')
+            fields = ('id', 'nombre', 'curso_id')
 
     # Serializador para mapear el modelo Tema
     class TemaSerializer(serializers.ModelSerializer):
@@ -160,11 +167,12 @@ class UsuariosSerializer:
     # Serializador para mapear el modelo Progreso
     class ProgresoSerializer(serializers.ModelSerializer):
         usuario_id = serializers.IntegerField(required=True)
+        curso_id = serializers.IntegerField(required=True)
         tema_id = serializers.IntegerField(required=True)
 
         class Meta:
             model = Progreso
-            fields = ('id', 'usuario_id', 'tema_id')
+            fields = ('id', 'usuario_id', 'curso_id', 'tema_id')
 
     class CalificacionSerializer(serializers.ModelSerializer):
         usuario_id = serializers.IntegerField(required=True)

@@ -2,22 +2,32 @@
 {% load staticfiles %}
 {% block extrahead %}
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+{% endblock %}
+
+{% block style %}
+.carousel slide{
+width:auto;
+height:auto;
+display:inline-block;
+}
+
+
 {% endblock %}
 
 
 {% block header %}
-<div id="demo" class="carousel slide" data-ride="carousel">
+<div id="car1" class="carousel slide" data-ride="carousel">
 
   <!-- Indicators -->
   <ul class="carousel-indicators">
-    <li data-target="#demo" data-slide-to="0" class="active"></li>
-    <li data-target="#demo" data-slide-to="1"></li>
-    <li data-target="#demo" data-slide-to="2"></li>
+    <li data-target="#car1" data-slide-to="0" class="active"></li>
+    <li data-target="#car1" data-slide-to="1"></li>
+    <li data-target="#car1" data-slide-to="2"></li>
   </ul>
 
   <!-- The slideshow -->
   <p>&nbsp</p>
+   <div class="container2">
   <div class="carousel-inner">
     <div class="carousel-item active">
         <a href="/lecciones/ver">
@@ -35,12 +45,12 @@
         </a>
     </div>
   </div>
-
+   </div>
   <!-- Left and right controls -->
-  <a class="carousel-control-prev" href="#demo" data-slide="prev">
+  <a class="carousel-control-prev" href="#car1" data-slide="prev">
     <span class="carousel-control-prev-icon"></span>
   </a>
-  <a class="carousel-control-next" href="#demo" data-slide="next">
+  <a class="carousel-control-next" href="#car1" data-slide="next">
     <span class="carousel-control-next-icon"></span>
   </a>
 

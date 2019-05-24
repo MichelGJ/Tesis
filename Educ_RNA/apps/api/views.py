@@ -52,10 +52,11 @@ class ActualizarProgreso(UpdateAPIView):
         if serializer.is_valid():
             usuario = serializer.data.get("usuario_id")
             nuevotema = serializer.data.get("tema_id")
-            tema = self.model.objects.get(usuario_id=usuario).tema_id
+            curso = serializer.data.get("curso_id")
+            tema = self.model.objects.get(usuario_id=usuario, curso_id=curso).tema_id
             # Si el id del tema nuevo es mayor al actual, se procede a actualizar el progreso
             if nuevotema > tema:
-                self.model.objects.filter(usuario_id=usuario).update(tema_id=nuevotema)
+                self.model.objects.filter(usuario_id=usuario, curso_id=curso).update(tema_id=nuevotema)
                 return Response(serializer.data)
             # En cualquier caso contrario solo de devuelve el estado 400
             else:
@@ -65,10 +66,31 @@ class ActualizarProgreso(UpdateAPIView):
 
 
 # Metodo que obtiene de la base de datos el progreso de un determinado usuario
-class ConsultarProgreso(RetrieveAPIView):
+class ConsultarProgreso(ListAPIView):
     serializer_class = UsuariosSerializer.ProgresoSerializer
+    model = serializer_class.Meta.model
+    paginate_by = 100
+
+    # Funcion que busca con el id dado la lista de temas correspondiente
+    def get_queryset(self):
+        usuario_id = self.kwargs['usuario_id']
+        queryset = self.model.objects.filter(usuario_id=usuario_id)
+        return queryset.order_by('id')
+
+
+# Metodo que obtiene de la base de datos el progreso de un determinado usuario
+class ConsultarProgreso2(RetrieveAPIView):
+    serializer_class = UsuariosSerializer.ProgresoSerializer
+    model = serializer_class.Meta.model
     lookup_field = "usuario_id"
-    queryset = serializer_class.Meta.model.objects.all()
+    paginate_by = 100
+
+    # Funcion que busca con el id dado la lista de temas correspondiente
+    def get_queryset(self):
+        usuario_id = self.kwargs['usuario_id']
+        curso_id = self.kwargs['curso_id']
+        queryset = self.model.objects.filter(usuario_id=usuario_id, curso_id=curso_id)
+        return queryset.order_by('id')
 
 
 # Metodo que actualiza informacion del usuario en la base de datos
@@ -111,10 +133,30 @@ class CambioContrasena(UpdateAPIView):
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
-# Metodo que obtiene de la base de datos la lista completa de lecciones
+# Metodo que obtiene de la base de datos la lista completa de cursos
+class VerCursos(ListAPIView):
+    serializer_class = LeccionesSerializer.CursoSerializer
+    queryset = serializer_class.Meta.model.objects.all()
+
+
+# Metodo que obtiene de la base de datos un curso dado su id
+class VerCursoId(RetrieveAPIView):
+    serializer_class = LeccionesSerializer.CursoSerializer
+    lookup_field = "id"
+    queryset = serializer_class.Meta.model.objects.all()
+
+
+# Metodo que obtiene de la base de datos la lista completa de lecciones de un curso
 class VerLecciones(ListAPIView):
     serializer_class = LeccionesSerializer.LeccionSerializer
-    queryset = serializer_class.Meta.model.objects.all()
+    model = serializer_class.Meta.model
+    paginate_by = 100
+
+    # Funcion que busca con el id dado la lista de temas correspondiente
+    def get_queryset(self):
+        curso_id = self.kwargs['curso_id']
+        queryset = self.model.objects.filter(curso_id=curso_id)
+        return queryset.order_by('id')
 
 
 # Metodo que obtiene de la base de datos una leccion dado su id

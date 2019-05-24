@@ -1,6 +1,7 @@
 from django.shortcuts import render
 import requests
-from .models import Leccion, Tema, InfoTema, Link
+from .models import Leccion, Tema, InfoTema, Link, Curso
+from apps.usuarios.models import Progreso
 import os
 from django.conf import settings
 from django.http import HttpResponse, Http404
@@ -8,10 +9,13 @@ from apps.usuarios.views import LogicaUsuarios
 from django.contrib.auth.models import User
 from django.shortcuts import redirect
 from django.contrib import messages
+from rest_framework.response import Response
 # Create your views here.
 
 # Vistas de la app lecciones, en este caso se trata de la logica y las llamadas a las funciones necesarias para todas
 # las funcionalidades relacionadas con el modulo de las lecciones.
+
+id_curso = 0
 
 
 class LogicaLecciones:
@@ -20,17 +24,38 @@ class LogicaLecciones:
     def error(self):
         return render(self, 'lecciones/error.html')
 
-    # Funcion que llama a una funcion del API, la cual le envia la lista completa de lecciones.
-    def ver_lecciones(self):
+    def ver_cursos(self):
+        global id_curso
         try:
-            # Llamada al metodo que consulta el progreso del usuario para verificar si ya existe un registro
-            progreso = LogicaUsuarios.consultar_progreso(self.user.pk)
-            # Si no existe un registro de progreso de este usuario se procede a llamar al metodo que lo crea
-            if progreso.status_code == 404:
-                LogicaUsuarios.registrar_progreso(self.user.pk, 1)
-            lista = LogicaLecciones.consultar_lecciones(self)
+            id_curso = 0
+            lista = LogicaLecciones.consultar_cursos()
             # Se crea un dictionary con la lista , para poder pasarla a la vista
             cdict = {'lista': lista}
+            # Se renderiza la vista con las lecciones
+            return render(self, 'lecciones/cursos.html', cdict)
+        # Manejo de excepciones
+        except ConnectionError as e:
+            messages.error(self, 'Error de conexion')
+            return redirect('/lecciones/error')
+
+    # Funcion que llama a una funcion del API, la cual le envia la lista completa de lecciones.
+    def ver_lecciones(self, curso_id):
+        global id_curso
+        try:
+            id_curso = curso_id
+            # Llamada al metodo que consulta el progreso del usuario para verificar si ya existe un registro
+            progreso = LogicaLecciones.consultar_progreso_curso(self.user.pk, curso_id)
+            lista = LogicaLecciones.consultar_lecciones(self, curso_id)
+            primera_leccion = lista[0][0].pk
+            lista_temas = LogicaLecciones.consultar_temas(str(primera_leccion))
+            primer_tema = lista_temas[0][0].pk
+            # Si no existe un registro de progreso de este usuario se procede a llamar al metodo que lo crea
+            if progreso.status_code == 404:
+                LogicaUsuarios.registrar_progreso(self.user.pk, primer_tema, curso_id)
+            elif progreso.status_code == 200:
+                LogicaUsuarios.actualizar_progreso(self.user.pk, primer_tema, curso_id)
+            # Se crea un dictionary con la lista, para poder pasarla a la vista
+            cdict = {'lista': lista, 'primera': primera_leccion, 'curso_id': curso_id}
             # Se renderiza la vista con las lecciones
             return render(self, 'lecciones/lecciones.html', cdict)
         # Manejo de excepciones
@@ -39,18 +64,18 @@ class LogicaLecciones:
             return redirect('/lecciones/error')
 
     # Funcion que llama a una funcion del API, la cual le envia la lista completa de temas dado una leccion.
-    def ver_temas(self, leccion_id):
+    def ver_temas(self, leccion_id, curso_id):
         try:
             # Llamada a la funcion que consulta el progreso del usuario con fines de saber cuales temas habilitar
-            progreso = LogicaUsuarios.consultar_progreso(self.user.pk)
+            progreso = LogicaLecciones.consultar_progreso_curso(self.user.pk, curso_id)
             tema_progreso = progreso.data.tema_id
             # Llamada a la funcion que consulta los temas y devuelve su lista
             lista = LogicaLecciones.consultar_temas(leccion_id)
             # Variable auxiliar con el fin de determinar si se habilita el examen de la leccion
-            aux = lista[-1][0].pk + 1
+            aux = lista[-1][0].pk
             # Se crea un dictionary con la lista, el id del tema del progreso y la variable auxiliar
             # para poder pasarlos a la vista
-            cdict = {'lista': lista, 'progreso': tema_progreso, 'examen': aux}
+            cdict = {'lista': lista, 'progreso': tema_progreso, 'examen': aux, 'leccion_id': leccion_id, 'curso_id': curso_id}
             # Se renderiza la vista con los temas correspondientes a la leccion seleccionada
             return render(self, 'lecciones/temas.html', cdict)
         # Manejo de excepciones
@@ -209,11 +234,11 @@ class LogicaLecciones:
             raise e
 
     # Funcion que devuelve la lista de las lecciones y si se deben habilitar o no
-    def consultar_lecciones(self):
+    def consultar_lecciones(self, curso_id):
         try:
             lista = []
             # Llamada al API
-            page = requests.get(settings.API_PATH + 'ver-lecciones/')
+            page = requests.get(settings.API_PATH + 'ver-lecciones/' + str(curso_id))
             # Convierte la respuesta en un json
             pagejson = page.json()
             leccion_actual_id = LogicaLecciones.leccion_actual(self)
@@ -262,3 +287,43 @@ class LogicaLecciones:
         except KeyError as e:
             raise e
 
+    @staticmethod
+    def consultar_cursos():
+        try:
+            lista = []
+            # Llamada al API para obtener los temas de una leccion seleccionada pasando el id
+            page = requests.get(settings.API_PATH + 'ver-cursos/' )
+            # Convierte la respuesta en un json
+            pagejson = page.json()
+            # Se recorre la respuesta del api, instanciando objetos tipo Tema con los datos obtenidos
+            for item in pagejson:
+                curso = Curso(nombre=item["nombre"], pk=item["id"])
+                lista.append(curso)
+            return lista
+        except ConnectionError as e:
+            raise e
+        except IndexError as e:
+            raise e
+        except KeyError as e:
+            raise e
+
+    # Funcion que consulta un tema por el id
+    @staticmethod
+    def consultar_progreso_curso(usuario_id, curso_id):
+        try:
+            # Llamada al metodo del api que consulta en la base de datos un tema de un determinado id
+            r = requests.get(settings.API_PATH + 'ver-progreso2/' + str(usuario_id) + '/' + str(curso_id))
+            if r.status_code == 200:
+                # Se convierte la respuesta en json para poder extraer sus datos
+                rjson = r.json()
+                # Se instancia un objeto tipo Tema con los datos obtenidos de la llamada al api
+                progreso = Progreso(pk=rjson["id"], tema_id=rjson["tema_id"])
+                status = 200
+            else:
+                progreso = Progreso()
+                status = 404
+            # Se devuelve un Response con el objeto y el codigo 200
+            return Response(progreso, status=status)
+        except ConnectionError as e:
+            # En caso de excepcion se devuelve el codigo de error 400
+            raise e

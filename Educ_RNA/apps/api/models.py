@@ -4,8 +4,13 @@ from django.contrib.auth.models import User
 # Modelos para migrar a la base de datos
 
 
+class Curso(models.Model):
+    nombre = models.CharField(max_length=120)
+
+
 class Leccion(models.Model):
     nombre = models.CharField(max_length=120)
+    curso = models.ForeignKey(Curso, on_delete=models.CASCADE, null=True)
 
 
 class Tema(models.Model):
@@ -60,9 +65,10 @@ class Calificacion(models.Model):
 
 
 class Progreso(models.Model):
-    usuario = models.ForeignKey(User, on_delete=models.CASCADE, related_name='P_U_FK', unique=True)
+    usuario = models.ForeignKey(User, on_delete=models.CASCADE, related_name='P_U_FK')
+    curso = models.ForeignKey(Curso, on_delete=models.CASCADE, null=True)
     tema = models.ForeignKey(Tema, on_delete=models.CASCADE, related_name='P_T_FK')
 
     class Meta:
-        unique_together = ("usuario", "tema")
+        unique_together = ("usuario", "curso")
 

@@ -1,13 +1,8 @@
 {% extends 'base/base.html' %}
 {% load staticfiles %}
 
-{% block extrahead %}
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-{% endblock%}
-
 {% block extrastatic %}
 <link rel="stylesheet" href="{% static 'css/font-awesome.min.css'%}">
-
 {% endblock %}
 
     <title>{% block title %} Perfil {% endblock %}</title>
@@ -73,10 +68,12 @@ width:250px;
 			                    </form>
                                 <div align="center" class="form-group">
                                     <a href="{% url 'cambiar' %}" ><button style="background-color:#DC143C;" class="btn">Cambiar Contraseña</button></a>
+
                                     <a href="{% url 'abrirmodificar' id=request.user.id %}" ><button style="background-color:#FFA500;" class="btn">Modificar Información</button></a>
                                 </div>
                                 <div align="center" class="form-group">
                                     <a href="{% url 'progreso' %}" ><button style="background-color:#0000FF;" class="btn">Progreso</button></a>
+
                                     <a href="{% url 'calificacion' %}" ><button class="btn">Calificaciones</button></a>
                                 </div>
 		                    </div>
@@ -88,11 +85,3 @@ width:250px;
 
 {% endblock %}
 
-{% block extrajs%}
-<script src="{% static 'js/jquery.backstretch.min.js'%}"></script>
-<script src="{% static 'js/scripts.js'%}"></script>
-<script src="{% static 'js/placeholder.js'%}"></script>
-<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-<script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-
-{% endblock %}

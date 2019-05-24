@@ -1,12 +1,19 @@
-ALTER SEQUENCE api_leccion_id_seq RESTART;
-INSERT INTO api_leccion (nombre)
+ALTER SEQUENCE api_curso_id_seq RESTART;
+INSERT INTO api_curso (nombre)
 VALUES
- ('Introducción e Historia'),
- ('El Perceptrón Simple'),
- ('El Perceptrón Multicapa'),
- ('Redes Neuronales Recurrentes'),
- ('Redes de Creencia Profunda'),
- ('Redes Generativas Antagónicas')
+ ('Redes Neuronales Artificiales'),
+ ('TEST');
+
+ALTER SEQUENCE api_leccion_id_seq RESTART;
+INSERT INTO api_leccion (nombre, curso_id)
+VALUES
+ ('Introducción e Historia', (SELECT id from api_curso where nombre='Redes Neuronales Artificiales')),
+ ('El Perceptrón Simple', (SELECT id from api_curso where nombre='Redes Neuronales Artificiales')),
+ ('El Perceptrón Multicapa', (SELECT id from api_curso where nombre='Redes Neuronales Artificiales')),
+ ('Redes Neuronales Recurrentes', (SELECT id from api_curso where nombre='Redes Neuronales Artificiales')),
+ ('Redes de Creencia Profunda', (SELECT id from api_curso where nombre='Redes Neuronales Artificiales')),
+ ('Redes Generativas Antagónicas', (SELECT id from api_curso where nombre='Redes Neuronales Artificiales')),
+ ('TEST', (SELECT id from api_curso where nombre='TEST'));
 
 ALTER SEQUENCE api_tema_id_seq RESTART;
 INSERT INTO api_tema (nombre,leccion_id)
@@ -26,7 +33,8 @@ VALUES
  ('Definición y Entrenamiento', (SELECT id from api_leccion where nombre='Redes de Creencia Profunda')),
  ('Definición y Limitaciones', (SELECT id from api_leccion where nombre='Redes Generativas Antagónicas')),
  ('Entrenamiento', (SELECT id from api_leccion where nombre='Redes Generativas Antagónicas')),
- ('Usos', (SELECT id from api_leccion where nombre='Redes Generativas Antagónicas'))
+ ('Usos', (SELECT id from api_leccion where nombre='Redes Generativas Antagónicas')),
+ ('TEST', (SELECT id from api_leccion where nombre='TEST'));
   
 ALTER SEQUENCE api_infotema_id_seq RESTART; 
 INSERT INTO public.api_infotema(tema_id, presentacion, podcast, codigo)
@@ -46,7 +54,8 @@ VALUES
 ((SELECT id from api_tema where nombre='Definición y Entrenamiento'),  True,  True, True),
 ((SELECT id from api_tema where nombre='Definición y Limitaciones' AND leccion_id=6),  True,  True, False),
 ((SELECT id from api_tema where nombre='Entrenamiento' AND leccion_id=6),  True,  True, True),
-((SELECT id from api_tema where nombre='Usos'),  True,  True, False)
+((SELECT id from api_tema where nombre='Usos'),  True,  True, False),
+((SELECT id from api_tema where nombre='TEST'),  True,  True, False);
 
 ALTER SEQUENCE api_prueba_id_seq RESTART; 
 INSERT INTO public.api_prueba(leccion_id)
@@ -56,7 +65,7 @@ VALUES
 ((SELECT id from api_leccion where nombre='El Perceptrón Multicapa')),
 ((SELECT id from api_leccion where nombre='Redes Neuronales Recurrentes')),
 ((SELECT id from api_leccion where nombre='Redes de Creencia Profunda')),
-((SELECT id from api_leccion where nombre='Redes Generativas Antagónicas'))
+((SELECT id from api_leccion where nombre='Redes Generativas Antagónicas'));
 
 ALTER SEQUENCE api_quiz_id_seq RESTART; 
 INSERT INTO public.api_quiz(tema_id)
@@ -76,7 +85,7 @@ VALUES
 ((SELECT id from api_tema where nombre='Definición y Entrenamiento')),
 ((SELECT id from api_tema where nombre='Definición y Limitaciones' AND leccion_id=6)),
 ((SELECT id from api_tema where nombre='Entrenamiento' AND leccion_id=6)),
-((SELECT id from api_tema where nombre='Usos'))
+((SELECT id from api_tema where nombre='Usos'));
 
 ALTER SEQUENCE api_link_id_seq RESTART; 
 INSERT INTO public.api_link(presentacion, presentaciond, podcast, codigo, tema_id)
@@ -112,7 +121,7 @@ VALUES
 ('//www.slideshare.net/slideshow/embed_code/key/FYzXiJtcu509Qq','/presentaciones/Presentacion15.pdf','podcasts/Entrenamiento(RGA).mp3',Null,
 (SELECT id from api_tema where nombre='Entrenamiento' AND leccion_id=6)),
 ('//www.slideshare.net/slideshow/embed_code/key/xVVLV4MVusMdpL','/presentaciones/Presentacion16.pdf','podcasts/Usos.mp3',Null,
-(SELECT id from api_tema where nombre='Usos'))
+(SELECT id from api_tema where nombre='Usos'));
 
 ALTER SEQUENCE api_pregunta_id_seq RESTART; 
 INSERT INTO public.api_pregunta(contenido, prueba_id, quiz_id)
@@ -635,7 +644,7 @@ VALUES
  (SELECT id from api_quiz where tema_id = (SELECT id from api_tema where nombre='Usos'))),
 ('Se pueden utilizar para acelerar la investigación en cualquier área donde se encuentre la Inteligencia Artificial',
  (SELECT id from api_prueba where leccion_id = (SELECT id from api_leccion where nombre='Redes Generativas Antagónicas')),
- (SELECT id from api_quiz where tema_id = (SELECT id from api_tema where nombre='Usos')))
+ (SELECT id from api_quiz where tema_id = (SELECT id from api_tema where nombre='Usos')));
 
 ALTER SEQUENCE api_respuesta_id_seq RESTART; 
 INSERT INTO public.api_respuesta(contenido, correcta, pregunta_id)
@@ -834,16 +843,10 @@ VALUES
 ('Restar el umbral', False, (SELECT id from api_pregunta where contenido='El sexto paso y último paso del entrenamiento es:')),
 ('Verdadero', False, (SELECT id from api_pregunta where contenido='La actualización de pesos es obligatoriamente con tasa de aprendizaje:')),
 ('Falso', True, (SELECT id from api_pregunta where contenido='La actualización de pesos es obligatoriamente con tasa de aprendizaje:')),
-('-', False, (SELECT id from api_pregunta where contenido='La actualización de pesos es obligatoriamente con tasa de aprendizaje:')),
-('-', False, (SELECT id from api_pregunta where contenido='La actualización de pesos es obligatoriamente con tasa de aprendizaje:')),
 ('Verdadero', True, (SELECT id from api_pregunta where contenido='La actualización de pesos se puede realizar con o sin taza de aprendizaje:')),
 ('Falso', False, (SELECT id from api_pregunta where contenido='La actualización de pesos se puede realizar con o sin taza de aprendizaje:')),
-('-', False, (SELECT id from api_pregunta where contenido='La actualización de pesos se puede realizar con o sin taza de aprendizaje:')),
-('-', False, (SELECT id from api_pregunta where contenido='La actualización de pesos se puede realizar con o sin taza de aprendizaje:')),
 ('Verdadero', False, (SELECT id from api_pregunta where contenido='Los umbrales se utilizan siempre de manera obligatoria:')),
 (' Falso', True, (SELECT id from api_pregunta where contenido='Los umbrales se utilizan siempre de manera obligatoria:')),
-('-', False, (SELECT id from api_pregunta where contenido='Los umbrales se utilizan siempre de manera obligatoria:')),
-('-', False, (SELECT id from api_pregunta where contenido='Los umbrales se utilizan siempre de manera obligatoria:')),
 ('Varias capas de perceptrones', True, (SELECT id from api_pregunta where contenido='El perceptrón multicapa está conformado por:')),
 ('Una capa de perceptrones', False, (SELECT id from api_pregunta where contenido='El perceptrón multicapa está conformado por:')),
 ('2 capas de perceptrones', False, (SELECT id from api_pregunta where contenido='El perceptrón multicapa está conformado por:')),
@@ -886,8 +889,6 @@ VALUES
 ('Ninguna de las anteriores', False, (SELECT id from api_pregunta where contenido='¿Cómo se trata al umbral en un perceptrón multicapa?')),
 ('Verdadero', True, (SELECT id from api_pregunta where contenido='¿La entrada del umbral es constante?')),
 ('Falso', False, (SELECT id from api_pregunta where contenido='¿La entrada del umbral es constante?')),
-('-', False, (SELECT id from api_pregunta where contenido='¿La entrada del umbral es constante?')),
-('-', False, (SELECT id from api_pregunta where contenido='¿La entrada del umbral es constante?')),
 ('3', False, (SELECT id from api_pregunta where contenido='La entrada del umbral es igual a:')),
 ('No es constante', False, (SELECT id from api_pregunta where contenido='La entrada del umbral es igual a:')),
 ('1', True, (SELECT id from api_pregunta where contenido='La entrada del umbral es igual a:')),
@@ -1038,16 +1039,10 @@ VALUES
 ('Ninguna de las anteriores', False, (SELECT id from api_pregunta where contenido='¿Por qué valores pasados ayudan a predecir valores futuros en las secuencias?')),
 ('Verdadero', False, (SELECT id from api_pregunta where contenido='Las redes neuronales recurrentes son feedforward:')),
 ('Falso', True, (SELECT id from api_pregunta where contenido='Las redes neuronales recurrentes son feedforward:')),
-('-', False, (SELECT id from api_pregunta where contenido='Las redes neuronales recurrentes son feedforward:')),
-('-', False, (SELECT id from api_pregunta where contenido='Las redes neuronales recurrentes son feedforward:')),
 ('Verdadero', True, (SELECT id from api_pregunta where contenido='Las redes neuronales recurrentes cuentan con una retroalimentación de datos:')),
 ('Falso', False, (SELECT id from api_pregunta where contenido='Las redes neuronales recurrentes cuentan con una retroalimentación de datos:')),
-('-', False, (SELECT id from api_pregunta where contenido='Las redes neuronales recurrentes cuentan con una retroalimentación de datos:')),
-('-', False, (SELECT id from api_pregunta where contenido='Las redes neuronales recurrentes cuentan con una retroalimentación de datos:')),
 ('Verdadero', True, (SELECT id from api_pregunta where contenido='Audios, videos y textos son datos secuenciales en los que sirven las redes neuronales recurrentes:')),
 ('Falso', False, (SELECT id from api_pregunta where contenido='Audios, videos y textos son datos secuenciales en los que sirven las redes neuronales recurrentes:')),
-('-', False, (SELECT id from api_pregunta where contenido='Audios, videos y textos son datos secuenciales en los que sirven las redes neuronales recurrentes:')),
-('-', False, (SELECT id from api_pregunta where contenido='Audios, videos y textos son datos secuenciales en los que sirven las redes neuronales recurrentes:')),
 ('Es un algoritmo totalmente distinto al de retropropagación', False, (SELECT id from api_pregunta where contenido='¿Qué es la retropropagación a través del tiempo?')),
 ('Es el algoritmo de retropropagación aplicada cada cierto tiempo', False, (SELECT id from api_pregunta where contenido='¿Qué es la retropropagación a través del tiempo?')),
 ('Es el algoritmo de retropropagación aplicado al bucle recursivo de las neuronas de una red neuronal recurrente', True, (SELECT id from api_pregunta where contenido='¿Qué es la retropropagación a través del tiempo?')),
@@ -1090,24 +1085,16 @@ VALUES
 ('Capa oculta y capa visible', True, (SELECT id from api_pregunta where contenido='¿Cómo está compuesta una máquina de Boltzmann restringida?')),
 ('Verdadero', True, (SELECT id from api_pregunta where contenido='Las conexiones en una máquina de Boltzmann restringida son bidireccionales:')),
 ('Falso', False, (SELECT id from api_pregunta where contenido='Las conexiones en una máquina de Boltzmann restringida son bidireccionales:')),
-('-', False, (SELECT id from api_pregunta where contenido='Las conexiones en una máquina de Boltzmann restringida son bidireccionales:')),
-('-', False, (SELECT id from api_pregunta where contenido='Las conexiones en una máquina de Boltzmann restringida son bidireccionales:')),
 ('Verdadero', False, (SELECT id from api_pregunta where contenido='Las conexiones en una máquina de Boltzmann restringida son unidireccionales:')),
 ('Falso', True, (SELECT id from api_pregunta where contenido='Las conexiones en una máquina de Boltzmann restringida son unidireccionales:')),
-('-', False, (SELECT id from api_pregunta where contenido='Las conexiones en una máquina de Boltzmann restringida son unidireccionales:')),
-('-', False, (SELECT id from api_pregunta where contenido='Las conexiones en una máquina de Boltzmann restringida son unidireccionales:')),
 ('Pueden ser completamente conectadas', False, (SELECT id from api_pregunta where contenido='Las máquinas de Boltzmann restringidas:')),
 ('Pueden ser localmente conectadas', False, (SELECT id from api_pregunta where contenido='Las máquinas de Boltzmann restringidas:')),
 ('Tienen que ser completamente conectadas', True, (SELECT id from api_pregunta where contenido='Las máquinas de Boltzmann restringidas:')),
 ('Tienen que ser localmente conectadas', False, (SELECT id from api_pregunta where contenido='Las máquinas de Boltzmann restringidas:')),
 ('Verdadero', False, (SELECT id from api_pregunta where contenido='Las neuronas de una capa pueden conectarse a neuronas de cualquier otra capa:')),
 ('Falso', True, (SELECT id from api_pregunta where contenido='Las neuronas de una capa pueden conectarse a neuronas de cualquier otra capa:')),
-('-', False, (SELECT id from api_pregunta where contenido='Las neuronas de una capa pueden conectarse a neuronas de cualquier otra capa:')),
-('-', False, (SELECT id from api_pregunta where contenido='Las neuronas de una capa pueden conectarse a neuronas de cualquier otra capa:')),
 ('Verdadero', True, (SELECT id from api_pregunta where contenido='Las neuronas de una capa pueden conectarse solo a las neuronas de la siguiente capa:')),
 ('Falso', False, (SELECT id from api_pregunta where contenido='Las neuronas de una capa pueden conectarse solo a las neuronas de la siguiente capa:')),
-('-', False, (SELECT id from api_pregunta where contenido='Las neuronas de una capa pueden conectarse solo a las neuronas de la siguiente capa:')),
-('-', False, (SELECT id from api_pregunta where contenido='Las neuronas de una capa pueden conectarse solo a las neuronas de la siguiente capa:')),
 ('Máquina de Boltzmann Semi-Restringida', False, (SELECT id from api_pregunta where contenido='¿Cómo se llamaría si cualquier capa se puede conectar con cualquier otra capa?')),
 ('Máquina de Boltzmann Restringida', False, (SELECT id from api_pregunta where contenido='¿Cómo se llamaría si cualquier capa se puede conectar con cualquier otra capa?')),
 ('Máquina de Boltzmann Súper Restringida', False, (SELECT id from api_pregunta where contenido='¿Cómo se llamaría si cualquier capa se puede conectar con cualquier otra capa?')),
@@ -1234,12 +1221,8 @@ VALUES
 ('Clasificar solo las imágenes recibidas por la generativa', False, (SELECT id from api_pregunta where contenido='¿Cuál es el objetivo de la red discriminadora?')),
 ('Verdadero', True, (SELECT id from api_pregunta where contenido='El colapso de la red generativa es una limitación de las RGA:')),
 ('Falso', False, (SELECT id from api_pregunta where contenido='El colapso de la red generativa es una limitación de las RGA:')),
-('-', False, (SELECT id from api_pregunta where contenido='El colapso de la red generativa es una limitación de las RGA:')),
-('-', False, (SELECT id from api_pregunta where contenido='El colapso de la red generativa es una limitación de las RGA:')),
 ('Verdadero', False, (SELECT id from api_pregunta where contenido='Que la red generativa se vuelva muy buena creando características es una limitación de las RGA:')),
 ('Falso', True, (SELECT id from api_pregunta where contenido='Que la red generativa se vuelva muy buena creando características es una limitación de las RGA:')),
-('-', False, (SELECT id from api_pregunta where contenido='Que la red generativa se vuelva muy buena creando características es una limitación de las RGA:')),
-('-', False, (SELECT id from api_pregunta where contenido='Que la red generativa se vuelva muy buena creando características es una limitación de las RGA:')),
 ('La red generativa se vuelve también muy buena en su tarea', False, (SELECT id from api_pregunta where contenido='¿Qué pasa si la red discriminadora se vuelve demasiado buena en su tarea?')),
 ('La red generativa se vuelve deficiente en su tarea', False, (SELECT id from api_pregunta where contenido='¿Qué pasa si la red discriminadora se vuelve demasiado buena en su tarea?')),
 ('La red generativa deja de aprender', True, (SELECT id from api_pregunta where contenido='¿Qué pasa si la red discriminadora se vuelve demasiado buena en su tarea?')),
@@ -1267,23 +1250,16 @@ VALUES
 ('La generativa', False, (SELECT id from api_pregunta where contenido='¿Cuál red se recomienda entrenar primero?')),
 ('La discriminadora', False, (SELECT id from api_pregunta where contenido='¿Cuál red se recomienda entrenar primero?')),
 ('No importa el orden', True, (SELECT id from api_pregunta where contenido='¿Cuál red se recomienda entrenar primero?')),
-('-', False, (SELECT id from api_pregunta where contenido='¿Cuál red se recomienda entrenar primero?')),
 ('Verdadero', False, (SELECT id from api_pregunta where contenido='En el entrenamiento no importa si una de las redes avanza mucho con respecto a la otra:')),
 ('Falso', True, (SELECT id from api_pregunta where contenido='En el entrenamiento no importa si una de las redes avanza mucho con respecto a la otra:')),
-('-', False, (SELECT id from api_pregunta where contenido='En el entrenamiento no importa si una de las redes avanza mucho con respecto a la otra:')),
-('-', False, (SELECT id from api_pregunta where contenido='En el entrenamiento no importa si una de las redes avanza mucho con respecto a la otra:')),
 ('No pasa nada', False, (SELECT id from api_pregunta where contenido='¿Qué pasa si una de las redes adelantó mucho a la otra durante el entrenamiento?')),
 ('Se facilita entrenar la totalidad de la red', True, (SELECT id from api_pregunta where contenido='¿Qué pasa si una de las redes adelantó mucho a la otra durante el entrenamiento?')),
 ('Se facilita entrenar la totalidad de la red', False, (SELECT id from api_pregunta where contenido='¿Qué pasa si una de las redes adelantó mucho a la otra durante el entrenamiento?')),
 ('Ninguna de las anteriores', False, (SELECT id from api_pregunta where contenido='¿Qué pasa si una de las redes adelantó mucho a la otra durante el entrenamiento?')),
 ('Verdadero', True, (SELECT id from api_pregunta where contenido='Una RGA toma mucho tiempo entrenando:')),
 ('Falso', False, (SELECT id from api_pregunta where contenido='Una RGA toma mucho tiempo entrenando:')),
-('-', False, (SELECT id from api_pregunta where contenido='Una RGA toma mucho tiempo entrenando:')),
-('-', False, (SELECT id from api_pregunta where contenido='Una RGA toma mucho tiempo entrenando:')),
 ('Verdadero', True, (SELECT id from api_pregunta where contenido='A la red discriminadora se le suministran características reales y la generada por la red generadora')),
 ('Falso', False, (SELECT id from api_pregunta where contenido='A la red discriminadora se le suministran características reales y la generada por la red generadora')),
-('-', False, (SELECT id from api_pregunta where contenido='A la red discriminadora se le suministran características reales y la generada por la red generadora')),
-('-', False, (SELECT id from api_pregunta where contenido='A la red discriminadora se le suministran características reales y la generada por la red generadora')),
 ('Por si sola', False, (SELECT id from api_pregunta where contenido='¿Cómo la red generadora sabe si necesita mejorar?')),
 ('Al final del entrenamiento recibe la característica real y hace la comparación', False, (SELECT id from api_pregunta where contenido='¿Cómo la red generadora sabe si necesita mejorar?')),
 ('No necesita saberlo', False, (SELECT id from api_pregunta where contenido='¿Cómo la red generadora sabe si necesita mejorar?')),
@@ -1302,33 +1278,17 @@ VALUES
 ('Ninguna de las anteriores', False, (SELECT id from api_pregunta where contenido='¿Qué pasa al final del entrenamiento?')),
 ('Verdadero', True, (SELECT id from api_pregunta where contenido='Se pueden utilizar para crear diseños de interiores aleatorios')),
 ('Falso', False, (SELECT id from api_pregunta where contenido='Se pueden utilizar para crear diseños de interiores aleatorios')),
-('-', False, (SELECT id from api_pregunta where contenido='Se pueden utilizar para crear diseños de interiores aleatorios')),
-('-', False, (SELECT id from api_pregunta where contenido='Se pueden utilizar para crear diseños de interiores aleatorios')),
 ('Verdadero', False, (SELECT id from api_pregunta where contenido='Se pueden utilizar para generar videos sin actores reales')),
 ('Falso', True, (SELECT id from api_pregunta where contenido='Se pueden utilizar para generar videos sin actores reales')),
-('-', False, (SELECT id from api_pregunta where contenido='Se pueden utilizar para generar videos sin actores reales')),
-('-', False, (SELECT id from api_pregunta where contenido='Se pueden utilizar para generar videos sin actores reales')),
 ('Verdadero', True, (SELECT id from api_pregunta where contenido='Se pueden utilizar para crear nuevas composiciones musicales')),
 ('Falso', False, (SELECT id from api_pregunta where contenido='Se pueden utilizar para crear nuevas composiciones musicales')),
-('-', False, (SELECT id from api_pregunta where contenido='Se pueden utilizar para crear nuevas composiciones musicales')),
-('-', False, (SELECT id from api_pregunta where contenido='Se pueden utilizar para crear nuevas composiciones musicales')),
 ('Verdadero', True, (SELECT id from api_pregunta where contenido='Se pueden utilizar para la conducción automática de vehículos')),
 ('Falso', False, (SELECT id from api_pregunta where contenido='Se pueden utilizar para la conducción automática de vehículos')),
-('-', False, (SELECT id from api_pregunta where contenido='Se pueden utilizar para la conducción automática de vehículos')),
-('-', False, (SELECT id from api_pregunta where contenido='Se pueden utilizar para la conducción automática de vehículos')),
 ('Verdadero', False, (SELECT id from api_pregunta where contenido='Se pueden utilizar para crear problemas matemáticos')),
 ('Falso', True, (SELECT id from api_pregunta where contenido='Se pueden utilizar para crear problemas matemáticos')),
-('-', False, (SELECT id from api_pregunta where contenido='Se pueden utilizar para crear problemas matemáticos')),
-('-', False, (SELECT id from api_pregunta where contenido='Se pueden utilizar para crear problemas matemáticos')),
 ('Verdadero', True, (SELECT id from api_pregunta where contenido='Se pueden utilizar para generar datos para algoritmos de Inteligencia Artificial en la medicina, sin necesidad de recolectar datos de pacientes')),
 ('Falso', False, (SELECT id from api_pregunta where contenido='Se pueden utilizar para generar datos para algoritmos de Inteligencia Artificial en la medicina, sin necesidad de recolectar datos de pacientes')),
-('-', False, (SELECT id from api_pregunta where contenido='Se pueden utilizar para generar datos para algoritmos de Inteligencia Artificial en la medicina, sin necesidad de recolectar datos de pacientes')),
-('-', False, (SELECT id from api_pregunta where contenido='Se pueden utilizar para generar datos para algoritmos de Inteligencia Artificial en la medicina, sin necesidad de recolectar datos de pacientes')),
 ('Verdadero', False, (SELECT id from api_pregunta where contenido='Se pueden utilizar para identificar personas')),
 ('Falso', True, (SELECT id from api_pregunta where contenido='Se pueden utilizar para identificar personas')),
-('-', False, (SELECT id from api_pregunta where contenido='Se pueden utilizar para identificar personas')),
-('-', False, (SELECT id from api_pregunta where contenido='Se pueden utilizar para identificar personas')),
 ('Verdadero', True, (SELECT id from api_pregunta where contenido='Se pueden utilizar para acelerar la investigación en cualquier área donde se encuentre la Inteligencia Artificial')),
-('Falso', False, (SELECT id from api_pregunta where contenido='Se pueden utilizar para acelerar la investigación en cualquier área donde se encuentre la Inteligencia Artificial')),
-('-', False, (SELECT id from api_pregunta where contenido='Se pueden utilizar para acelerar la investigación en cualquier área donde se encuentre la Inteligencia Artificial')),
-('-', False, (SELECT id from api_pregunta where contenido='Se pueden utilizar para acelerar la investigación en cualquier área donde se encuentre la Inteligencia Artificial'))
+('Falso', False, (SELECT id from api_pregunta where contenido='Se pueden utilizar para acelerar la investigación en cualquier área donde se encuentre la Inteligencia Artificial'));

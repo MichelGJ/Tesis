@@ -4,8 +4,9 @@ from .views import LogicaLecciones
 from rest_framework.urlpatterns import format_suffix_patterns
 
 urlpatterns = [
-    path('ver/', login_required(LogicaLecciones.ver_lecciones), name='ver'),
-    path('ver-temas/?id=<leccion_id>', login_required(LogicaLecciones.ver_temas), name="vertema"),
+    path('ver/', login_required(LogicaLecciones.ver_cursos), name='ver'),
+    path('ver-lecciones/?id=<curso_id>', login_required(LogicaLecciones.ver_lecciones), name='verlecciones'),
+    path('ver-temas/?id=<leccion_id>/?id=<curso_id>', login_required(LogicaLecciones.ver_temas), name="vertema"),
     path('presentacion/?id=<tema_id>', login_required(LogicaLecciones.presentacion), name="presentacion"),
     path('descargapres/?id=<tema_id>', login_required(LogicaLecciones.descargapresentacion), name="descargapres"),
     path('podcast/?id=<tema_id>', login_required(LogicaLecciones.podcast), name="podcast"),
