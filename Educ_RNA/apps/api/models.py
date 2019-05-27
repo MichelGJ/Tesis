@@ -30,6 +30,7 @@ class Link(models.Model):
     presentaciond = models.CharField(max_length=1024, null=True)
     podcast = models.CharField(max_length=1024, null=True)
     codigo = models.CharField(max_length=1024, null=True)
+    repocodigo = models.CharField(max_length=1024, null=True)
     tema = models.OneToOneField(Tema, on_delete=models.CASCADE, null=True, unique=True)
 
 
