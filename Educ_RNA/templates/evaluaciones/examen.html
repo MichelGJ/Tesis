@@ -1,14 +1,14 @@
 {% extends 'base/base.html' %}
 {% load staticfiles %}
 
-<title>{% block title %} Examen {% endblock %}</title>
+ <title>{% block title %} Examen {% endblock %}</title>
 
 {%block style%}
 
 p {
   text-align: right;
-  font-size: 30px;
-  margin-top: 0px;
+  font-size: 20px;
+  color:#FFFFFF;
 }
 
 .info{
@@ -18,17 +18,11 @@ text-align:center;
 }
 
 .form-bottom{
-margin-top:0px;
-margin-left:125px;
-width:900px;
 background-color:#eee;
 box-shadow: 0px 0px 36px 15px rgba(0, 0, 0, 0.28);
 }
 
 .form-top{
-margin-top:50px;
-margin-left:125px;
-width:900px;
 text-align:center;
 background-color:#82ACFF;
 box-shadow: 0px 0px 36px 15px rgba(0, 0, 0, 0.28);
@@ -58,6 +52,7 @@ margin-bottom:-15px;
 {% endblock %}
 
 {% block space%}
+<p>&nbsp</p>
 {% endblock %}
 
 {% block content %}
@@ -66,7 +61,8 @@ margin-bottom:-15px;
          <div class="form-top">
               <strong>
                   <p></p>
-                    <a class="titulo" target="_blank"><font color=#000000 size=6px>Examen {{leccion_id}}<p id="demo"></p></font></a>
+                    <a class="titulo" target="_blank"><font color=#000000 size=6px>Examen: {{nombre_leccion}}</font></a>
+                    <p class="timer" id="demo"></p>
                 </strong>
          </div>
          <div class="form-bottom">
@@ -89,13 +85,14 @@ margin-bottom:-15px;
  </div>
 <!-- Display the countdown timer in an element -->
 <script>
-var timeLeft = 45;
+var timeLeft = 10;
 var elem = document.getElementById('demo');
 var timerId = setInterval(countdown, 1000);
 
 function countdown() {
     if (timeLeft == -1) {
         clearTimeout(timerId);
+        alert("Se acabó el tiempo, la respuesta será invalidada")
         doSomething();
     } else {
         elem.innerHTML = timeLeft + ' s';
@@ -104,7 +101,10 @@ function countdown() {
 }
 
 function doSomething() {
-    alert("Hi");
+     $.ajax({
+             url: '/evaluaciones/examen2/%3Fr_id=0/%3Fp_id={{leccion_id}}',
+             method: 'POST',
+            })
 }
 </script>
 {% endblock %}

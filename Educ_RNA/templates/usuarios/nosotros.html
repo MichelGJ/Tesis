@@ -5,6 +5,8 @@
 
 .aboutus-section{
 background-color: #F0F8FF;
+margin: auto;
+width: 90%;
 }
 
 .aboutus{
@@ -12,25 +14,31 @@ width:auto;
 }
 
 
-.feature-content{
-margin-left:20px;
+.feature{
+width:100%;
+max-width:600px;
+margin-top:60px;
 }
 
-.banner{
-margin-left:170px;
+
+
+.container3{
+    margin: auto;
+    width: 90%;
 }
 
 {%endblock%}
 
+<title>{% block title %} Temas {% endblock %}</title>
+
 {% block space%}
-        <p>&nbsp</p>
-        <p>&nbsp</p>
-        <p>&nbsp</p>
-        <p>&nbsp</p>
+<p>&nbsp</p>
+<p>&nbsp</p>
+<br>
 {% endblock %}
 
 {% block content %}
-<div class="aboutus-section">
+ <div class="aboutus-section">
         <div class="container3">
             <div class="row">
                 <div class="col-md-3 col-sm-6 col-xs-12">
@@ -49,7 +57,6 @@ margin-left:170px;
                         <img src="{% static 'images/IA_1.jpg'%}" alt="">
                     </div>
                 </div>
-                <div class="col-md-4 col-sm-8 col-xs-12">
                     <br><br>
                     <div class="feature">
                         <div class="feature-box">
@@ -63,6 +70,7 @@ margin-left:170px;
                                 </div>
                             </div>
                         </div>
+                        <br>
                         <div class="feature-box">
                             <div class="clearfix">
                                 <div class="iconset">
@@ -75,7 +83,6 @@ margin-left:170px;
                             </div>
                         </div>
                     </div>
-                </div>
             </div>
         </div>
     </div>

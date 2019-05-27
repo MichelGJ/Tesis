@@ -15,8 +15,6 @@ from rest_framework.response import Response
 # Vistas de la app lecciones, en este caso se trata de la logica y las llamadas a las funciones necesarias para todas
 # las funcionalidades relacionadas con el modulo de las lecciones.
 
-id_curso = 0
-
 
 class LogicaLecciones:
     user = User()
@@ -25,9 +23,7 @@ class LogicaLecciones:
         return render(self, 'lecciones/error.html')
 
     def ver_cursos(self):
-        global id_curso
         try:
-            id_curso = 0
             lista = LogicaLecciones.consultar_cursos()
             # Se crea un dictionary con la lista , para poder pasarla a la vista
             cdict = {'lista': lista}
@@ -40,9 +36,8 @@ class LogicaLecciones:
 
     # Funcion que llama a una funcion del API, la cual le envia la lista completa de lecciones.
     def ver_lecciones(self, curso_id):
-        global id_curso
         try:
-            id_curso = curso_id
+            curso = LogicaUsuarios.consultar_curso_id(curso_id)
             # Llamada al metodo que consulta el progreso del usuario para verificar si ya existe un registro
             progreso = LogicaLecciones.consultar_progreso_curso(self.user.pk, curso_id)
             lista = LogicaLecciones.consultar_lecciones(self, curso_id)
@@ -52,10 +47,8 @@ class LogicaLecciones:
             # Si no existe un registro de progreso de este usuario se procede a llamar al metodo que lo crea
             if progreso.status_code == 404:
                 LogicaUsuarios.registrar_progreso(self.user.pk, primer_tema, curso_id)
-            elif progreso.status_code == 200:
-                LogicaUsuarios.actualizar_progreso(self.user.pk, primer_tema, curso_id)
             # Se crea un dictionary con la lista, para poder pasarla a la vista
-            cdict = {'lista': lista, 'primera': primera_leccion, 'curso_id': curso_id}
+            cdict = {'lista': lista, 'primera': primer_tema, 'curso': curso.data}
             # Se renderiza la vista con las lecciones
             return render(self, 'lecciones/lecciones.html', cdict)
         # Manejo de excepciones
@@ -66,6 +59,8 @@ class LogicaLecciones:
     # Funcion que llama a una funcion del API, la cual le envia la lista completa de temas dado una leccion.
     def ver_temas(self, leccion_id, curso_id):
         try:
+            leccion = LogicaUsuarios.consultar_leccion_id(leccion_id)
+            curso = LogicaUsuarios.consultar_curso_id(curso_id)
             # Llamada a la funcion que consulta el progreso del usuario con fines de saber cuales temas habilitar
             progreso = LogicaLecciones.consultar_progreso_curso(self.user.pk, curso_id)
             tema_progreso = progreso.data.tema_id
@@ -75,7 +70,8 @@ class LogicaLecciones:
             aux = lista[-1][0].pk
             # Se crea un dictionary con la lista, el id del tema del progreso y la variable auxiliar
             # para poder pasarlos a la vista
-            cdict = {'lista': lista, 'progreso': tema_progreso, 'examen': aux, 'leccion_id': leccion_id, 'curso_id': curso_id}
+            cdict = {'lista': lista, 'progreso': tema_progreso, 'examen': aux, 'leccion': leccion.data,
+                     'curso': curso.data}
             # Se renderiza la vista con los temas correspondientes a la leccion seleccionada
             return render(self, 'lecciones/temas.html', cdict)
         # Manejo de excepciones
@@ -93,6 +89,9 @@ class LogicaLecciones:
     # de la presentacion
     def presentacion(self, tema_id):
         try:
+            tema = LogicaUsuarios.consultar_tema_id(tema_id)
+            leccion = LogicaUsuarios.consultar_leccion_id(tema.data.leccion_id)
+            curso = LogicaUsuarios.consultar_curso_id(leccion.data.curso_id)
             # Llamada al API para obtener los links de las presentaciones dado un tema
             page = requests.get(settings.API_PATH + 'ver-linkspresent/' + tema_id)
             # Se convierte en json la respuesta del API, para su lectura
@@ -100,7 +99,7 @@ class LogicaLecciones:
             # Se obtiene del json el link para visualizar la presentacion
             link = Link(presentacion=pagejson["presentacion"])
             # Se crea un dictionary con los datos que se enviaran a la vista
-            cdict = {'link': link, 'id_': tema_id}
+            cdict = {'link': link, 'tema': tema.data, 'leccion': leccion.data, 'curso': curso.data}
             # Se renderiza la pagina con la respectiva presentacion
             return render(self, 'lecciones/presentaciones.html', cdict)
         except KeyError as e:
@@ -140,6 +139,9 @@ class LogicaLecciones:
     # Funcion que obtiene el link de los podcast a traves del API
     def podcast(self, tema_id):
         try:
+            tema = LogicaUsuarios.consultar_tema_id(tema_id)
+            leccion = LogicaUsuarios.consultar_leccion_id(tema.data.leccion_id)
+            curso = LogicaUsuarios.consultar_curso_id(leccion.data.curso_id)
             # Llamada al API para obtener la ruta del podcast dado un tema
             page = requests.get(settings.API_PATH + 'ver-linkpod/' + tema_id)
             # Se convierte en json la respuesta del API, para su lectura
@@ -153,7 +155,7 @@ class LogicaLecciones:
             # Si la ruta existe se procede a mostrarl el pocast
             if os.path.exists(file_path):
                 # Se arma un dictionary con los datos que se enviaran a la vista
-                cdict = {'podcast': path.podcast, 'id_': tema_id, 'nombre': nombre}
+                cdict = {'podcast': path.podcast, 'tema': tema.data, 'leccion': leccion.data, 'curso': curso.data}
                 # Se renderiza la pagina con el respectivo podcast
                 return render(self, 'lecciones/podcasts.html', cdict)
             else:
@@ -166,6 +168,7 @@ class LogicaLecciones:
     # Funcion que recibe la ruta de un podcast del API y se encarga de realizar su descarga
     def descargapodcast(self, tema_id):
         try:
+            tema = LogicaUsuarios.consultar_tema_id(tema_id)
             # Llamada al API para obtener la ruta del podcast dado un tema
             page = requests.get(settings.API_PATH + 'ver-linkpod/' + tema_id)
             # Se convierte en json la respuesta del API, para su lectura

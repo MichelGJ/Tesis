@@ -36,6 +36,76 @@ a {
 
 color:#000000;
 }
+/* The side navigation menu */
+.sidebar {
+width: 100%;
+height: 9.5%;
+position: relative;
+  margin: 0;
+  padding: 0;
+  background-color: #000000;
+  overflow: auto;
+}
+
+/* Sidebar links */
+.sidebar a {
+  display: block;
+  color: white;
+  padding: 16px;
+  text-decoration: none;
+float: left;
+
+}
+
+.ubi{
+display: block;
+  color: white;
+  padding: 16px;
+  text-decoration: none;
+float: left;
+margin-top:10px;
+}
+
+.back{
+margin-left:200px;
+}
+
+/* Page content. The value of the margin-left property should match the value of the sidebar's width property */
+div.content {
+  margin-left: 0px;
+  margin-top:-40px;
+}
+
+@media screen and (max-width: 780px) {
+.back{
+        margin-left:0px;
+    }
+.container3 {
+    width: 100%;
+    height: auto;
+    position: relative;
+  }
+}
+
+/* On screens that are less than 700px wide, make the sidebar into a topbar */
+@media screen and (max-width: 700px) {
+  .sidebar {
+    width: 100%;
+    height: auto;
+    position: relative;
+  }
+  .sidebar a {float: left;}
+  div.content {margin-left: 0;}
+}
+
+/* On screens that are less than 400px, display the bar vertically, instead of horizontally */
+@media screen and (max-width: 400px) {
+  .sidebar a {
+    text-align: center;
+    float: none;
+  }
+}
+
 {%endblock%}
 
 <title>{% block title %} Temas {% endblock %}</title>
@@ -44,21 +114,31 @@ color:#000000;
 <p>&nbsp</p>
 {% endblock %}
 
+{%block header%}
+ <!-- The sidebar -->
+<br>
+<div class="sidebar sidebar-dark bg-dark">
+    <a class="back"  href="{% url 'verlecciones' curso_id=curso.pk %}"> <img class="logo" src="{% static 'images/back2.png'%}"></a>
+     <h5 class="ubi">{{curso.nombre}} / {{leccion.nombre}}</h5>
+</div>
+{%endblock%}
+
 {% block content %}
+<div class="content">
  <div class="inner-bg">
      <div class="container3">
          <table class="table" >
              <thead>
              <tr>
                  <th style="background-color: #82ACFF; text-align: center;">Tema</th>
-                 <th style="background-color: #82ACFF; text-align: left;padding-left: 200px;">Contenido</th>
+                 <th style="background-color: #82ACFF; text-align: left;">Contenido</th>
              </tr>
              </thead>
              <tbody>
              {% for i in lista %}
              <tr class="tr1">
                  <td class="td1" style="text-align: center;"><a href=""> {{i.0.nombre}}</a></td>
-                 <td class="td2" style="text-align: left;padding-left: 200px;">
+                 <td class="td2" style="text-align: left;">
                      {% if i.1.presentacion == True %}
                      <a href="{% url 'presentacion' tema_id=i.0.pk %}"><img title="Presentación" class="logo" src="{% static 'images/icono_presentacion.png'%}"></a>
                       &#160; &#160;
@@ -71,20 +151,21 @@ color:#000000;
                      <a href="JEJE"><img title="Codigo" class="logo" src="{% static 'images/icono_codigo.jpg'%}"></a>
                      &#160; &#160;
                      {% endif %}
-                     <a href="{% url 'instrucciones' tema_id=i.0.pk leccion_id=0 curso_id=curso_id  %}"><img title="Quiz" class="logo" src="{% static 'images/icono_quiz.png'%}"></a>
+                     <a href="{% url 'instrucciones' tema_id=i.0.pk leccion_id=0 curso_id=curso.pk  %}"><img title="Quiz" class="logo" src="{% static 'images/icono_quiz.png'%}"></a>
                  </td>
              </tr>
              {% endfor %}
               <tr class="tr1">
                  <td class="td3" style="text-align: center;"><a href=""> Examen </a></td>
-                  <td class="td2" style="text-align: left;padding-left: 200px;">
+                  <td class="td2" style="text-align: left;">
                       {% if progreso >= examen %}
-                     <a href="{% url 'instrucciones' tema_id=0 leccion_id=leccion_id curso_id=curso_id %}"><img title="Examen" class="logo" src="{% static 'images/icono_start.png'%}"></a>
+                     <a href="{% url 'instrucciones' tema_id=0 leccion_id=leccion.pk curso_id=curso.pk %}"><img title="Examen" class="logo" src="{% static 'images/icono_start.png'%}"></a>
                       {% endif %}
              </tr>
              </tbody>
          </table>
      </div>
  </div>
+</div>
 {% endblock %}
 

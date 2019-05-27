@@ -15,6 +15,7 @@ from django.http import HttpResponse
 from apps.evaluaciones.models import Prueba
 from apps.lecciones.models import Tema, Leccion, Curso
 from django.db import IntegrityError
+from django.http import request
 # Create your views here.
 
 # Vistas de la app usuarios, en este caso se trata de la logica y las llamadas a las funciones necesarias para todas las
@@ -294,7 +295,7 @@ class LogicaUsuarios:
                 # Se convierte la respuesta en json para poder extraer sus datos
                 rjson = r.json()
                 # Se instancia un objeto tipo Leccion con los datos obtenidos de la llamada al api
-                leccion = Leccion(pk=rjson["id"], nombre=rjson["nombre"])
+                leccion = Leccion(pk=rjson["id"], nombre=rjson["nombre"], curso_id=rjson["curso_id"])
                 # Se devuelve un Response con el objeto y el codigo 200
                 return Response(leccion, 200)
         except ConnectionError as e:

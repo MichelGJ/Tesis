@@ -1,7 +1,8 @@
 {% extends 'base/base.html' %}
 {% load staticfiles %}
 
-<title>{% block title %} Error {% endblock %}</title>
+
+ <title>{% block title %} Error {% endblock %}</title>
 
 {%block style%}
 
@@ -17,16 +18,20 @@ margin-top:-5px;
 text-align:center;
 }
 
-.form-bottom{
-margin-top:100px;
-margin-left:190px;
-width:700px;
-background-color:#323232;
-}
+
 
 .form-group{
 margin-bottom:-15px;
 }
+
+.form-bottom{
+background-color:#323232;
+box-shadow: 0px 0px 36px 15px rgba(0, 0, 0, 0.28);
+text-align:center;
+}
+
+
+
 {%endblock%}
 
 {% block space%}
@@ -35,7 +40,8 @@ margin-bottom:-15px;
 {% endblock %}
 
 {% block content %}
- <div class="inner-bg">
+<div class="top-content">
+          <div class="inner-bg">
      <div class="container">
          <div class="form-bottom">
              <div class="info2" >
@@ -52,11 +58,14 @@ margin-bottom:-15px;
                 </strong>
             </div>
              <div align="center" class="form-group">
-                 <a href="/lecciones/ver" ><button style="background-color:#0000FF;" class="btn">Regresar</button></a>
+                 <a href="/usuarios/index" ><button style="background-color:#0000FF;" class="btn">Regresar</button></a>
              </div>
          </div>
      </div>
  </div>
+</div>
 
 {% endblock %}
+
+
 
