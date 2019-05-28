@@ -2,12 +2,12 @@
 {% load staticfiles %}
 
 
- <title>{% block title %} Podcast {% endblock %}</title>
+ <title>{% block title %} Presentacion {% endblock %}</title>
 
 {%block style%}
 
 .form-bottom{
-background-color:#323232;
+background-color:#000080;
 box-shadow: 0px 0px 36px 15px rgba(0, 0, 0, 0.28);
 text-align:right;
 width:100%;
@@ -21,7 +21,7 @@ height: 9.5%;
 position: relative;
   margin: 0;
   padding: 0;
-  background-color: #000000;
+  background-color: #191970;
   overflow: auto;
 }
 
@@ -89,7 +89,7 @@ div.content {
 {%block header%}
  <!-- The sidebar -->
 <br>
-<div class="sidebar sidebar-dark bg-dark">
+<div class="sidebar">
     <a class="back"  href="{% url 'vertema' leccion_id=leccion.pk curso_id=curso.pk %}"> <img class="logo" src="{% static 'images/back2.png'%}"></a>
      <h5 class="ubi">{{curso.nombre}} / {{leccion.nombre}} / {{tema.nombre}}</h5>
 </div>

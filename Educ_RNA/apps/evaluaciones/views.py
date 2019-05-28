@@ -67,41 +67,44 @@ class LogicaEvaluaciones:
     # Funcion que renderiza las preguntas del quiz del tema seleccionado
     def quiz(self, tema_id):
         try:
+            # Se reinicia la lista de respuestas
             LogicaEvaluaciones.listaresp = []
+            # Consulta del tema actual, para obtener sus datos
             tema = LogicaUsuarios.consultar_tema_id(tema_id)
             # Se obtienen todos los datos necesarios para desplegar una pregunta
             quiz = LogicaEvaluaciones.verquiz(tema_id)
+            # Si la variable aux_quiz es 0, se arma la lista de preguntas ya que es la primera entrada al quiz
             if LogicaEvaluaciones.aux_quiz == 0:
+                # Se llena una lista con las preguntas del quiz correspondiente
                 LogicaEvaluaciones.listaquiz = LogicaEvaluaciones.verpreguntasquiz(quiz.pk)
-                pregunta = random.choice(LogicaEvaluaciones.listaquiz)
-                respuestas = LogicaEvaluaciones.verrespuestas(pregunta.pk)
-            elif 1 <= LogicaEvaluaciones.aux_quiz < 5:
-                pregunta = random.choice(LogicaEvaluaciones.listaquiz)
-                respuestas = LogicaEvaluaciones.verrespuestas(pregunta.pk)
+            # Se elige una pregunta aleatoria
+            pregunta = random.choice(LogicaEvaluaciones.listaquiz)
+            # Se buscan las respuestas de dicha pregunta
+            respuestas = LogicaEvaluaciones.verrespuestas(pregunta.pk)
             # En el caso de que alguna de las listas no tenga elementos se abre una pagina de error
             if len(LogicaEvaluaciones.listaquiz) == 0 or len(respuestas) == 0:
-                listaquiz = []
-                aux_quiz = 0
+                LogicaEvaluaciones.listaquiz = []
+                LogicaEvaluaciones.aux_quiz = 0
                 messages.error(self, 'No se enconcontraron las preguntas o respuestas')
                 return redirect('/lecciones/error')
             # Se crea un dictionary con los datos , para poder pasarla a la vista
-            cdict = {'pregunta': pregunta, 'listaresp': respuestas, 'tema_id': tema_id, 'nombre_tema': tema.data.nombre}
+            cdict = {'pregunta': pregunta, 'listaresp': respuestas, 'tema': tema.data}
             # Se renderiza la vista con las lecciones
             return render(self, 'evaluaciones/quiz.html', cdict)
             # Manejo de excepciones
         except ConnectionError as e:
-            listaquiz = []
-            aux_quiz = 0
+            LogicaEvaluaciones.listaquiz = []
+            LogicaEvaluaciones.aux_quiz = 0
             messages.error(self, 'Error de conexion')
             return redirect('/lecciones/error')
         except KeyError as e:
-            listaquiz = []
-            aux_quiz = 0
+            LogicaEvaluaciones.listaquiz = []
+            LogicaEvaluaciones.aux_quiz = 0
             messages.error(self, 'No se encontro el quiz')
             return redirect('/lecciones/error')
         except IndexError as e:
-            listaquiz = []
-            aux_quiz = 0
+            LogicaEvaluaciones.listaquiz = []
+            LogicaEvaluaciones.aux_quiz = 0
             messages.error(self, 'No se encontraron las preguntas y/o respuestas')
             return redirect('/lecciones/error')
 
@@ -114,48 +117,57 @@ class LogicaEvaluaciones:
             respuestas = LogicaEvaluaciones.listaresp
             incorrecto = 'RESPUESTA INCORRECTA'
             correcto = 'RESPUESTA CORRECTA'
+            # Consulta del tema actual para obtener sus datos
             tema = LogicaUsuarios.consultar_tema_id(tema_id)
+            # Consulta de la leccion actual, para obtener sus datos
             leccion = LogicaUsuarios.consultar_leccion_id(tema.data.leccion_id)
+            # Se le suma 1 a la variable aux_quiz, indicando que ya ha respondido una pregunta mas
             LogicaEvaluaciones.aux_quiz = LogicaEvaluaciones.aux_quiz + 1
+            # Si la respuesta fue correcta se le asigna True a mensaje y se le manda el mensaje a la interfaz
             if respuesta.correcta:
-                cdict = {'pregunta': pregunta.contenido, 'listaresp': respuestas, 'tema_id': tema_id,
-                         'mensaje': 'true', 'leccion': leccion.data.id, 'curso_id': LogicaEvaluaciones.id_curso,
-                         'nombre_tema': tema.data.nombre}
-                messages.success(self, correcto)
-                if LogicaEvaluaciones.aux_quiz == 5:
-                    LogicaEvaluaciones.terminar_quiz(self, tema_id, LogicaEvaluaciones.id_curso)
-                    return render(self, 'evaluaciones/quiz3.html', cdict)
-                else:
-                    LogicaEvaluaciones.listaquiz.remove(pregunta)
-                    # Se renderiza la pagina de correccion de pregunta con todos los datos necesarios
-                    return render(self, 'evaluaciones/quiz2.html', cdict)
-                    # Si la respuesta no es correcta se arma el dictionary y se indica que la respuesta es incorrecta
-                    # mandando false como mensaje
+               mensaje = True
+               messages.success(self, correcto)
+            # Si la respuesta no fue correcta se le asigna False a mensaje y se le manda el mensaje a la interfaz
             elif not respuesta.correcta:
-                cdict = {'pregunta': pregunta.contenido, 'listaresp': respuestas, 'tema_id': tema_id,
-                         'mensaje': 'false', 'leccion': leccion.data.id, 'curso_id': LogicaEvaluaciones.id_curso}
+                mensaje = False
                 messages.error(self, incorrecto)
-                if LogicaEvaluaciones.aux_quiz == 5:
-                    LogicaEvaluaciones.terminar_quiz(self, tema_id, LogicaEvaluaciones.id_curso)
-                    return render(self, 'evaluaciones/quiz3.html', cdict)
-                else:
-                    LogicaEvaluaciones.listaquiz.remove(pregunta)
-                    # Se renderiza la pagina de correccion de preguntas con todos los datos necesarios
-                    return render(self, 'evaluaciones/quiz2.html', cdict)
+            # Si aux_quix es 5 quiere decir que es la ultima pregunta, entonces se termina el quiz
+            if LogicaEvaluaciones.aux_quiz == 5:
+                # Se llama a la funcion que termina el quiz, registrando el progreso
+                LogicaEvaluaciones.terminar_quiz(self, tema_id, LogicaEvaluaciones.id_curso)
+                # La variable terminar se pone en True para indicarle a la interfaz que ya debe finalizar
+                terminar = True
+            # Si aux_quiz no es 5 solo se quita la pregunta de la lista
+            else:
+                # La variable terminar se pone en False para indicarle a la interfaz que debe continuar
+                terminar = False
+                # Se quita la pregunta de la lista para no repetirla luego
+                LogicaEvaluaciones.listaquiz.remove(pregunta)
+            # Se arma el dictionary con todos los datos que necesita la pagina para renderizar
+            cdict = {'pregunta': pregunta.contenido, 'listaresp': respuestas, 'tema': tema.data, 'terminar': terminar,
+                     'mensaje': mensaje, 'leccion': leccion.data.id, 'curso_id': LogicaEvaluaciones.id_curso}
+            # Se renderiza la pagina de correccion de pregunta con todos los datos necesarios
+            return render(self, 'evaluaciones/quiz2.html', cdict)
         except ConnectionError as e:
             messages.error(self, 'Error de conexion')
             return redirect('/lecciones/error')
 
+    # Funcion que renderiza la vista de la primera pregunta de los examenes
     def examen(self, leccion_id):
         try:
             LogicaEvaluaciones.listaresp = []
             leccion = LogicaUsuarios.consultar_leccion_id(leccion_id)
             # Se obtienen todos los datos necesarios para desplegar una pregunta
             prueba = LogicaEvaluaciones.verprueba(leccion_id)
+            # Se arma la lista de preguntas de la prueba correspondiente
             LogicaEvaluaciones.listaexamen = LogicaEvaluaciones.verpreguntasexamen(prueba.pk)
+            # Se selecciona una pregunta aleatoria de la lista
             pregunta = random.choice(LogicaEvaluaciones.listaexamen)
+            # Se obtienen las respuestas de dicha pregunta
             respuestas = LogicaEvaluaciones.verrespuestas(pregunta.pk)
+            # Se quita la pregunta escogida de la lista
             LogicaEvaluaciones.listaexamen.remove(pregunta)
+            # Se le suma 1 a la variable aux_examen, indicando que se respondio una pregunta mas
             LogicaEvaluaciones.aux_examen = LogicaEvaluaciones.aux_examen + 1
             # En el caso de que alguna de las listas no tenga elementos se abre una pagina de error
             if len(LogicaEvaluaciones.listaexamen) == 0 or len(respuestas) == 0:
@@ -166,7 +178,7 @@ class LogicaEvaluaciones:
             # Se crea un dictionary con los datos , para poder pasarla a la vista
             cdict = {'pregunta': pregunta, 'listaresp': respuestas, 'leccion_id': leccion_id,
                      'nombre_leccion': leccion.data.nombre}
-            # Se renderiza la vista con las lecciones
+            # Se renderiza la vista con la pregunta correspondiente y sus respuestas
             return render(self, 'evaluaciones/examen.html', cdict)
             # Manejo de excepciones
         except ConnectionError as e:
@@ -179,11 +191,11 @@ class LogicaEvaluaciones:
             messages.error(self, 'No se encontraron las preguntas y/o respuestas')
             return redirect('/lecciones/error')
 
+    # Funcion que renderiza la vista de las demas preguntas de los examenes
     @csrf_exempt
     def examen2(self, respuesta_id, leccion_id):
         try:
             LogicaEvaluaciones.listaresp = []
-            lista = []
             prueba = LogicaEvaluaciones.verprueba(leccion_id)
             pregunta = random.choice(LogicaEvaluaciones.listaexamen)
             respuestas = LogicaEvaluaciones.verrespuestas(pregunta.pk)
@@ -223,8 +235,8 @@ class LogicaEvaluaciones:
                     return render(self, 'evaluaciones/resultados.html', cdict)
                 # En el caso de que alguna de las listas no tenga elementos se abre una pagina de error
                 if len(LogicaEvaluaciones.listaexamen) == 0 or len(respuestas) == 0:
-                    listaexamen = []
-                    aux_examen = 0
+                    LogicaEvaluaciones.listaexamen = []
+                    LogicaEvaluaciones.aux_examen = 0
                     messages.error(self, 'No se enconcontraron las preguntas o respuestas')
                     return redirect('/lecciones/error')
             # Se crea un dictionary con los datos , para poder pasarla a la vista
@@ -243,6 +255,7 @@ class LogicaEvaluaciones:
             messages.error(self, 'No se encontraron las preguntas y/o respuestas')
             return redirect('/lecciones/error')
 
+    # Funcion que llama al metodo del api para registrar una calificacion, con todos los datos necesarios
     @staticmethod
     def registrar_calificacion(usuario_id, prueba_id, notas):
         try:
@@ -253,6 +266,7 @@ class LogicaEvaluaciones:
         except ConnectionError as e:
             raise e
 
+    # Funcion que llama al metodo del api para actualizar una calificacion, con todos los datos necesarios
     @staticmethod
     def actualizar_calificacion(usuario_id, prueba_id, notas):
         try:
