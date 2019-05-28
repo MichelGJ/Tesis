@@ -61,7 +61,7 @@ margin-bottom:-15px;
          <div class="form-top">
               <strong>
                   <p></p>
-                    <a class="titulo" target="_blank"><font color=#000000 size=6px>Quiz: {{nombre_tema}}</font></a>
+                    <a class="titulo" target="_blank"><font color=#000000 size=6px>Quiz: {{tema.nombre}}</font></a>
                 </strong>
          </div>
          <div class="form-bottom">
@@ -73,7 +73,7 @@ margin-bottom:-15px;
                 </strong>
                  {% for i in listaresp %}
 
-                    <a class="respuesta" href="{% url 'quiz2' respuesta_id=i.pk pregunta_id=pregunta.pk tema_id=tema_id %}"><font color=#000000  size=4px>
+                    <a class="respuesta" href="{% url 'quiz2' respuesta_id=i.pk pregunta_id=pregunta.pk tema_id=tema.pk %}"><font color=#000000  size=4px>
                         {{i.contenido}}
                     </font></a>
                       <br>

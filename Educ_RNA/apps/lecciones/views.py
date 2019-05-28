@@ -22,6 +22,7 @@ class LogicaLecciones:
     def error(self):
         return render(self, 'lecciones/error.html')
 
+    # Funcion que renderiza la pagina de cursos
     def ver_cursos(self):
         try:
             lista = LogicaLecciones.consultar_cursos()
@@ -34,15 +35,20 @@ class LogicaLecciones:
             messages.error(self, 'Error de conexion')
             return redirect('/lecciones/error')
 
-    # Funcion que llama a una funcion del API, la cual le envia la lista completa de lecciones.
+    # Funcion que renderiza la pagina de lecciones
     def ver_lecciones(self, curso_id):
         try:
+            # Consulta del curso actual, para obtener sus datos
             curso = LogicaUsuarios.consultar_curso_id(curso_id)
             # Llamada al metodo que consulta el progreso del usuario para verificar si ya existe un registro
             progreso = LogicaLecciones.consultar_progreso_curso(self.user.pk, curso_id)
+            # Consulta de las lecciones del curso
             lista = LogicaLecciones.consultar_lecciones(self, curso_id)
+            # Se obtiene el id de la primera leccion de la lista
             primera_leccion = lista[0][0].pk
+            # Consulta de los temas de la primera leccion
             lista_temas = LogicaLecciones.consultar_temas(str(primera_leccion))
+            # Se obtiene el id del primer tema de la lista
             primer_tema = lista_temas[0][0].pk
             # Si no existe un registro de progreso de este usuario se procede a llamar al metodo que lo crea
             if progreso.status_code == 404:
@@ -59,7 +65,9 @@ class LogicaLecciones:
     # Funcion que llama a una funcion del API, la cual le envia la lista completa de temas dado una leccion.
     def ver_temas(self, leccion_id, curso_id):
         try:
+            # Consulta de la leccion actual, para obtener sus datos
             leccion = LogicaUsuarios.consultar_leccion_id(leccion_id)
+            # Consulta del curso actual, para obtener sus datos
             curso = LogicaUsuarios.consultar_curso_id(curso_id)
             # Llamada a la funcion que consulta el progreso del usuario con fines de saber cuales temas habilitar
             progreso = LogicaLecciones.consultar_progreso_curso(self.user.pk, curso_id)
@@ -89,8 +97,11 @@ class LogicaLecciones:
     # de la presentacion
     def presentacion(self, tema_id):
         try:
+            # Consulta del tema actual para obtener sus datos
             tema = LogicaUsuarios.consultar_tema_id(tema_id)
+            # Consulta de la leccion actual, para obtener sus datos
             leccion = LogicaUsuarios.consultar_leccion_id(tema.data.leccion_id)
+            # Consulta del curso actual, para obtener sus datos
             curso = LogicaUsuarios.consultar_curso_id(leccion.data.curso_id)
             # Llamada al API para obtener los links de las presentaciones dado un tema
             page = requests.get(settings.API_PATH + 'ver-linkspresent/' + tema_id)
@@ -139,8 +150,11 @@ class LogicaLecciones:
     # Funcion que obtiene el link de los podcast a traves del API
     def podcast(self, tema_id):
         try:
+            # Consulta del tema actual para obtener sus datos
             tema = LogicaUsuarios.consultar_tema_id(tema_id)
+            # Consulta de la leccion actual, para obtener sus datos
             leccion = LogicaUsuarios.consultar_leccion_id(tema.data.leccion_id)
+            # Consulta del curso actual, para obtener sus datos
             curso = LogicaUsuarios.consultar_curso_id(leccion.data.curso_id)
             # Llamada al API para obtener la ruta del podcast dado un tema
             page = requests.get(settings.API_PATH + 'ver-linkpod/' + tema_id)
@@ -168,7 +182,6 @@ class LogicaLecciones:
     # Funcion que recibe la ruta de un podcast del API y se encarga de realizar su descarga
     def descargapodcast(self, tema_id):
         try:
-            tema = LogicaUsuarios.consultar_tema_id(tema_id)
             # Llamada al API para obtener la ruta del podcast dado un tema
             page = requests.get(settings.API_PATH + 'ver-linkpod/' + tema_id)
             # Se convierte en json la respuesta del API, para su lectura
@@ -196,6 +209,29 @@ class LogicaLecciones:
             messages.error(self, 'No se encontro el podcast')
             return redirect('/lecciones/error')
 
+    # Funcion que llama a una funcion del API, la cual le envia el link para la visualizacion y la ruta para la descarga
+    # de la presentacion
+    def codigo(self, tema_id):
+        try:
+            # Consulta del tema actual para obtener sus datos
+            tema = LogicaUsuarios.consultar_tema_id(tema_id)
+            # Consulta de la leccion actual, para obtener sus datos
+            leccion = LogicaUsuarios.consultar_leccion_id(tema.data.leccion_id)
+            # Consulta del curso actual, para obtener sus datos
+            curso = LogicaUsuarios.consultar_curso_id(leccion.data.curso_id)
+            # Llamada al API para obtener los links de los codigos dado un tema
+            page = requests.get(settings.API_PATH + 'ver-linkcod/' + tema_id)
+            # Se convierte en json la respuesta del API, para su lectura
+            pagejson = page.json()
+            # Se obtiene del json el link para visualizar el codigo
+            link = Link(codigo=pagejson["codigo"], repocodigo=["repocodigo"])
+            # Se crea un dictionary con los datos que se enviaran a la vista
+            cdict = {'link': link, 'tema': tema.data, 'leccion': leccion.data, 'curso': curso.data}
+            # Se renderiza la pagina con la respectiva presentacion
+            return render(self, 'lecciones/codigo.html', cdict)
+        except KeyError as e:
+            messages.error(self, 'No se encontro el codigo')
+            return redirect('/lecciones/error')
     """
     Funciones Complementarias
     """

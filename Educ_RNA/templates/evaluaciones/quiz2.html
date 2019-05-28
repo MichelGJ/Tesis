@@ -61,18 +61,18 @@ margin-bottom:-15px;
          <div class="form-top">
               <strong>
                   <p></p>
-                    <a class="pregunta" href="" target="_blank"><font color=#000000 size=6px>Quiz: {{nombre_tema}}</font></a>
+                    <a class="pregunta" href="" target="_blank"><font color=#000000 size=6px>Quiz: {{tema.nombre}}</font></a>
                 </strong>
          </div>
          <div class="form-bottom">
              <div class="info" >
-                 {% if mensaje == "true" %}
+                 {% if mensaje %}
                  {% for success in messages %}
                  <div class="alert alert-success">
                      {{ success }}
                  </div>
                  {% endfor %}
-                 {% elif mensaje == "false" %}
+                 {% elif not mensaje %}
                  {% for message in messages %}
                  <div class="alert alert-danger">
 
@@ -103,9 +103,15 @@ margin-bottom:-15px;
                 </strong>
                  {% endfor %}
             </div>
+             {% if terminar %}
              <div align="center" class="form-group">
-                 <a href="{% url 'quiz' tema_id=tema_id  %}" ><button style="background-color:#0000FF;" class="btn">Siguiente</button></a>
+                 <a href="{% url 'vertema' leccion_id=leccion curso_id=curso_id  %}" ><button style="background-color:#0000FF;" class="btn">Finalizar</button></a>
              </div>
+             {% elif not terminar %}
+             <div align="center" class="form-group">
+                 <a href="{% url 'quiz' tema_id=tema.pk  %}" ><button style="background-color:#0000FF;" class="btn">Siguiente</button></a>
+             </div>
+             {% endif %}
          </div>
      </div>
  </div>

@@ -43,7 +43,7 @@ height: 9.5%;
 position: relative;
   margin: 0;
   padding: 0;
-  background-color: #000000;
+  background-color: #191970;
   overflow: auto;
 }
 
@@ -117,7 +117,7 @@ div.content {
 {%block header%}
  <!-- The sidebar -->
 <br>
-<div class="sidebar sidebar-dark bg-dark">
+<div class="sidebar">
     <a class="back"  href="{% url 'verlecciones' curso_id=curso.pk %}"> <img class="logo" src="{% static 'images/back2.png'%}"></a>
      <h5 class="ubi">{{curso.nombre}} / {{leccion.nombre}}</h5>
 </div>
@@ -148,7 +148,7 @@ div.content {
                       &#160; &#160;
                      {% endif %}
                      {% if i.1.codigo == True %}
-                     <a href="JEJE"><img title="Codigo" class="logo" src="{% static 'images/icono_codigo.jpg'%}"></a>
+                     <a href="{% url 'codigo' tema_id=i.0.pk %}"><img title="Codigo" class="logo" src="{% static 'images/icono_codigo.jpg'%}"></a>
                      &#160; &#160;
                      {% endif %}
                      <a href="{% url 'instrucciones' tema_id=i.0.pk leccion_id=0 curso_id=curso.pk  %}"><img title="Quiz" class="logo" src="{% static 'images/icono_quiz.png'%}"></a>

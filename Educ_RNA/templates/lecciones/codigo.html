@@ -9,30 +9,9 @@
 .form-bottom{
 background-color:#000080;
 box-shadow: 0px 0px 36px 15px rgba(0, 0, 0, 0.28);
-text-align:center;
-}
-
-.form-top{
-text-align:center;
-background-color:#000080;
-box-shadow: 0px 0px 36px 15px rgba(0, 0, 0, 0.28);
-}
-
-.info{
-margin-bottom:-20px;
-margin-top:-15px;
 text-align:right;
-}
-
-.info2{
-margin-bottom:0px;
-margin-top:20px;
-text-align:center;
-}
-
-.player{
 width:100%;
-max-width:1000px
+
 }
 
 /* The side navigation menu */
@@ -118,29 +97,20 @@ div.content {
 
 {% block content %}
 <div class="content">
-<div class="top-content">
-           <div class="inner-bg">
-     <div class="container">
-         <div class="form-top">
-              <div class="info2" >
-                <strong>
-                    <a class="descarga"><font color=#76d7c4  size=8px>Podcast: {{tema.nombre}}</font></a>
-                </strong>
-             </div>
-         </div>
+<div class="inner-bg">
+     <div class="container2">
          <div class="form-bottom">
-                <audio class="player" controls>
-            <source src="{% static podcast%}" type="audio/mpeg">
-       	</audio>
-             <p></p>
-             <div class="info" >
+        <iframe class="frame" src="{{link.codigo}}" width="595" height="485"
+                frameborder="0" marginwidth="0" marginheight="0" scrolling="no" style="border:1px ;
+                border-width:1px; margin-bottom:5px; max-width: 100%;" allowfullscreen> </iframe>
+              <div class="info" >
                 <strong>
-                    <a class="descarga" href="{% url 'descargapod' tema_id=tema.pk%}" target="_blank"><img class="logo" src="{% static 'images/download.png'%}"></a>
+                    <a  href="https://www.google.com/" target="_blank"> <img class="logo" src="{% static 'images/git2.png'%}"></a>
                 </strong>
             </div>
          </div>
      </div>
-</div>
-</div>
+ </div>
 </div>
 {% endblock %}
+

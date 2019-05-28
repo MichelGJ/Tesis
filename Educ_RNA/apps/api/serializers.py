@@ -56,7 +56,7 @@ class LeccionesSerializer:
 
         class Meta:
             model = Link
-            fields = ('codigo',)
+            fields = ('codigo', 'repocodigo')
 
 
 # Serializers del modulo de evaluaciones, que permiten mapear las instancias de los Modelos en formato JSON,
