@@ -4,24 +4,12 @@
     <list default="true" id="17642153-bc64-442e-b4ac-6de4b6252776" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Educ_RNA/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/Educ_RNA/settings.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Educ_RNA/strings.py" beforeDir="false" afterPath="$PROJECT_DIR$/Educ_RNA/strings.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/api/tests.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/api/tests.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/api/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/api/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/api/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/api/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/evaluaciones/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/evaluaciones/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/evaluaciones/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/evaluaciones/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/lecciones/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/lecciones/urls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/apps/lecciones/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/lecciones/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/registration/tests.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/registration/tests.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/registration/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/registration/views.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/apps/usuarios/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/usuarios/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/evaluaciones/examen.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/evaluaciones/examen.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/lecciones/codigo.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/lecciones/codigo.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/lecciones/cursos.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/lecciones/cursos.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/lecciones/lecciones.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/lecciones/lecciones.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/lecciones/podcasts.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/lecciones/podcasts.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/lecciones/presentaciones.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/lecciones/presentaciones.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/lecciones/temas.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/lecciones/temas.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/usuarios/cambiarcontraseña.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/usuarios/cambiarcontraseña.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/usuarios/modificar.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/usuarios/modificar.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Scripts/Inserts.sql" beforeDir="false" afterPath="$PROJECT_DIR$/../Scripts/Inserts.sql" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -56,35 +44,35 @@
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
-          <entry key="html" value="465" />
+          <entry key="html" value="467" />
           <entry key="jpg" value="1" />
           <entry key="png" value="2" />
-          <entry key="py" value="837" />
+          <entry key="py" value="847" />
           <entry key="rnc" value="1" />
           <entry key="xml" value="2" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
-          <entry key="HTML" value="463" />
+          <entry key="HTML" value="465" />
           <entry key="Image" value="3" />
           <entry key="PLAIN_TEXT" value="2" />
-          <entry key="Python" value="837" />
+          <entry key="Python" value="847" />
           <entry key="RNG Compact" value="1" />
           <entry key="XML" value="2" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="html" value="19941" />
-          <entry key="py" value="86565" />
+          <entry key="html" value="20155" />
+          <entry key="py" value="87010" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="HTML" value="19937" />
+          <entry key="HTML" value="20151" />
           <entry key="PLAIN_TEXT" value="4" />
-          <entry key="Python" value="86565" />
+          <entry key="Python" value="87010" />
         </counts>
       </usages-collector>
     </session>
@@ -94,59 +82,42 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/apps/registration/tests.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="290">
-              <caret line="26" column="52" lean-forward="true" selection-start-line="26" selection-start-column="52" selection-end-line="26" selection-end-column="52" />
-              <folding>
-                <element signature="e#0#32#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/apps/usuarios/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="494">
-              <caret line="327" column="76" lean-forward="true" selection-start-line="327" selection-start-column="76" selection-end-line="327" selection-end-column="76" />
+            <state relative-caret-position="442">
+              <caret line="80" column="41" lean-forward="true" selection-start-line="80" selection-start-column="41" selection-end-line="80" selection-end-column="41" />
               <folding>
                 <element signature="e#0#35#0" expanded="true" />
-                <marker date="1559526106213" expanded="true" signature="942:945" ph="..." />
-                <marker date="1559526106213" expanded="true" signature="966:1079" ph="..." />
-                <marker date="1559526106213" expanded="true" signature="966:1083" ph="..." />
-                <marker date="1559526106213" expanded="true" signature="966:1127" ph="..." />
-                <marker date="1559526106213" expanded="true" signature="1147:1152" ph="..." />
-                <marker date="1559526106213" expanded="true" signature="1282:1287" ph="..." />
-                <marker date="1559526106213" expanded="true" signature="1420:1425" ph="..." />
+                <marker date="1559706650086" expanded="true" signature="942:945" ph="..." />
+                <marker date="1559706650086" expanded="true" signature="966:1079" ph="..." />
+                <marker date="1559706650086" expanded="true" signature="966:1083" ph="..." />
+                <marker date="1559706650086" expanded="true" signature="966:1127" ph="..." />
+                <marker date="1559706650086" expanded="true" signature="1147:1152" ph="..." />
+                <marker date="1559706650086" expanded="true" signature="1282:1287" ph="..." />
+                <marker date="1559706650086" expanded="true" signature="1420:1425" ph="..." />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/apps/api/models.py">
+        <entry file="file://$PROJECT_DIR$/apps/usuarios/urls.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-611">
+            <state relative-caret-position="238">
               <caret line="14" lean-forward="true" selection-start-line="14" selection-end-line="14" />
               <folding>
                 <element signature="e#0#28#0" expanded="true" />
-                <marker date="1559278403693" expanded="true" signature="116:117" ph="..." />
-                <marker date="1559278403693" expanded="true" signature="143:148" ph="..." />
-                <marker date="1559278403693" expanded="true" signature="143:192" ph="..." />
-                <marker date="1559278403693" expanded="true" signature="220:225" ph="..." />
-                <marker date="1559278403693" expanded="true" signature="513:518" ph="..." />
-                <marker date="1559278403693" expanded="true" signature="764:769" ph="..." />
-                <marker date="1559278403693" expanded="true" signature="1190:1195" ph="..." />
-                <marker date="1559278403693" expanded="true" signature="1288:1293" ph="..." />
-                <marker date="1559278403693" expanded="true" signature="1395:1400" ph="..." />
-                <marker date="1559278403693" expanded="true" signature="1638:1643" ph="..." />
-                <marker date="1559278403693" expanded="true" signature="1840:1845" ph="..." />
-                <marker date="1559278403693" expanded="true" signature="2159:2168" ph="..." />
-                <marker date="1559278403693" expanded="true" signature="2239:2244" ph="..." />
-                <marker date="1559278403693" expanded="true" signature="2501:2510" ph="..." />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/templates/lecciones/presentaciones.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="273">
+              <caret line="106" column="69" selection-start-line="106" selection-start-column="30" selection-end-line="106" selection-end-column="69" />
             </state>
           </provider>
         </entry>
@@ -154,8 +125,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/templates/lecciones/temas.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="222">
-              <caret line="65" selection-start-line="65" selection-end-line="65" selection-end-column="19" />
+            <state relative-caret-position="205">
+              <caret line="184" column="65" lean-forward="true" selection-start-line="184" selection-start-column="30" selection-end-line="184" selection-end-column="65" />
               <folding>
                 <element signature="e#2116#2123#1" expanded="true" />
               </folding>
@@ -204,7 +175,6 @@
         <option value="$PROJECT_DIR$/templates/evaluaciones/quiz3.py" />
         <option value="$PROJECT_DIR$/templates/evaluaciones/instruccionesquiz.html" />
         <option value="$PROJECT_DIR$/apps/usuarios/models.py" />
-        <option value="$PROJECT_DIR$/apps/evaluaciones/urls.py" />
         <option value="$PROJECT_DIR$/templates/usuarios/index.html" />
         <option value="$PROJECT_DIR$/templates/usuarios/perfil.html" />
         <option value="$PROJECT_DIR$/templates/registration/login.html" />
@@ -219,27 +189,28 @@
         <option value="$PROJECT_DIR$/templates/evaluaciones/quiz3.html" />
         <option value="$PROJECT_DIR$/templates/evaluaciones/quiz2.html" />
         <option value="$PROJECT_DIR$/apps/lecciones/models.py" />
-        <option value="$PROJECT_DIR$/apps/lecciones/urls.py" />
         <option value="$PROJECT_DIR$/templates/usuarios/modificar.html" />
         <option value="$PROJECT_DIR$/templates/usuarios/cambiarcontraseña.html" />
         <option value="$PROJECT_DIR$/templates/lecciones/cursos.html" />
         <option value="$PROJECT_DIR$/templates/lecciones/temas.html" />
         <option value="$PROJECT_DIR$/templates/lecciones/presentaciones.html" />
-        <option value="$PROJECT_DIR$/templates/lecciones/codigo.html" />
         <option value="$PROJECT_DIR$/templates/lecciones/podcasts.html" />
         <option value="$PROJECT_DIR$/templates/evaluaciones/examen.html" />
         <option value="$PROJECT_DIR$/Educ_RNA/strings.py" />
         <option value="$PROJECT_DIR$/templates/lecciones/lecciones.html" />
         <option value="$PROJECT_DIR$/apps/api/models.py" />
         <option value="$PROJECT_DIR$/apps/api/serializers.py" />
-        <option value="$PROJECT_DIR$/Educ_RNA/settings.py" />
         <option value="$PROJECT_DIR$/apps/api/tests.py" />
         <option value="$PROJECT_DIR$/apps/registration/tests.py" />
         <option value="$PROJECT_DIR$/apps/api/urls.py" />
-        <option value="$PROJECT_DIR$/apps/lecciones/views.py" />
         <option value="$PROJECT_DIR$/apps/api/views.py" />
         <option value="$PROJECT_DIR$/apps/evaluaciones/views.py" />
         <option value="$PROJECT_DIR$/apps/registration/views.py" />
+        <option value="$PROJECT_DIR$/Educ_RNA/settings.py" />
+        <option value="$PROJECT_DIR$/apps/lecciones/views.py" />
+        <option value="$PROJECT_DIR$/templates/lecciones/codigo.html" />
+        <option value="$PROJECT_DIR$/apps/lecciones/urls.py" />
+        <option value="$PROJECT_DIR$/apps/evaluaciones/urls.py" />
         <option value="$PROJECT_DIR$/apps/usuarios/views.py" />
       </list>
     </option>
@@ -288,7 +259,7 @@
               <item name="Educ_RNA" type="b2602c69:ProjectViewProjectNode" />
               <item name="Educ_RNA" type="462c0819:PsiDirectoryNode" />
               <item name="apps" type="462c0819:PsiDirectoryNode" />
-              <item name="evaluaciones" type="462c0819:PsiDirectoryNode" />
+              <item name="api" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="Educ_RNA" type="b2602c69:ProjectViewProjectNode" />
@@ -299,7 +270,13 @@
             <path>
               <item name="Educ_RNA" type="b2602c69:ProjectViewProjectNode" />
               <item name="Educ_RNA" type="462c0819:PsiDirectoryNode" />
+              <item name="templates" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Educ_RNA" type="b2602c69:ProjectViewProjectNode" />
               <item name="Educ_RNA" type="462c0819:PsiDirectoryNode" />
+              <item name="templates" type="462c0819:PsiDirectoryNode" />
+              <item name="lecciones" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -414,6 +391,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" sideWeight="0.4992908" visible="true" weight="0.14805023" />
       <window_info id="Structure" order="1" sideWeight="0.50070924" side_tool="true" weight="0.14805023" />
@@ -508,16 +486,6 @@
     <entry file="file://$PROJECT_DIR$/templates/evaluaciones/quiz3.py">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/apps/usuarios/urls.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="14" lean-forward="true" selection-start-line="14" selection-end-line="14" />
-          <folding>
-            <element signature="e#0#28#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/apps/usuarios/models.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="381">
@@ -580,13 +548,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/apps/evaluaciones/urls.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="10" column="59" lean-forward="true" selection-start-line="10" selection-start-column="59" selection-end-line="10" selection-end-column="59" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/templates/usuarios/nosotros.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1224">
@@ -642,13 +603,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/apps/lecciones/urls.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="18" lean-forward="true" selection-start-line="18" selection-end-line="18" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/templates/usuarios/cambiarcontraseña.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="374">
@@ -680,24 +634,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/templates/lecciones/codigo.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="262">
-          <caret line="92" column="4" selection-start-line="92" selection-start-column="4" selection-end-line="92" selection-end-column="4" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/templates/lecciones/podcasts.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="374">
           <caret line="130" column="47" lean-forward="true" selection-start-line="130" selection-start-column="47" selection-end-line="130" selection-end-column="47" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/lecciones/presentaciones.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="92" column="229" lean-forward="true" selection-start-line="92" selection-start-column="3" selection-end-line="92" selection-end-column="229" />
         </state>
       </provider>
     </entry>
@@ -706,7 +646,7 @@
         <state relative-caret-position="170">
           <caret line="10" column="63" selection-start-line="10" selection-start-column="63" selection-end-line="10" selection-end-column="63" />
           <folding>
-            <marker date="1559181737458" expanded="true" signature="44:49" ph="..." />
+            <marker date="1559699014598" expanded="true" signature="44:49" ph="..." />
           </folding>
         </state>
       </provider>
@@ -736,48 +676,24 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Educ_RNA/settings.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="426">
-          <caret line="84" column="46" lean-forward="true" selection-start-line="84" selection-start-column="46" selection-end-line="84" selection-end-column="46" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/apps/api/tests.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-1507">
           <caret line="118" column="99" lean-forward="true" selection-start-line="118" selection-start-column="99" selection-end-line="118" selection-end-column="99" />
           <folding>
             <element signature="e#0#32#0" expanded="true" />
-            <marker date="1559318497382" expanded="true" signature="688:693" ph="..." />
-            <marker date="1559318497382" expanded="true" signature="1227:1236" ph="..." />
-            <marker date="1559318497382" expanded="true" signature="5189:6484" ph="..." />
-            <marker date="1559318497382" expanded="true" signature="6484:6489" ph="..." />
-            <marker date="1559318497382" expanded="true" signature="6527:6536" ph="..." />
-            <marker date="1559318497382" expanded="true" signature="6944:6949" ph="..." />
-            <marker date="1559318497382" expanded="true" signature="6944:6953" ph="..." />
-            <marker date="1559318497382" expanded="true" signature="7461:7466" ph="..." />
-            <marker date="1559318497382" expanded="true" signature="7911:7916" ph="..." />
-            <marker date="1559318497382" expanded="true" signature="8507:8512" ph="..." />
-            <marker date="1559318497382" expanded="true" signature="9004:9006" ph="..." />
-            <marker date="1559318497382" expanded="true" signature="13409:13418" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/apps/registration/urls.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="289">
-          <caret line="21" lean-forward="true" selection-start-line="21" selection-end-line="21" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/apps/api/urls.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="27" column="90" lean-forward="true" selection-start-line="27" selection-start-column="90" selection-end-line="27" selection-end-column="90" />
-          <folding>
-            <element signature="e#0#28#0" expanded="true" />
+            <marker date="1559699014613" expanded="true" signature="688:693" ph="..." />
+            <marker date="1559699014613" expanded="true" signature="1227:1236" ph="..." />
+            <marker date="1559699014613" expanded="true" signature="5189:6484" ph="..." />
+            <marker date="1559699014613" expanded="true" signature="6484:6489" ph="..." />
+            <marker date="1559699014613" expanded="true" signature="6527:6536" ph="..." />
+            <marker date="1559699014613" expanded="true" signature="6944:6949" ph="..." />
+            <marker date="1559699014613" expanded="true" signature="6944:6953" ph="..." />
+            <marker date="1559699014613" expanded="true" signature="7461:7466" ph="..." />
+            <marker date="1559699014613" expanded="true" signature="7911:7916" ph="..." />
+            <marker date="1559699014613" expanded="true" signature="8507:8512" ph="..." />
+            <marker date="1559699014613" expanded="true" signature="9004:9006" ph="..." />
+            <marker date="1559699014613" expanded="true" signature="13409:13418" ph="..." />
           </folding>
         </state>
       </provider>
@@ -795,50 +711,14 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/apps/lecciones/views.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
-          <caret line="19" column="22" lean-forward="true" selection-start-line="19" selection-start-column="22" selection-end-line="19" selection-end-column="22" />
-          <folding>
-            <element signature="e#0#35#0" expanded="true" />
-            <marker date="1559491956642" expanded="true" signature="714:1353" ph="..." />
-            <marker date="1559491956642" expanded="true" signature="714:1357" ph="..." />
-            <marker date="1559491956642" expanded="true" signature="733:738" ph="..." />
-            <marker date="1559491956642" expanded="true" signature="754:763" ph="..." />
-            <marker date="1559491956642" expanded="true" signature="1352:1353" ph="..." />
-            <marker date="1559491956642" expanded="true" signature="1442:1447" ph="..." />
-            <marker date="1559491956642" expanded="true" signature="3088:3094" ph="..." />
-            <marker date="1559491956642" expanded="true" signature="3245:3250" ph="..." />
-            <marker date="1559491956642" expanded="true" signature="3246:3250" ph="..." />
-            <marker date="1559491956642" expanded="true" signature="5299:5304" ph="..." />
-            <marker date="1559491956642" expanded="true" signature="5299:5308" ph="..." />
-            <marker date="1559491956642" expanded="true" signature="6753:6758" ph="..." />
-            <marker date="1559491956642" expanded="true" signature="6753:6762" ph="..." />
-            <marker date="1559491956642" expanded="true" signature="8456:8461" ph="..." />
-            <marker date="1559491956642" expanded="true" signature="10327:10332" ph="..." />
-            <marker date="1559491956642" expanded="true" signature="10327:10336" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/apps/api/views.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="6035">
           <caret line="355" column="39" lean-forward="true" selection-start-line="355" selection-start-column="39" selection-end-line="355" selection-end-column="39" />
           <folding>
             <element signature="e#0#44#0" expanded="true" />
-            <marker date="1559364056787" expanded="true" signature="12139:13146" ph="..." />
-            <marker date="1559364056787" expanded="true" signature="13189:13194" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/apps/registration/tests.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="290">
-          <caret line="26" column="52" lean-forward="true" selection-start-line="26" selection-start-column="52" selection-end-line="26" selection-end-column="52" />
-          <folding>
-            <element signature="e#0#32#0" expanded="true" />
+            <marker date="1559699014621" expanded="true" signature="12139:13146" ph="..." />
+            <marker date="1559699014621" expanded="true" signature="13189:13194" ph="..." />
           </folding>
         </state>
       </provider>
@@ -856,35 +736,15 @@
           <caret line="427" column="47" lean-forward="true" selection-start-line="427" selection-start-column="47" selection-end-line="427" selection-end-column="47" />
           <folding>
             <element signature="e#0#35#0" expanded="true" />
-            <marker date="1559491956450" expanded="true" signature="539:540" ph="..." />
-            <marker date="1559491956450" expanded="true" signature="3147:3152" ph="..." />
-            <marker date="1559491956450" expanded="true" signature="8512:16109" ph="..." />
-            <marker date="1559491956450" expanded="true" signature="14976:16109" ph="..." />
-            <marker date="1559491956450" expanded="true" signature="16312:16317" ph="..." />
-            <marker date="1559491956450" expanded="true" signature="17763:17768" ph="..." />
-            <marker date="1559491956450" expanded="true" signature="19515:19520" ph="..." />
-            <marker date="1559491956450" expanded="true" signature="20290:20295" ph="..." />
-            <marker date="1559491956450" expanded="true" signature="21432:21437" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/lecciones/temas.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="222">
-          <caret line="65" selection-start-line="65" selection-end-line="65" selection-end-column="19" />
-          <folding>
-            <element signature="e#2116#2123#1" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/apps/registration/views.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="678">
-          <caret line="72" column="66" lean-forward="true" selection-start-line="72" selection-start-column="66" selection-end-line="72" selection-end-column="66" />
-          <folding>
-            <element signature="e#0#35#0" expanded="true" />
+            <marker date="1559699014626" expanded="true" signature="539:540" ph="..." />
+            <marker date="1559699014626" expanded="true" signature="3147:3152" ph="..." />
+            <marker date="1559699014626" expanded="true" signature="8512:16109" ph="..." />
+            <marker date="1559699014626" expanded="true" signature="14976:16109" ph="..." />
+            <marker date="1559699014626" expanded="true" signature="16312:16317" ph="..." />
+            <marker date="1559699014626" expanded="true" signature="17763:17768" ph="..." />
+            <marker date="1559699014626" expanded="true" signature="19515:19520" ph="..." />
+            <marker date="1559699014626" expanded="true" signature="20290:20295" ph="..." />
+            <marker date="1559699014626" expanded="true" signature="21432:21437" ph="..." />
           </folding>
         </state>
       </provider>
@@ -892,7 +752,7 @@
     <entry file="file://$PROJECT_DIR$/apps/api/models.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-611">
-          <caret line="14" lean-forward="true" selection-start-line="14" selection-end-line="14" />
+          <caret line="14" selection-start-line="14" selection-end-line="14" />
           <folding>
             <element signature="e#0#28#0" expanded="true" />
             <marker date="1559278403693" expanded="true" signature="116:117" ph="..." />
@@ -913,19 +773,137 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/apps/usuarios/views.py">
+    <entry file="file://$PROJECT_DIR$/templates/lecciones/presentaciones.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="494">
-          <caret line="327" column="76" lean-forward="true" selection-start-line="327" selection-start-column="76" selection-end-line="327" selection-end-column="76" />
+        <state relative-caret-position="273">
+          <caret line="106" column="69" selection-start-line="106" selection-start-column="30" selection-end-line="106" selection-end-column="69" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/lecciones/codigo.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="4" column="32" selection-start-line="4" selection-start-column="32" selection-end-line="4" selection-end-column="32" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Educ_RNA/settings.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="35">
+          <caret line="136" column="13" lean-forward="true" selection-start-line="136" selection-start-column="13" selection-end-line="136" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/apps/lecciones/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="273">
+          <caret line="241" column="29" lean-forward="true" selection-start-line="241" selection-start-column="29" selection-end-line="241" selection-end-column="29" />
           <folding>
             <element signature="e#0#35#0" expanded="true" />
-            <marker date="1559526106213" expanded="true" signature="942:945" ph="..." />
-            <marker date="1559526106213" expanded="true" signature="966:1079" ph="..." />
-            <marker date="1559526106213" expanded="true" signature="966:1083" ph="..." />
-            <marker date="1559526106213" expanded="true" signature="966:1127" ph="..." />
-            <marker date="1559526106213" expanded="true" signature="1147:1152" ph="..." />
-            <marker date="1559526106213" expanded="true" signature="1282:1287" ph="..." />
-            <marker date="1559526106213" expanded="true" signature="1420:1425" ph="..." />
+            <marker date="1559701041756" expanded="true" signature="714:1353" ph="..." />
+            <marker date="1559701041756" expanded="true" signature="714:1357" ph="..." />
+            <marker date="1559701041756" expanded="true" signature="733:738" ph="..." />
+            <marker date="1559701041756" expanded="true" signature="754:763" ph="..." />
+            <marker date="1559701041756" expanded="true" signature="1352:1353" ph="..." />
+            <marker date="1559701041756" expanded="true" signature="1442:1447" ph="..." />
+            <marker date="1559701041756" expanded="true" signature="3088:3094" ph="..." />
+            <marker date="1559701041756" expanded="true" signature="3245:3250" ph="..." />
+            <marker date="1559701041756" expanded="true" signature="3246:3250" ph="..." />
+            <marker date="1559701041756" expanded="true" signature="5299:5304" ph="..." />
+            <marker date="1559701041756" expanded="true" signature="5299:5308" ph="..." />
+            <marker date="1559701041756" expanded="true" signature="6753:6758" ph="..." />
+            <marker date="1559701041756" expanded="true" signature="6753:6762" ph="..." />
+            <marker date="1559701041756" expanded="true" signature="8456:8461" ph="..." />
+            <marker date="1559701041756" expanded="true" signature="10327:10332" ph="..." />
+            <marker date="1559701041756" expanded="true" signature="10327:10336" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/apps/registration/tests.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="290">
+          <caret line="26" column="52" selection-start-line="26" selection-start-column="52" selection-end-line="26" selection-end-column="52" />
+          <folding>
+            <element signature="e#0#32#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/apps/lecciones/urls.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="204">
+          <caret line="15" column="1" lean-forward="true" selection-start-line="15" selection-start-column="1" selection-end-line="15" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/apps/evaluaciones/urls.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="204">
+          <caret line="15" lean-forward="true" selection-start-line="15" selection-end-line="15" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/apps/registration/urls.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="289">
+          <caret line="21" lean-forward="true" selection-start-line="21" selection-end-line="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/apps/registration/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1224">
+          <caret line="72" column="66" lean-forward="true" selection-start-line="72" selection-start-column="66" selection-end-line="72" selection-end-column="66" />
+          <folding>
+            <element signature="e#0#35#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/apps/api/urls.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="18" column="14" selection-start-line="18" selection-start-column="14" selection-end-line="18" selection-end-column="14" />
+          <folding>
+            <element signature="e#0#28#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/lecciones/temas.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="205">
+          <caret line="184" column="65" lean-forward="true" selection-start-line="184" selection-start-column="30" selection-end-line="184" selection-end-column="65" />
+          <folding>
+            <element signature="e#2116#2123#1" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/apps/usuarios/urls.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="238">
+          <caret line="14" lean-forward="true" selection-start-line="14" selection-end-line="14" />
+          <folding>
+            <element signature="e#0#28#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/apps/usuarios/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="442">
+          <caret line="80" column="41" lean-forward="true" selection-start-line="80" selection-start-column="41" selection-end-line="80" selection-end-column="41" />
+          <folding>
+            <element signature="e#0#35#0" expanded="true" />
+            <marker date="1559706650086" expanded="true" signature="942:945" ph="..." />
+            <marker date="1559706650086" expanded="true" signature="966:1079" ph="..." />
+            <marker date="1559706650086" expanded="true" signature="966:1083" ph="..." />
+            <marker date="1559706650086" expanded="true" signature="966:1127" ph="..." />
+            <marker date="1559706650086" expanded="true" signature="1147:1152" ph="..." />
+            <marker date="1559706650086" expanded="true" signature="1282:1287" ph="..." />
+            <marker date="1559706650086" expanded="true" signature="1420:1425" ph="..." />
           </folding>
         </state>
       </provider>

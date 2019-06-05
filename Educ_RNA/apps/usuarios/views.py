@@ -75,7 +75,7 @@ class LogicaUsuarios:
 
     # Obtiene el usuario para desplegar la informacion en los campos
         def get_object(self):
-            id_ = self.kwargs.get("id")
+            id_ = self.request.user.pk
             return get_object_or_404(User, id=id_)
 
     # Funcion que modifica la informacion del usuario

@@ -229,7 +229,7 @@ class LogicaLecciones:
             # Se convierte en json la respuesta del API, para su lectura
             pagejson = page.json()
             # Se obtiene del json el link para visualizar el codigo
-            link = Link(codigo=pagejson["codigo"], repocodigo=["repocodigo"])
+            link = Link(codigo=pagejson["codigo"], repocodigo=pagejson['repocodigo'])
             # Se crea un dictionary con los datos que se enviaran a la vista
             cdict = {'link': link, 'tema': tema.data, 'leccion': leccion.data, 'curso': curso.data}
             # Se renderiza la pagina con la respectiva presentacion
@@ -237,6 +237,7 @@ class LogicaLecciones:
         except KeyError:
             messages.error(self, 'No se encontro el codigo')
             return redirect('/lecciones/error')
+
     """
     Funciones Complementarias
     """
