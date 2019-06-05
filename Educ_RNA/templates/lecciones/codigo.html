@@ -32,13 +32,12 @@ position: relative;
   padding: 16px;
   text-decoration: none;
 float: left;
-
+margin-right:-25px;
 }
 
 .ubi{
 display: block;
   color: white;
-  padding: 16px;
   text-decoration: none;
 float: left;
 margin-top:10px;
@@ -91,7 +90,7 @@ div.content {
 <br>
 <div class="sidebar">
     <a class="back"  href="{% url 'vertema' leccion_id=leccion.pk curso_id=curso.pk %}"> <img class="logo" src="{% static 'images/back2.png'%}"></a>
-     <h5 class="ubi">{{curso.nombre}} / {{leccion.nombre}} / {{tema.nombre}}</h5>
+    <h5 class="ubi"><a href="{% url 'verlecciones' curso_id=curso.pk %}">{{curso.nombre}}</a><a>/</a><a  href="{% url 'vertema' leccion_id=leccion.pk curso_id=curso.pk %}">{{leccion.nombre}}</a><a>/</a><a>{{tema.nombre}}</a></h5>
 </div>
 {%endblock%}
 

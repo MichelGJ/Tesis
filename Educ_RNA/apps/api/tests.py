@@ -4,7 +4,7 @@ from rest_framework import status
 from django.urls import reverse
 from django.db import IntegrityError
 from django.contrib.auth.models import User
-from .models import Leccion, Tema, InfoTema, Link, Quiz, Pregunta, Prueba, Respuesta, Progreso, Calificacion
+from .models import Leccion, Tema, InfoTema, Link, Quiz, Pregunta, Prueba, Respuesta, Progreso, Calificacion, Curso
 # Create your tests here.
 
 
@@ -104,12 +104,13 @@ class UsuariosTests(TestCase):
                                          email='michel@gmail.com')
         self.user.set_password(self.password)
         self.user.save()
+        self.curso = Curso.objects.create(id=1, nombre='Curso')
         self.leccion = Leccion.objects.create(id=1, nombre='Leccion')
         self.leccion2 = Leccion.objects.create(id=2, nombre='Leccion2')
         self.tema = Tema.objects.create(id=1, nombre='Tema', leccion=self.leccion)
         self.tema2 = Tema.objects.create(id=2, nombre='Tema2', leccion=self.leccion)
         self.prueba = Prueba.objects.create(id=1, leccion=self.leccion2)
-        self.progreso = Progreso.objects.create(usuario_id=self.user.id, tema_id=self.tema.id)
+        self.progreso = Progreso.objects.create(usuario_id=self.user.id, tema_id=self.tema.id, curso_id=self.curso.id)
         self.calificacion = Calificacion.objects.create(usuario_id=self.user.id, prueba_id=self.prueba.id, nota='14',
                                                         mejor_nota='14', intentos=1)
 
@@ -160,7 +161,7 @@ class UsuariosTests(TestCase):
         self.assertEquals(response.status_code, 400)
 
     def test_api_registrar_progreso(self):
-        data = {'usuario_id': self.user2.id, 'tema_id': self.tema.id}
+        data = {'usuario_id': self.user2.id, 'tema_id': self.tema.id, 'curso_id': self.curso.id}
         response = self.client.post(reverse('registrarprogreso'), data=data)
         progreso = Progreso.objects.get(usuario_id=self.user2.id)
         tema_id = progreso.tema_id
@@ -169,13 +170,13 @@ class UsuariosTests(TestCase):
 
     def test_api_fail_registrar_progreso(self):
         try:
-            data = {'usuario_id': self.user.id, 'tema_id': self.tema2.id}
+            data = {'usuario_id': self.user.id, 'tema_id': self.tema2.id,  'curso_id': self.curso.id}
             response = self.client.post(reverse('registrarprogreso'), data=data)
         except IntegrityError:
             pass
 
     def test_api_actualizar_progreso(self):
-        data = {'usuario_id': self.user.id, 'tema_id': self.tema2.id}
+        data = {'usuario_id': self.user.id, 'tema_id': self.tema2.id, 'curso_id': self.curso.id}
         response = self.client.put(reverse('actualizarprogreso'), data=data)
         progreso = Progreso.objects.get(usuario_id=self.user.id)
         tema_id = progreso.tema_id
@@ -183,14 +184,14 @@ class UsuariosTests(TestCase):
         self.assertEquals(response.status_code, 200)
 
     def test_api_fail_actualizar_progreso(self):
-        data = {'usuario_id': self.user.id, 'tema_id': self.tema.id}
+        data = {'usuario_id': self.user.id, 'tema_id': self.tema.id, 'curso_id': self.curso.id}
         response = self.client.put(reverse('actualizarprogreso'), data=data)
         self.assertEquals(response.status_code, 400)
 
     def test_api_consultar_progreso(self):
         response = self.client.get(reverse('verprogreso', args=str(self.user.id)))
         responsejson = response.json()
-        tema_id = responsejson["tema_id"]
+        tema_id = responsejson[0]["tema_id"]
         self.assertEquals(tema_id, self.progreso.tema_id)
 
     def test_api_registrar_calificacion(self):
@@ -227,8 +228,9 @@ class UsuariosTests(TestCase):
 class LeccionesTests(TestCase):
 
     def setUp(self):
-        self.leccion = Leccion.objects.create(id=1, nombre='Leccion')
-        self.leccion2 = Leccion.objects.create(id=2, nombre='Leccion2')
+        self.curso = Curso.objects.create(id=1, nombre='Curso')
+        self.leccion = Leccion.objects.create(id=1, nombre='Leccion', curso_id=self.curso.id)
+        self.leccion2 = Leccion.objects.create(id=2, nombre='Leccion2', curso_id=self.curso.id)
         self.tema = Tema.objects.create(id=1, nombre='Tema', leccion=self.leccion)
         self.tema2 = Tema.objects.create(id=2, nombre='Tema2', leccion=self.leccion)
         self.infotema = InfoTema.objects.create(presentacion=True, podcast=True, codigo=False, tema=self.tema)
@@ -236,7 +238,7 @@ class LeccionesTests(TestCase):
                                         tema=self.tema)
 
     def test_api_ver_lecciones(self):
-        response = self.client.get(reverse('verlec'))
+        response = self.client.get(reverse('verlec', args=str(self.curso.id)))
         responsejson = response.json()
         leccion = responsejson[0]['nombre']
         leccion2 = responsejson[1]['nombre']
@@ -304,6 +306,7 @@ class LeccionesTests(TestCase):
 class EvaluacionesTests(TestCase):
 
     def setUp(self):
+        self.curso = Curso.objects.create(id=1, nombre='Curso')
         self.leccion = Leccion.objects.create(id=1, nombre='Leccion')
         self.leccion2 = Leccion.objects.create(id=2, nombre='Leccion2')
         self.tema = Tema.objects.create(id=1, nombre='Tema', leccion=self.leccion)

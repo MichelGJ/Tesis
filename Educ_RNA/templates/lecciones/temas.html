@@ -29,13 +29,22 @@ background-color: #FFFFFF;
 
 .container3{
     margin: auto;
-    width: 90%;
+    width: 100%;
+    max-width: 1200px;
+    margin-top:-15px;
+    height:100px;
 }
 
 a {
 
 color:#000000;
 }
+
+.back{
+margin-left:200px;
+}
+
+
 /* The side navigation menu */
 .sidebar {
 width: 100%;
@@ -54,20 +63,15 @@ position: relative;
   padding: 16px;
   text-decoration: none;
 float: left;
-
+margin-right:-25px;
 }
 
 .ubi{
 display: block;
   color: white;
-  padding: 16px;
   text-decoration: none;
 float: left;
 margin-top:10px;
-}
-
-.back{
-margin-left:200px;
 }
 
 /* Page content. The value of the margin-left property should match the value of the sidebar's width property */
@@ -80,11 +84,6 @@ div.content {
 .back{
         margin-left:0px;
     }
-.container3 {
-    width: 100%;
-    height: auto;
-    position: relative;
-  }
 }
 
 /* On screens that are less than 700px wide, make the sidebar into a topbar */
@@ -106,6 +105,39 @@ div.content {
   }
 }
 
+ /* The alert message box */
+.alert {
+  padding: 5px;
+  background-color: #191970;
+  color: white;
+width: 100%;
+max-width: 510px;
+display: inline-block;
+margin-bottom:-20px;
+border-top-style: none;
+border-bottom-style: solid;
+border-left-style: solid;
+border-right-style: solid;
+border-color: #00FFFF;
+border-width: 3px;
+}
+
+/* The close button */
+.closebtn {
+  margin-left: 15px;
+  color: white;
+  font-weight: bold;
+  float: right;
+  font-size: 22px;
+  line-height: 20px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+/* When moving the mouse over the close button */
+.closebtn:hover {
+  color: black;
+}
 {%endblock%}
 
 <title>{% block title %} Temas {% endblock %}</title>
@@ -119,11 +151,17 @@ div.content {
 <br>
 <div class="sidebar">
     <a class="back"  href="{% url 'verlecciones' curso_id=curso.pk %}"> <img class="logo" src="{% static 'images/back2.png'%}"></a>
-     <h5 class="ubi">{{curso.nombre}} / {{leccion.nombre}}</h5>
+    <h5 class="ubi"><a href="{% url 'verlecciones' curso_id=curso.pk %}">{{curso.nombre}}</a><a>/</a><a>{{leccion.nombre}}</a></h5>
 </div>
 {%endblock%}
 
 {% block content %}
+{% if not examen %}
+ <div class="alert">
+  <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+  {{notificacion}}
+</div>
+{% endif %}
 <div class="content">
  <div class="inner-bg">
      <div class="container3">
@@ -158,7 +196,7 @@ div.content {
               <tr class="tr1">
                  <td class="td3" style="text-align: center;"><a href=""> Examen </a></td>
                   <td class="td2" style="text-align: left;">
-                      {% if progreso >= examen %}
+                      {% if examen %}
                      <a href="{% url 'instrucciones' tema_id=0 leccion_id=leccion.pk curso_id=curso.pk %}"><img title="Examen" class="logo" src="{% static 'images/icono_start.png'%}"></a>
                       {% endif %}
              </tr>

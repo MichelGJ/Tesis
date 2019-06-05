@@ -42,7 +42,7 @@ class LogicaRegistration:
             # Si no recibe un metodo POST solo se renderizara la ventana
             else:
                 return render(self, 'registration/login.html')
-        except ConnectionError as e:
+        except ConnectionError:
             messages.error(self, 'Error de conexion')
             return redirect('/')
 
@@ -79,8 +79,6 @@ class LogicaRegistration:
                 return redirect('/')
             else:
                 return HttpResponse()
-        except ConnectionError as e:
+        except ConnectionError:
             messages.error(self, 'Error de conexion')
             return redirect('/registration/registrar')
-
-
