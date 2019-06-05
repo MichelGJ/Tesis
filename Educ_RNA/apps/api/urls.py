@@ -4,7 +4,7 @@ from .views import login, RegistrarUsuario, ActualizarUsuario, VerLecciones, Ver
     VerLinksPresentaciones, VerLinkPodcast, GetQuiz, GetPreguntaQuiz, GetRespuesta, GetPrueba, GetPreguntaPrueba,\
     GetPreguntaId, GetRespuestaId, ConsultarProgreso, RegistrarProgreso,  ActualizarProgreso, VerLeccionId, VerTemaId, \
     RegistrarCalificacion, ConsultarCalificacion, GetPruebaId, ActualizarCalificacion, ConsultarCalificacionPrueba, \
-    VerLinkCodigo, VerCursos, VerCursoId, ConsultarProgreso2
+    VerLinkCodigo, VerCursos, VerCursoId, ConsultarProgresoCurso
 from rest_auth.views import PasswordResetView, PasswordResetConfirmView
 
 # Direcciones URL del API
@@ -30,7 +30,7 @@ urlpatterns = {
     path('ver-resp/<pregunta_id>', GetRespuesta.as_view(), name="verresp"),
     path('ver-respid/<id>', GetRespuestaId.as_view(), name="verrespid"),
     path('ver-progreso/<usuario_id>', ConsultarProgreso.as_view(), name="verprogreso"),
-    path('ver-progreso2/<usuario_id>/<curso_id>', ConsultarProgreso2.as_view(), name="verprogreso2"),
+    path('ver-progreso2/<usuario_id>/<curso_id>', ConsultarProgresoCurso.as_view(), name="verprogreso2"),
     path('registrar-progreso/', RegistrarProgreso.as_view(), name="registrarprogreso"),
     path('actualizar-progreso/', ActualizarProgreso.as_view(), name="actualizarprogreso"),
     path('ver-curso/<id>', VerCursoId.as_view(), name='vercursoid'),

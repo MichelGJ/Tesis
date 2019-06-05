@@ -4,12 +4,13 @@ from .models import Leccion, Tema, InfoTema, Link, Curso
 from apps.usuarios.models import Progreso
 import os
 from django.conf import settings
-from django.http import HttpResponse, Http404
+from django.http import HttpResponse
 from apps.usuarios.views import LogicaUsuarios
 from django.contrib.auth.models import User
 from django.shortcuts import redirect
 from django.contrib import messages
 from rest_framework.response import Response
+from Educ_RNA.strings import Strings
 # Create your views here.
 
 # Vistas de la app lecciones, en este caso se trata de la logica y las llamadas a las funciones necesarias para todas
@@ -31,13 +32,14 @@ class LogicaLecciones:
             # Se renderiza la vista con las lecciones
             return render(self, 'lecciones/cursos.html', cdict)
         # Manejo de excepciones
-        except ConnectionError as e:
+        except ConnectionError:
             messages.error(self, 'Error de conexion')
             return redirect('/lecciones/error')
 
     # Funcion que renderiza la pagina de lecciones
     def ver_lecciones(self, curso_id):
         try:
+            notificacion = (False, '')
             # Consulta del curso actual, para obtener sus datos
             curso = LogicaUsuarios.consultar_curso_id(curso_id)
             # Llamada al metodo que consulta el progreso del usuario para verificar si ya existe un registro
@@ -53,18 +55,21 @@ class LogicaLecciones:
             # Si no existe un registro de progreso de este usuario se procede a llamar al metodo que lo crea
             if progreso.status_code == 404:
                 LogicaUsuarios.registrar_progreso(self.user.pk, primer_tema, curso_id)
+                notificacion = (True, Strings.MensajeLeccion.mensaje)
             # Se crea un dictionary con la lista, para poder pasarla a la vista
-            cdict = {'lista': lista, 'primera': primer_tema, 'curso': curso.data}
+            cdict = {'lista': lista, 'primera': primera_leccion, 'curso': curso.data, 'notificacion': notificacion}
             # Se renderiza la vista con las lecciones
             return render(self, 'lecciones/lecciones.html', cdict)
         # Manejo de excepciones
-        except ConnectionError as e:
+        except ConnectionError:
             messages.error(self, 'Error de conexion')
             return redirect('/lecciones/error')
 
     # Funcion que llama a una funcion del API, la cual le envia la lista completa de temas dado una leccion.
     def ver_temas(self, leccion_id, curso_id):
         try:
+            examen = False
+            notificacion = Strings.MensajeLeccion.mensajetema
             # Consulta de la leccion actual, para obtener sus datos
             leccion = LogicaUsuarios.consultar_leccion_id(leccion_id)
             # Consulta del curso actual, para obtener sus datos
@@ -76,20 +81,22 @@ class LogicaLecciones:
             lista = LogicaLecciones.consultar_temas(leccion_id)
             # Variable auxiliar con el fin de determinar si se habilita el examen de la leccion
             aux = lista[-1][0].pk
+            if tema_progreso >= aux:
+                examen = True
             # Se crea un dictionary con la lista, el id del tema del progreso y la variable auxiliar
             # para poder pasarlos a la vista
-            cdict = {'lista': lista, 'progreso': tema_progreso, 'examen': aux, 'leccion': leccion.data,
-                     'curso': curso.data}
+            cdict = {'lista': lista, 'examen': examen, 'leccion': leccion.data,
+                     'curso': curso.data, 'notificacion': notificacion}
             # Se renderiza la vista con los temas correspondientes a la leccion seleccionada
             return render(self, 'lecciones/temas.html', cdict)
         # Manejo de excepciones
-        except ConnectionError as e:
+        except ConnectionError:
             messages.error(self, 'Error de conexion')
             return redirect('/lecciones/error')
-        except IndexError as e:
+        except IndexError:
             messages.error(self, 'No se encontraron los temas')
             return redirect('/lecciones/error')
-        except KeyError as e:
+        except KeyError:
             messages.error(self, 'No se encontro la informacion de los temas')
             return redirect('/lecciones/error')
 
@@ -113,7 +120,7 @@ class LogicaLecciones:
             cdict = {'link': link, 'tema': tema.data, 'leccion': leccion.data, 'curso': curso.data}
             # Se renderiza la pagina con la respectiva presentacion
             return render(self, 'lecciones/presentaciones.html', cdict)
-        except KeyError as e:
+        except KeyError:
             messages.error(self, 'No se encontro la presentacion')
             return redirect('/lecciones/error')
 
@@ -140,10 +147,10 @@ class LogicaLecciones:
             else:
                 messages.error(self, 'El archivo no existe o la ruta es incorrecta')
                 return redirect('/lecciones/error')
-        except ConnectionError as e:
+        except ConnectionError:
             messages.error(self, 'Error de conexion')
             return redirect('/lecciones/error')
-        except KeyError as e:
+        except KeyError:
             messages.error(self, 'No se encontro la presentacion')
             return redirect('/lecciones/error')
 
@@ -162,8 +169,6 @@ class LogicaLecciones:
             pagejson = page.json()
             # Se obtiene del json la ruta del podcast
             path = Link(podcast=pagejson['podcast'])
-            # Se obtiene el nombre del podcast de la propia ruta
-            nombre = path.podcast[9:len(path.podcast) - 4]
         # Se construye la ruta del archivo a descargar, con la ruta base de static concatenada con la obtenida del API
             file_path = os.path.join(settings.STATICFILES_URL + '/' + path.podcast)
             # Si la ruta existe se procede a mostrarl el pocast
@@ -175,7 +180,7 @@ class LogicaLecciones:
             else:
                 messages.error(self, 'El archivo no existe o la ruta es incorrecta')
                 return redirect('/lecciones/error')
-        except KeyError as e:
+        except KeyError:
             messages.error(self, 'No se encontro el podcast')
             return redirect('/lecciones/error')
 
@@ -202,10 +207,10 @@ class LogicaLecciones:
             else:
                 messages.error(self, 'El archivo no existe o la ruta es incorrecta')
                 return redirect('/lecciones/error')
-        except ConnectionError as e:
+        except ConnectionError:
             messages.error(self, 'Error de conexion')
             return redirect('/lecciones/error')
-        except KeyError as e:
+        except KeyError:
             messages.error(self, 'No se encontro el podcast')
             return redirect('/lecciones/error')
 
@@ -229,7 +234,7 @@ class LogicaLecciones:
             cdict = {'link': link, 'tema': tema.data, 'leccion': leccion.data, 'curso': curso.data}
             # Se renderiza la pagina con la respectiva presentacion
             return render(self, 'lecciones/codigo.html', cdict)
-        except KeyError as e:
+        except KeyError:
             messages.error(self, 'No se encontro el codigo')
             return redirect('/lecciones/error')
     """
@@ -331,7 +336,7 @@ class LogicaLecciones:
         try:
             lista = []
             # Llamada al API para obtener los temas de una leccion seleccionada pasando el id
-            page = requests.get(settings.API_PATH + 'ver-cursos/' )
+            page = requests.get(settings.API_PATH + 'ver-cursos/')
             # Convierte la respuesta en un json
             pagejson = page.json()
             # Se recorre la respuesta del api, instanciando objetos tipo Tema con los datos obtenidos

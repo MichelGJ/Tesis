@@ -136,7 +136,6 @@ USE_L10N = True
 
 USE_TZ = True
 
-
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.1/howto/static-files/
 
@@ -145,7 +144,7 @@ STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'), 'Educ_RNA/static')
 STATICFILES_URL = (os.path.join(BASE_DIR, 'static'))
 
 
-API_PATH = 'http://127.0.0.1:8000/api/'
+API_PATH = 'http://127.0.0.1:8001/api/'
 
 LOGIN_URL = '/'
 LOGIN_REDIRECT_URL = 'index'

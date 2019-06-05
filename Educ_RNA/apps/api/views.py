@@ -35,6 +35,46 @@ class RegistrarUsuario(CreateAPIView):
     serializer_class = RegistrationSerializer.UsuarioSerializer
 
 
+# Metodo que actualiza informacion del usuario en la base de datos
+class ActualizarUsuario(UpdateAPIView):
+    queryset = User.objects.all()
+    lookup_field = 'id'
+    serializer_class = UsuariosSerializer.ModificarUsuarioSerializer
+
+
+# Metodo que realiza el cambio de contraseñaa de un usuario
+class CambioContrasena(UpdateAPIView):
+    serializer_class = UsuariosSerializer.PasswordChangeSerializer
+    model = User
+
+    # Funcion que recibe los datos necesarios, y realiza el cambio de contraseña si todos los requerimientos se cumplen
+    def update(self, request, *args, **kwargs):
+        serializer = self.get_serializer(data=request.data)
+        # Si el serializador es valido se extraen los datos que contiene
+        if serializer.is_valid():
+            username = serializer.data.get("username")
+            password = serializer.data.get("old_password")
+            new_password = serializer.data.get("new_password")
+            new_password2 = serializer.data.get("new_password2")
+            # Se autentica el usuario para verificar si la contraseña actual es la correcta
+            user = authenticate(username=username, password=password)
+            # Si el usuario no coincide con la clave se responde con un mensaje de error
+            if not user:
+                return Response({"old_password": ["Clave actual incorrecta"]}, status=status.HTTP_400_BAD_REQUEST)
+            # Si el usuario coincide se revisa que la contraseña de confirmacion sea igual a la nueva introducida
+            if new_password == new_password2:
+                # Si la contraseña de confirmacion es igual a la nueva se hashea y almacena la contraseña nueva,
+                # y se responde con un mensaje de exito
+                user.set_password(new_password)
+                user.save()
+                return Response("Success.", status=status.HTTP_200_OK)
+            else:
+                # Si la contraseña de confirmacion no es igual a la nueva se envia el mensaje de error correspondiente
+                return Response({"new_password": ["Claves no coinciden"]}, status=status.HTTP_400_BAD_REQUEST)
+        # Si el serializador no es valido se envia el mensaje de error correspondiete
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
 # Metodo que registra el progreso de un usuario en la base de datos
 class RegistrarProgreso(CreateAPIView):
     serializer_class = UsuariosSerializer.ProgresoSerializer
@@ -78,8 +118,8 @@ class ConsultarProgreso(ListAPIView):
         return queryset.order_by('id')
 
 
-# Metodo que obtiene de la base de datos el progreso de un determinado usuario
-class ConsultarProgreso2(RetrieveAPIView):
+# Metodo que obtiene de la base de datos el progreso de un determinado usuario y curso
+class ConsultarProgresoCurso(RetrieveAPIView):
     serializer_class = UsuariosSerializer.ProgresoSerializer
     model = serializer_class.Meta.model
     lookup_field = "usuario_id"
@@ -91,46 +131,6 @@ class ConsultarProgreso2(RetrieveAPIView):
         curso_id = self.kwargs['curso_id']
         queryset = self.model.objects.filter(usuario_id=usuario_id, curso_id=curso_id)
         return queryset.order_by('id')
-
-
-# Metodo que actualiza informacion del usuario en la base de datos
-class ActualizarUsuario(UpdateAPIView):
-    queryset = User.objects.all()
-    lookup_field = 'id'
-    serializer_class = UsuariosSerializer.ModificarUsuarioSerializer
-
-
-# Metodo que realiza el cambio de contraseñaa de un usuario
-class CambioContrasena(UpdateAPIView):
-    serializer_class = UsuariosSerializer.PasswordChangeSerializer
-    model = User
-
-    # Funcion que recibe los datos necesarios, y realiza el cambio de contraseña si todos los requerimientos se cumplen
-    def update(self, request, *args, **kwargs):
-        serializer = self.get_serializer(data=request.data)
-        # Si el serializador es valido se extraen los datos que contiene
-        if serializer.is_valid():
-            username = serializer.data.get("username")
-            password = serializer.data.get("old_password")
-            new_password = serializer.data.get("new_password")
-            new_password2 = serializer.data.get("new_password2")
-            # Se autentica el usuario para verificar si la contraseña actual es la correcta
-            user = authenticate(username=username, password=password)
-            # Si el usuario no coincide con la clave se responde con un mensaje de error
-            if not user:
-                return Response({"old_password": ["Clave actual incorrecta"]}, status=status.HTTP_400_BAD_REQUEST)
-            # Si el usuario coincide se revisa que la contraseña de confirmacion sea igual a la nueva introducida
-            if new_password == new_password2:
-                # Si la contraseña de confirmacion es igual a la nueva se hashea y almacena la contraseña nueva,
-                # y se responde con un mensaje de exito
-                user.set_password(new_password)
-                user.save()
-                return Response("Success.", status=status.HTTP_200_OK)
-            else:
-                # Si la contraseña de confirmacion no es igual a la nueva se envia el mensaje de error correspondiente
-                return Response({"new_password": ["Claves no coinciden"]}, status=status.HTTP_400_BAD_REQUEST)
-        # Si el serializador no es valido se envia el mensaje de error correspondiete
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
 # Metodo que obtiene de la base de datos la lista completa de cursos

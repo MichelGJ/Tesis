@@ -27,21 +27,20 @@ background-color: #FFFFFF;
 
 .container3{
     margin: auto;
-    width: 50%;
+    width: 100%;
+    max-width: 600px;
+ margin-top:-10px;
 }
 
-@media screen and (max-width: 500px) {
-  .container3 {
-    width: 100%;
-    height: auto;
-    position: relative;
-  }
-}
 
 a {
   display: block;
-
 }
+
+.back{
+margin-left:200px;
+}
+
 
 /* The side navigation menu */
 .sidebar {
@@ -52,6 +51,7 @@ position: relative;
   padding: 0;
   background-color: #191970;
   overflow: auto;
+margin-top: -10px;
 }
 
 /* Sidebar links */
@@ -61,7 +61,7 @@ position: relative;
   padding: 16px;
   text-decoration: none;
 float: left;
-
+margin-top:5px;
 }
 
 .ubi{
@@ -70,12 +70,9 @@ display: block;
   padding: 16px;
   text-decoration: none;
 float: left;
-margin-top:10px;
+margin-top:15px;
 }
 
-.back{
-margin-left:200px;
-}
 
 /* Page content. The value of the margin-left property should match the value of the sidebar's width property */
 div.content {
@@ -87,12 +84,6 @@ div.content {
 .back{
         margin-left:0px;
     }
-
-  .container3 {
-    width: 100%;
-    height: auto;
-    position: relative;
-  }
 }
 
 /* On screens that are less than 700px wide, make the sidebar into a topbar */
@@ -114,6 +105,40 @@ div.content {
   }
 }
 
+ /* The alert message box */
+.alert {
+  padding: 5px;
+  background-color: #191970;
+  color: white;
+width: 100%;
+max-width: 510px;
+display: inline-block;
+margin-bottom:-20px;
+border-top-style: none;
+border-bottom-style: solid;
+border-left-style: solid;
+border-right-style: solid;
+border-color: #00FFFF;
+border-width: 3px;
+}
+
+/* The close button */
+.closebtn {
+  margin-left: 15px;
+  color: white;
+  font-weight: bold;
+  float: right;
+  font-size: 22px;
+  line-height: 20px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+/* When moving the mouse over the close button */
+.closebtn:hover {
+  color: black;
+}
+
 {%endblock%}
 
 <title>{% block title %} Lecciones {% endblock %}</title>
@@ -132,6 +157,12 @@ div.content {
 {%endblock%}
 
 {% block content %}
+{% if notificacion.0 %}
+ <div class="alert">
+  <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+  {{notificacion.1}}
+</div>
+{% endif %}
 <div class="content">
  <div class="inner-bg">
      <div class="container3">
@@ -145,11 +176,11 @@ div.content {
              {% for i in lista %}
              {% if i.0.pk == primera %}
              <tr class="tr1">
-                 <td class="td2" style=""><a href="{% url 'vertema' leccion_id=i.0.pk curso_id=curso.pk %}">{{i.0.nombre}}</a></td>
+                 <td class="td2"><a href="{% url 'vertema' leccion_id=i.0.pk curso_id=curso.pk %}">{{i.0.nombre}}</a></td>
              </tr>
              {% elif i.1 %}
              <tr class="tr1">
-                 <td class="td2" style=""><a href="{% url 'vertema' leccion_id=i.0.pk curso_id=curso.pk %}">{{i.0.nombre}}</a></td>
+                 <td class="td2"><a href="{% url 'vertema' leccion_id=i.0.pk curso_id=curso.pk %}">{{i.0.nombre}}</a></td>
              </tr>
              {% endif %}
              {% endfor %}

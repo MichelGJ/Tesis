@@ -10,12 +10,11 @@ from django.shortcuts import redirect
 from django.contrib.auth import update_session_auth_hash
 from django.contrib.auth import authenticate
 from rest_framework.response import Response
-from .models import Progreso, Calificacion
+from .models import Calificacion
 from django.http import HttpResponse
 from apps.evaluaciones.models import Prueba
 from apps.lecciones.models import Tema, Leccion, Curso
 from django.db import IntegrityError
-from django.http import request
 # Create your views here.
 
 # Vistas de la app usuarios, en este caso se trata de la logica y las llamadas a las funciones necesarias para todas las
@@ -51,7 +50,7 @@ class LogicaUsuarios:
             cdict = {'calificacion': calificacion.data}
             # Se renderiza la plantilla con los datos generados
             return render(self, 'usuarios/calificaciones.html', cdict)
-        except ConnectionError as e:
+        except ConnectionError:
             messages.error(self, 'Error de conexion')
             return redirect('/')
 
@@ -64,7 +63,7 @@ class LogicaUsuarios:
             cdict = {'progreso': progreso.data}
             # Se renderiza la plantilla con los datos generados
             return render(self, 'usuarios/progreso.html', cdict)
-        except ConnectionError as e:
+        except ConnectionError:
             messages.error(self, 'Error de conexion')
             return redirect('/usuarios/perfil')
 
@@ -100,7 +99,7 @@ class LogicaUsuarios:
                 # En caso de no recibir codigo 400  se redirige al perfil, siendo exitosa la modificacion
                 messages.success(self, "Usuario modificado exitosamente")
                 return redirect('/usuarios/perfil')
-        except ConnectionError as e:
+        except ConnectionError:
             messages.error(self, 'Error de conexion')
             return redirect('/usuarios/perfil')
 
@@ -129,7 +128,7 @@ class LogicaUsuarios:
                 return redirect('/usuarios/perfil')
             else:
                 return render(self, 'usuarios/cambiarcontraseña.html')
-        except ConnectionError as e:
+        except ConnectionError:
             messages.error(self, 'Error de conexion')
             return redirect('/usuarios/perfil')
 
@@ -179,14 +178,14 @@ class LogicaUsuarios:
                 return Response(lista, 404)
         except ConnectionError as e:
             raise e
-        except KeyError as e:
+        except KeyError:
             detail = rjson["detail"]
             return Response(detail, 404)
 
     # Funcion que consulta el progreso de un determinado usuario
     @staticmethod
     def consultar_progreso(usuario_id):
-        lista=[]
+        lista = []
         try:
             # Llamada al metodo del api que consulta el progreso de un usuario determinado por su id
             r = requests.get(settings.API_PATH + 'ver-progreso/' + str(usuario_id))
@@ -218,7 +217,7 @@ class LogicaUsuarios:
                 return Response(lista, 404)
         except ConnectionError as e:
             raise e
-        except KeyError as e:
+        except KeyError:
             detail = rjson["detail"]
             return Response(detail, 400)
 
@@ -252,6 +251,7 @@ class LogicaUsuarios:
             data = {'usuario_id': usuario_id, 'tema_id': tema_id, 'curso_id': curso_id}
             # Llamada al metodo del api que registra el progreso, pasandole los datos para sus insercion
             r = requests.post(settings.API_PATH + 'registrar-progreso/', data=data)
+            return r
         except ConnectionError as e:
             raise e
 
@@ -354,6 +354,6 @@ class LogicaUsuarios:
             return Response(prueba, 200)
         except ConnectionError as e:
             raise e
-        except KeyError as e:
+        except KeyError:
             detail = rjson["detail"]
             return Response(detail, 404)

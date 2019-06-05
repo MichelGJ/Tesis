@@ -8,10 +8,14 @@ class Strings:
 
     class InstruccionesExamen:
         examen1 = '- El siguiente examen tiene 20 preguntas.'
-        examen2 = '- Cada pregunta tiene un tiempo limite de 45 segundos.'
+        examen2 = '- Cada pregunta tiene un tiempo limite de 30 segundos.'
         examen3 = '- Selecciona la opción que crea correcta para avanzar.'
         examen4 = '- Para aprobar necesita obtener 10 preguntas correctas.'
 
     class MensajesExamen:
         paso = "¡Felicidades, ha aprobado el examen! :D"
         raspo = "Lo sentimos, reprobó el examen... intente nuevamente :( "
+
+    class MensajeLeccion:
+        mensaje = "La lecciones se irán habilitando cuando pases los examenes"
+        mensajetema = "El examen de la lección se habilitará cuando completes los quizes"

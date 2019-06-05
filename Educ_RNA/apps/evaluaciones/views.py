@@ -7,7 +7,6 @@ from django.contrib import messages
 from .models import Pregunta, Quiz, Respuesta, Prueba
 from apps.usuarios.views import LogicaUsuarios
 from apps.lecciones.views import LogicaLecciones
-from django.db import IntegrityError
 from django.views.decorators.csrf import csrf_exempt
 from django.contrib.auth.models import User
 from Educ_RNA.strings import Strings
@@ -92,17 +91,17 @@ class LogicaEvaluaciones:
             # Se renderiza la vista con las lecciones
             return render(self, 'evaluaciones/quiz.html', cdict)
             # Manejo de excepciones
-        except ConnectionError as e:
+        except ConnectionError:
             LogicaEvaluaciones.listaquiz = []
             LogicaEvaluaciones.aux_quiz = 0
             messages.error(self, 'Error de conexion')
             return redirect('/lecciones/error')
-        except KeyError as e:
+        except KeyError:
             LogicaEvaluaciones.listaquiz = []
             LogicaEvaluaciones.aux_quiz = 0
             messages.error(self, 'No se encontro el quiz')
             return redirect('/lecciones/error')
-        except IndexError as e:
+        except IndexError:
             LogicaEvaluaciones.listaquiz = []
             LogicaEvaluaciones.aux_quiz = 0
             messages.error(self, 'No se encontraron las preguntas y/o respuestas')
@@ -111,6 +110,7 @@ class LogicaEvaluaciones:
     # Funcion que renderiza la pagina de correcion de una pregunta del quiz
     def corregirquiz(self, respuesta_id, pregunta_id, tema_id):
         try:
+            mensaje = ''
             # Se llaman a los metodos necesarios para obtener los datos que se requieren
             respuesta = LogicaEvaluaciones.verrespuestacorrecta(respuesta_id)
             pregunta = LogicaEvaluaciones.verpreguntaid(pregunta_id)
@@ -125,8 +125,8 @@ class LogicaEvaluaciones:
             LogicaEvaluaciones.aux_quiz = LogicaEvaluaciones.aux_quiz + 1
             # Si la respuesta fue correcta se le asigna True a mensaje y se le manda el mensaje a la interfaz
             if respuesta.correcta:
-               mensaje = True
-               messages.success(self, correcto)
+                mensaje = True
+                messages.success(self, correcto)
             # Si la respuesta no fue correcta se le asigna False a mensaje y se le manda el mensaje a la interfaz
             elif not respuesta.correcta:
                 mensaje = False
@@ -148,7 +148,7 @@ class LogicaEvaluaciones:
                      'mensaje': mensaje, 'leccion': leccion.data.id, 'curso_id': LogicaEvaluaciones.id_curso}
             # Se renderiza la pagina de correccion de pregunta con todos los datos necesarios
             return render(self, 'evaluaciones/quiz2.html', cdict)
-        except ConnectionError as e:
+        except ConnectionError:
             messages.error(self, 'Error de conexion')
             return redirect('/lecciones/error')
 
@@ -181,13 +181,13 @@ class LogicaEvaluaciones:
             # Se renderiza la vista con la pregunta correspondiente y sus respuestas
             return render(self, 'evaluaciones/examen.html', cdict)
             # Manejo de excepciones
-        except ConnectionError as e:
+        except ConnectionError:
             messages.error(self, 'Error de conexion')
             return redirect('/lecciones/error')
-        except KeyError as e:
+        except KeyError:
             messages.error(self, 'No se encontro el quiz')
             return redirect('/lecciones/error')
-        except IndexError as e:
+        except IndexError:
             messages.error(self, 'No se encontraron las preguntas y/o respuestas')
             return redirect('/lecciones/error')
 
@@ -207,10 +207,10 @@ class LogicaEvaluaciones:
                 LogicaEvaluaciones.timeout = False
                 LogicaEvaluaciones.aux_examen = LogicaEvaluaciones.aux_examen + 1
             else:
+                respuestaanterior = LogicaEvaluaciones.verrespuestacorrecta(respuesta_id)
+                if respuestaanterior.correcta:
+                    LogicaEvaluaciones.nota = LogicaEvaluaciones.nota + 1
                 if 1 <= LogicaEvaluaciones.aux_examen < 20:
-                    respuestaanterior = LogicaEvaluaciones.verrespuestacorrecta(respuesta_id)
-                    if respuestaanterior.correcta:
-                        LogicaEvaluaciones.nota = LogicaEvaluaciones.nota + 1
                     LogicaEvaluaciones.listaexamen.remove(pregunta)
                     LogicaEvaluaciones.aux_examen = LogicaEvaluaciones.aux_examen + 1
                 elif LogicaEvaluaciones.aux_examen == 20:
@@ -245,13 +245,13 @@ class LogicaEvaluaciones:
             print(LogicaEvaluaciones.nota)
             return render(self, 'evaluaciones/examen.html', cdict)
             # Manejo de excepciones
-        except ConnectionError as e:
+        except ConnectionError:
             messages.error(self, 'Error de conexion')
             return redirect('/lecciones/error')
-        except KeyError as e:
+        except KeyError:
             messages.error(self, 'No se encontro el quiz')
             return redirect('/lecciones/error')
-        except IndexError as e:
+        except IndexError:
             messages.error(self, 'No se encontraron las preguntas y/o respuestas')
             return redirect('/lecciones/error')
 
@@ -260,9 +260,10 @@ class LogicaEvaluaciones:
     def registrar_calificacion(usuario_id, prueba_id, notas):
         try:
             # Se arma un dictionary con los datos a enviar al api
-            data = {'usuario_id': usuario_id, 'prueba_id': prueba_id, 'nota': str(notas), 'mejor_nota': '0', 'intentos':0}
+            data = {'usuario_id': usuario_id, 'prueba_id': prueba_id, 'nota': str(notas), 'mejor_nota': '0',
+                    'intentos': 0}
             # Llamada al metodo del api que registra el progreso, pasandole los datos para sus insercion
-            r = requests.post(settings.API_PATH + 'registrar-calificacion/', data=data)
+            requests.post(settings.API_PATH + 'registrar-calificacion/', data=data)
         except ConnectionError as e:
             raise e
 
@@ -274,7 +275,7 @@ class LogicaEvaluaciones:
             data = {'usuario_id': usuario_id, 'prueba_id': prueba_id, 'nota': str(notas), 'mejor_nota': '0',
                     'intentos': 0}
             # Llamada al metodo del api que registra el progreso, pasandole los datos para sus insercion
-            r = requests.put(settings.API_PATH + 'actualizar-calificacion/', data=data)
+            requests.put(settings.API_PATH + 'actualizar-calificacion/', data=data)
         except ConnectionError as e:
             raise e
 
@@ -422,6 +423,6 @@ class LogicaEvaluaciones:
             if progreso.status_code == 200:
                 LogicaUsuarios.actualizar_progreso(self.user.pk, tema_id, curso_id)
             # Se renderiza la pagina de correccion de preguntas con todos los datos necesarios
-        except ConnectionError as e:
+        except ConnectionError:
             messages.error(self, 'Error de conexion')
             return redirect('/lecciones/error')
