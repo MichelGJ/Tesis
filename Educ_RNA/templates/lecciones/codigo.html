@@ -2,7 +2,7 @@
 {% load staticfiles %}
 
 
- <title>{% block title %} Podcast {% endblock %}</title>
+ <title>{% block title %} Codigo {% endblock %}</title>
 
 {%block style%}
 
@@ -104,7 +104,7 @@ div.content {
                 border-width:1px; margin-bottom:5px; max-width: 100%;" allowfullscreen> </iframe>
               <div class="info" >
                 <strong>
-                    <a  href="https://www.google.com/" target="_blank"> <img class="logo" src="{% static 'images/git2.png'%}"></a>
+                    <a  href="{{link.repocodigo}}" target="_blank"> <img class="logo" src="{% static 'images/git2.png'%}"></a>
                 </strong>
             </div>
          </div>
