@@ -11,73 +11,10 @@ background-color:#000080;
 box-shadow: 0px 0px 36px 15px rgba(0, 0, 0, 0.28);
 text-align:right;
 width:100%;
-
+height:580px;
 }
-
-/* The side navigation menu */
-.sidebar {
-width: 100%;
-height: 9.5%;
-position: relative;
-  margin: 0;
-  padding: 0;
-  background-color: #191970;
-  overflow: auto;
-}
-
-/* Sidebar links */
-.sidebar a {
-  display: block;
-  color: white;
-  padding: 16px;
-  text-decoration: none;
-float: left;
-margin-right:-25px;
-}
-
-.ubi{
-display: block;
-  color: white;
-  text-decoration: none;
-float: left;
-margin-top:10px;
-}
-
-.back{
-margin-left:200px;
-}
-
-/* Page content. The value of the margin-left property should match the value of the sidebar's width property */
-div.content {
-  margin-left: 0px;
-  margin-top:-50px;
-}
-
-/* On screens that are less than 700px wide, make the sidebar into a topbar */
-@media screen and (max-width: 700px) {
-  .sidebar {
-    width: 100%;
-    height: auto;
-    position: relative;
-  }
-  .sidebar a {float: left;}
-  div.content {margin-left: 0;}
-
-    .back{
-        margin-left:0px;
-    }
-}
-
-/* On screens that are less than 400px, display the bar vertically, instead of horizontally */
-@media screen and (max-width: 400px) {
-  .sidebar a {
-    text-align: center;
-    float: none;
-  }
-
-        .back{
-        margin-left:0px;
-    }
+.logo{
+margin-top:-70px;
 }
 {%endblock%}
 
@@ -89,7 +26,7 @@ div.content {
  <!-- The sidebar -->
 <br>
 <div class="sidebar">
-    <a class="back"  href="{% url 'vertema' leccion_id=leccion.pk curso_id=curso.pk %}"> <img class="logo" src="{% static 'images/back2.png'%}"></a>
+    <a class="back"  href="{% url 'vertema' leccion_id=leccion.pk curso_id=curso.pk %}"> <img  src="{% static 'images/back2.png'%}"></a>
     <h5 class="ubi"><a href="{% url 'verlecciones' curso_id=curso.pk %}">{{curso.nombre}}</a><a>/</a><a  href="{% url 'vertema' leccion_id=leccion.pk curso_id=curso.pk %}">{{leccion.nombre}}</a><a>/</a><a>{{tema.nombre}}</a></h5>
 </div>
 {%endblock%}
@@ -103,9 +40,8 @@ div.content {
                 frameborder="0" marginwidth="0" marginheight="0" scrolling="no" style="border:1px ;
                 border-width:1px; margin-bottom:5px; max-width: 100%;" allowfullscreen> </iframe>
               <div class="info" >
-                <strong>
-                    <a  href="{{link.repocodigo}}" target="_blank"> <img class="logo" src="{% static 'images/git2.png'%}"></a>
-                </strong>
+                  <div style="text-align:center;"><h5 style="color:#00FA9A;"> <strong> Código: {{leccion.nombre}}</strong></h5></div>
+                  <a  href="{{link.repocodigo}}" target="_blank"> <img class="logo" src="{% static 'images/git2.png'%}"></a>
             </div>
          </div>
      </div>
