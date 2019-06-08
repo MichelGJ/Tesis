@@ -37,7 +37,7 @@ VALUES
  ('TEST', (SELECT id from api_leccion where nombre='TEST'));
   
 ALTER SEQUENCE api_infotema_id_seq RESTART; 
-INSERT INTO public.api_infotema(tema_id, presentacion, podcast, codigo)
+INSERT INTO api_infotema(tema_id, presentacion, podcast, codigo)
 VALUES
 ((SELECT id from api_tema where nombre='Introducción'), True, True, False),
 ((SELECT id from api_tema where nombre='Historia'),  True,  True,  False),
@@ -58,7 +58,7 @@ VALUES
 ((SELECT id from api_tema where nombre='TEST'),  True,  True, False);
 
 ALTER SEQUENCE api_prueba_id_seq RESTART; 
-INSERT INTO public.api_prueba(leccion_id)
+INSERT INTO api_prueba(leccion_id)
 VALUES
 ((SELECT id from api_leccion where nombre='Introducción e Historia')),
 ((SELECT id from api_leccion where nombre='El Perceptrón Simple')),
@@ -68,7 +68,7 @@ VALUES
 ((SELECT id from api_leccion where nombre='Redes Generativas Antagónicas'));
 
 ALTER SEQUENCE api_quiz_id_seq RESTART; 
-INSERT INTO public.api_quiz(tema_id)
+INSERT INTO api_quiz(tema_id)
 VALUES
 ((SELECT id from api_tema where nombre='Introducción')),
 ((SELECT id from api_tema where nombre='Historia')),
@@ -86,9 +86,9 @@ VALUES
 ((SELECT id from api_tema where nombre='Definición y Limitaciones' AND leccion_id=6)),
 ((SELECT id from api_tema where nombre='Entrenamiento' AND leccion_id=6)),
 ((SELECT id from api_tema where nombre='Usos'));
-delete from api_link
+
 ALTER SEQUENCE api_link_id_seq RESTART; 
-INSERT INTO public.api_link(presentacion, presentaciond, podcast, codigo, repocodigo, tema_id)
+INSERT INTO api_link(presentacion, presentaciond, podcast, codigo, repocodigo, tema_id)
 VALUES
 ('//www.slideshare.net/slideshow/embed_code/key/iG6RDTv0IRIFRo','/presentaciones/Presentacion1.pdf','podcasts/Introducción.mp3',Null,Null,
 (SELECT id from api_tema where nombre='Introducción')),
@@ -124,7 +124,7 @@ VALUES
 (SELECT id from api_tema where nombre='Usos'));
 
 ALTER SEQUENCE api_pregunta_id_seq RESTART; 
-INSERT INTO public.api_pregunta(contenido, prueba_id, quiz_id)
+INSERT INTO api_pregunta(contenido, prueba_id, quiz_id)
 VALUES
 ('¿Las redes neuronales conforman el elemento principal de cuál tecnología?',
  (SELECT id from api_prueba where leccion_id = (SELECT id from api_leccion where nombre='Introducción e Historia')),
@@ -647,7 +647,7 @@ VALUES
  (SELECT id from api_quiz where tema_id = (SELECT id from api_tema where nombre='Usos')));
 
 ALTER SEQUENCE api_respuesta_id_seq RESTART; 
-INSERT INTO public.api_respuesta(contenido, correcta, pregunta_id)
+INSERT INTO api_respuesta(contenido, correcta, pregunta_id)
 VALUES
 ('Inteligencia Artificial', True, (SELECT id from api_pregunta where contenido='¿Las redes neuronales conforman el elemento principal de cuál tecnología?')),
 ('Procesamiento de datos', False, (SELECT id from api_pregunta where contenido='¿Las redes neuronales conforman el elemento principal de cuál tecnología?')),
