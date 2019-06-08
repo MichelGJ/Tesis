@@ -64,6 +64,9 @@ class LogicaLecciones:
         except ConnectionError:
             messages.error(self, 'Error de conexion')
             return redirect('/lecciones/error')
+        except IndexError:
+            messages.error(self, 'No hay lecciones todavia')
+            return redirect('/lecciones/error')
 
     # Funcion que llama a una funcion del API, la cual le envia la lista completa de temas dado una leccion.
     def ver_temas(self, leccion_id, curso_id):

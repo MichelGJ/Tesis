@@ -21,8 +21,11 @@ display:inline-block;
 .help{
     color: navy;
 }
+.container2{
+width:100%;
+max-width:650px;
+}
 {%endblock%}
-
 
 
 {% block header %}
@@ -50,9 +53,6 @@ display:inline-block;
                         		</div>
                             </div>
                             <div class="form-bottom">
-                                <div class="">
-                                </div>
-                                <div class="container3">
                                     {% for message in messages %}
                                      <div class="alert alert-danger">
                                     <a class="close" href="#" data-dismiss="alert">×</a>
@@ -84,7 +84,7 @@ display:inline-block;
                                     <br>
 			                        <button type="submit" class="btn">Registrar</button>
 			                    </form>
-                                </div>
+
 		                    </div>
                         </div>
                     </div>
