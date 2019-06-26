@@ -19,3 +19,13 @@ class Strings:
     class MensajeLeccion:
         mensaje = "La lecciones se irán habilitando cuando pases los examenes"
         mensajetema = "El examen de la lección se habilitará cuando completes los quizes"
+
+    class MensajeNosotros:
+        texto1 = "Somos 2 estudiantes de ingeniería informática de la Universidad Católica Andrés Bello, con la " \
+                 "misión de facilitar el aprendizaje de los estudiantes en temas complejos, empezando con las " \
+                 "Redes Neuronales Artificiales. "
+        texto2 = "Una aplicación educativa, en la cual podrás aprender de redes neuronales artificiales " \
+                 "y otros temas, de manera sencilla, amigable y totalmente adaptada a tu tiempo."
+        texto3 = "Nosotros como tú sabemos de la dificultad y complejidad en el aprendizaje de ciertos temas, " \
+                 "de los cuales la información es muy teórica y no se encuentra en un solo lugar," \
+                 " por esto decidimos crear un espacio en donde se solucionen todos estos problemas."
