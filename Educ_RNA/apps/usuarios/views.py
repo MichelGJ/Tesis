@@ -15,6 +15,7 @@ from django.http import HttpResponse
 from apps.evaluaciones.models import Prueba
 from apps.lecciones.models import Tema, Leccion, Curso
 from django.db import IntegrityError
+from Educ_RNA.strings import Strings
 # Create your views here.
 
 # Vistas de la app usuarios, en este caso se trata de la logica y las llamadas a las funciones necesarias para todas las
@@ -39,7 +40,11 @@ class LogicaUsuarios:
 
     # Funcion que renderiza la pagina de informacion nuestra
     def nosotros(self):
-        return render(self, 'usuarios/nosotros.html')
+        texto1 = Strings.MensajeNosotros.texto1
+        texto2 = Strings.MensajeNosotros.texto2
+        texto3 = Strings.MensajeNosotros.texto3
+        cdict = {'texto1': texto1, 'texto2': texto2, 'texto3': texto3}
+        return render(self, 'usuarios/nosotros.html', cdict)
 
     # Funcion que renderiza la pagina de las calificaciones del usuario
     def calificacion(self):
