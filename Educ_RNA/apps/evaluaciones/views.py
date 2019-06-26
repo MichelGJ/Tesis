@@ -80,6 +80,7 @@ class LogicaEvaluaciones:
             pregunta = random.choice(LogicaEvaluaciones.listaquiz)
             # Se buscan las respuestas de dicha pregunta
             respuestas = LogicaEvaluaciones.verrespuestas(pregunta.pk)
+            print(pregunta.pk, respuestas, LogicaEvaluaciones.listaquiz)
             # En el caso de que alguna de las listas no tenga elementos se abre una pagina de error
             if len(LogicaEvaluaciones.listaquiz) == 0 or len(respuestas) == 0:
                 LogicaEvaluaciones.listaquiz = []
