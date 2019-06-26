@@ -3,12 +3,11 @@
   <component name="ChangeListManager">
     <list default="true" id="17642153-bc64-442e-b4ac-6de4b6252776" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/evaluaciones/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/evaluaciones/views.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/base/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/base/base.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/lecciones/cursos.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/lecciones/cursos.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/lecciones/lecciones.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/lecciones/lecciones.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/lecciones/presentaciones.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/lecciones/presentaciones.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/lecciones/temas.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/lecciones/temas.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/registration/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/registration/login.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/usuarios/perfil.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/usuarios/perfil.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Scripts/Inserts.sql" beforeDir="false" afterPath="$PROJECT_DIR$/../Scripts/Inserts.sql" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -34,44 +33,45 @@
           <entry key="project.open.time.43" value="2" />
           <entry key="project.open.time.44" value="1" />
           <entry key="project.open.time.5" value="1" />
+          <entry key="project.open.time.52" value="1" />
           <entry key="project.open.time.55" value="1" />
           <entry key="project.open.time.64" value="1" />
           <entry key="project.open.time.7" value="1" />
           <entry key="project.open.time.8" value="1" />
-          <entry key="project.opened" value="19" />
+          <entry key="project.opened" value="20" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
-          <entry key="html" value="502" />
+          <entry key="html" value="506" />
           <entry key="jpg" value="1" />
           <entry key="png" value="2" />
-          <entry key="py" value="863" />
+          <entry key="py" value="865" />
           <entry key="rnc" value="1" />
           <entry key="xml" value="2" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
-          <entry key="HTML" value="498" />
+          <entry key="HTML" value="502" />
           <entry key="Image" value="3" />
           <entry key="PLAIN_TEXT" value="4" />
-          <entry key="Python" value="863" />
+          <entry key="Python" value="865" />
           <entry key="RNG Compact" value="1" />
           <entry key="XML" value="2" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="html" value="21200" />
-          <entry key="py" value="87131" />
+          <entry key="html" value="21233" />
+          <entry key="py" value="87168" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="HTML" value="21124" />
+          <entry key="HTML" value="21157" />
           <entry key="PLAIN_TEXT" value="76" />
-          <entry key="Python" value="87131" />
+          <entry key="Python" value="87168" />
         </counts>
       </usages-collector>
     </session>
@@ -84,7 +84,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/apps/api/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-16">
+            <state relative-caret-position="1785">
               <caret line="115" column="14" selection-start-line="115" selection-start-column="14" selection-end-line="115" selection-end-column="14" />
               <folding>
                 <element signature="e#0#44#0" expanded="true" />
@@ -98,8 +98,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/apps/lecciones/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="426">
-              <caret line="67" column="60" lean-forward="true" selection-start-line="67" selection-start-column="60" selection-end-line="67" selection-end-column="60" />
+            <state relative-caret-position="680">
+              <caret line="52" column="43" selection-start-line="52" selection-start-column="43" selection-end-line="52" selection-end-column="43" />
               <folding>
                 <element signature="e#0#35#0" expanded="true" />
                 <marker date="1560037172983" expanded="true" signature="714:1351" ph="..." />
@@ -121,70 +121,31 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/templates/usuarios/perfil.html">
+        <entry file="file://$PROJECT_DIR$/apps/evaluaciones/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="221">
-              <caret line="13" lean-forward="true" selection-start-line="13" selection-end-line="13" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/templates/lecciones/temas.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="595">
-              <caret line="92" lean-forward="true" selection-start-line="92" selection-end-line="92" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/templates/lecciones/lecciones.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="272">
-              <caret line="69" selection-start-line="69" selection-end-line="69" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/templates/lecciones/presentaciones.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="204">
-              <caret line="18" selection-start-line="18" selection-end-line="18" />
-              <folding>
-                <element signature="e#2465#2487#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/templates/lecciones/codigo.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="187">
-              <caret line="17" column="1" selection-start-line="17" selection-start-column="1" selection-end-line="17" selection-end-column="1" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/apps/registration/views.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="731">
-              <caret line="43" column="59" selection-start-line="43" selection-start-column="59" selection-end-line="43" selection-end-column="59" />
+            <state relative-caret-position="409">
+              <caret line="88" column="51" selection-start-line="88" selection-start-column="51" selection-end-line="88" selection-end-column="51" />
               <folding>
                 <element signature="e#0#35#0" expanded="true" />
+                <marker date="1560608602388" expanded="true" signature="539:540" ph="..." />
+                <marker date="1560608602388" expanded="true" signature="3147:3152" ph="..." />
+                <marker date="1560608602388" expanded="true" signature="8585:16182" ph="..." />
+                <marker date="1560608602388" expanded="true" signature="15049:16182" ph="..." />
+                <marker date="1560608602388" expanded="true" signature="16385:16390" ph="..." />
+                <marker date="1560608602388" expanded="true" signature="17836:17841" ph="..." />
+                <marker date="1560608602388" expanded="true" signature="19588:19593" ph="..." />
+                <marker date="1560608602388" expanded="true" signature="20363:20368" ph="..." />
+                <marker date="1560608602388" expanded="true" signature="21505:21510" ph="..." />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/templates/registration/login.html">
+        <entry file="file://$PROJECT_DIR$/templates/lecciones/presentaciones.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="340">
-              <caret line="113" column="62" lean-forward="true" selection-start-line="113" selection-start-column="62" selection-end-line="113" selection-end-column="62" />
+            <state relative-caret-position="255">
+              <caret line="15" column="6" lean-forward="true" selection-start-line="15" selection-start-column="6" selection-end-line="15" selection-end-column="6" />
             </state>
           </provider>
         </entry>
@@ -246,7 +207,6 @@
         <option value="$PROJECT_DIR$/apps/api/tests.py" />
         <option value="$PROJECT_DIR$/apps/registration/tests.py" />
         <option value="$PROJECT_DIR$/apps/api/urls.py" />
-        <option value="$PROJECT_DIR$/apps/evaluaciones/views.py" />
         <option value="$PROJECT_DIR$/apps/registration/views.py" />
         <option value="$PROJECT_DIR$/apps/evaluaciones/urls.py" />
         <option value="$PROJECT_DIR$/apps/usuarios/views.py" />
@@ -254,7 +214,6 @@
         <option value="$PROJECT_DIR$/apps/lecciones/urls.py" />
         <option value="$PROJECT_DIR$/templates/lecciones/podcasts.html" />
         <option value="$PROJECT_DIR$/templates/lecciones/codigo.html" />
-        <option value="$PROJECT_DIR$/templates/lecciones/cursos.html" />
         <option value="$PROJECT_DIR$/Educ_RNA/settings.py" />
         <option value="$PROJECT_DIR$/templates/registration/registrar2.html" />
         <option value="$PROJECT_DIR$/templates/registration/registrar.html" />
@@ -263,17 +222,19 @@
         <option value="$PROJECT_DIR$/apps/lecciones/views.py" />
         <option value="$PROJECT_DIR$/templates/lecciones/presentaciones.html" />
         <option value="$PROJECT_DIR$/templates/lecciones/temas.html" />
-        <option value="$PROJECT_DIR$/templates/lecciones/lecciones.html" />
         <option value="$PROJECT_DIR$/templates/usuarios/perfil.html" />
-        <option value="$PROJECT_DIR$/templates/base/base.html" />
         <option value="$PROJECT_DIR$/templates/registration/login.html" />
+        <option value="$PROJECT_DIR$/apps/evaluaciones/views.py" />
+        <option value="$PROJECT_DIR$/templates/base/base.html" />
+        <option value="$PROJECT_DIR$/templates/lecciones/cursos.html" />
+        <option value="$PROJECT_DIR$/templates/lecciones/lecciones.html" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds" extendedState="7">
     <option name="x" value="335" />
     <option name="width" value="980" />
-    <option name="height" value="1038" />
+    <option name="height" value="1039" />
   </component>
   <component name="ProjectInspectionProfilesVisibleTreeState">
     <entry key="Project Default">
@@ -308,11 +269,6 @@
             <path>
               <item name="Educ_RNA" type="b2602c69:ProjectViewProjectNode" />
               <item name="Educ_RNA" type="462c0819:PsiDirectoryNode" />
-              <item name="apps" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Educ_RNA" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Educ_RNA" type="462c0819:PsiDirectoryNode" />
               <item name="templates" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -325,7 +281,7 @@
               <item name="Educ_RNA" type="b2602c69:ProjectViewProjectNode" />
               <item name="Educ_RNA" type="462c0819:PsiDirectoryNode" />
               <item name="templates" type="462c0819:PsiDirectoryNode" />
-              <item name="registration" type="462c0819:PsiDirectoryNode" />
+              <item name="lecciones" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -440,8 +396,9 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="838" extended-state="7" />
+    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.4992908" visible="true" weight="0.14805023" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.4992908" visible="true" weight="0.12888302" />
       <window_info id="Structure" order="1" sideWeight="0.50070924" side_tool="true" weight="0.14805023" />
       <window_info id="Favorites" order="2" weight="0.32980832" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -452,7 +409,7 @@
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Version Control" order="7" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="8" sideWeight="0.49966952" visible="true" weight="0.18297872" />
+      <window_info anchor="bottom" id="Terminal" order="8" sideWeight="0.49966952" visible="true" weight="0.18014185" />
       <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.50033045" side_tool="true" weight="0.18723404" />
       <window_info anchor="bottom" id="Python Console" order="10" weight="0.32907802" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
@@ -501,22 +458,14 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="85">
           <caret line="5" lean-forward="true" selection-start-line="5" selection-end-line="5" />
-          <folding>
-            <element signature="e#0#32#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/templates/evaluaciones/quiz3.py">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/evaluaciones/quiz3.py" />
     <entry file="file://$PROJECT_DIR$/apps/usuarios/models.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="381">
           <caret line="24" lean-forward="true" selection-start-line="24" selection-end-line="24" />
-          <folding>
-            <element signature="e#0#28#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -545,9 +494,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="239">
           <caret line="60" column="41" selection-start-line="60" selection-start-column="41" selection-end-line="60" selection-end-column="41" />
-          <folding>
-            <element signature="e#1284#1317#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -572,13 +518,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/templates/evaluaciones/quiz3.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="327">
-          <caret line="111" column="162" lean-forward="true" selection-start-line="111" selection-start-column="17" selection-end-line="111" selection-end-column="162" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/evaluaciones/quiz3.html" />
     <entry file="file://$PROJECT_DIR$/templates/evaluaciones/instrucciones.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="391">
@@ -590,9 +530,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="381">
           <caret line="43" column="61" selection-start-line="43" selection-start-column="61" selection-end-line="43" selection-end-column="61" />
-          <folding>
-            <marker date="1559881141258" expanded="true" signature="180:181" ph="..." />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -614,9 +551,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="341">
           <caret line="107" column="162" selection-start-line="107" selection-start-column="162" selection-end-line="107" selection-end-column="162" />
-          <folding>
-            <element signature="e#3229#3262#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -624,9 +558,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="170">
           <caret line="10" column="63" selection-start-line="10" selection-start-column="63" selection-end-line="10" selection-end-column="63" />
-          <folding>
-            <marker date="1559881140335" expanded="true" signature="44:49" ph="..." />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -648,21 +579,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-1507">
           <caret line="118" column="99" lean-forward="true" selection-start-line="118" selection-start-column="99" selection-end-line="118" selection-end-column="99" />
-          <folding>
-            <element signature="e#0#32#0" expanded="true" />
-            <marker date="1559881141115" expanded="true" signature="688:693" ph="..." />
-            <marker date="1559881141115" expanded="true" signature="1227:1236" ph="..." />
-            <marker date="1559881141115" expanded="true" signature="5189:6484" ph="..." />
-            <marker date="1559881141115" expanded="true" signature="6484:6489" ph="..." />
-            <marker date="1559881141115" expanded="true" signature="6527:6536" ph="..." />
-            <marker date="1559881141115" expanded="true" signature="6944:6949" ph="..." />
-            <marker date="1559881141115" expanded="true" signature="6944:6953" ph="..." />
-            <marker date="1559881141115" expanded="true" signature="7461:7466" ph="..." />
-            <marker date="1559881141115" expanded="true" signature="7911:7916" ph="..." />
-            <marker date="1559881141115" expanded="true" signature="8507:8512" ph="..." />
-            <marker date="1559881141115" expanded="true" signature="9004:9006" ph="..." />
-            <marker date="1559881141115" expanded="true" signature="13409:13418" ph="..." />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -670,12 +586,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="119">
           <caret line="7" lean-forward="true" selection-start-line="7" selection-end-line="7" />
-          <folding>
-            <element signature="e#0#38#0" expanded="true" />
-            <marker date="1559881141089" expanded="true" signature="2258:2259" ph="..." />
-            <marker date="1559881141089" expanded="true" signature="3569:3570" ph="..." />
-            <marker date="1559881141089" expanded="true" signature="5998:5999" ph="..." />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -686,32 +596,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/apps/evaluaciones/views.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="409">
-          <caret line="427" column="47" lean-forward="true" selection-start-line="427" selection-start-column="47" selection-end-line="427" selection-end-column="47" />
-          <folding>
-            <element signature="e#0#35#0" expanded="true" />
-            <marker date="1559881141222" expanded="true" signature="539:540" ph="..." />
-            <marker date="1559881141222" expanded="true" signature="3147:3152" ph="..." />
-            <marker date="1559881141222" expanded="true" signature="8512:16109" ph="..." />
-            <marker date="1559881141222" expanded="true" signature="14976:16109" ph="..." />
-            <marker date="1559881141222" expanded="true" signature="16312:16317" ph="..." />
-            <marker date="1559881141222" expanded="true" signature="17763:17768" ph="..." />
-            <marker date="1559881141222" expanded="true" signature="19515:19520" ph="..." />
-            <marker date="1559881141222" expanded="true" signature="20290:20295" ph="..." />
-            <marker date="1559881141222" expanded="true" signature="21432:21437" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/apps/registration/tests.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="290">
           <caret line="26" column="52" selection-start-line="26" selection-start-column="52" selection-end-line="26" selection-end-column="52" />
-          <folding>
-            <element signature="e#0#32#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -726,9 +614,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="119">
           <caret line="7" column="26" selection-start-line="7" selection-start-column="26" selection-end-line="7" selection-end-column="26" />
-          <folding>
-            <element signature="e#0#28#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -736,16 +621,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="442">
           <caret line="80" column="41" selection-start-line="80" selection-start-column="41" selection-end-line="80" selection-end-column="41" />
-          <folding>
-            <element signature="e#0#35#0" expanded="true" />
-            <marker date="1559881141456" expanded="true" signature="942:945" ph="..." />
-            <marker date="1559881141456" expanded="true" signature="966:1079" ph="..." />
-            <marker date="1559881141456" expanded="true" signature="966:1083" ph="..." />
-            <marker date="1559881141456" expanded="true" signature="966:1127" ph="..." />
-            <marker date="1559881141456" expanded="true" signature="1147:1152" ph="..." />
-            <marker date="1559881141456" expanded="true" signature="1282:1287" ph="..." />
-            <marker date="1559881141456" expanded="true" signature="1420:1425" ph="..." />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -756,20 +631,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/templates/lecciones/cursos.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="81" selection-start-line="81" selection-end-line="81" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Educ_RNA/wsgi.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="153">
           <caret line="9" lean-forward="true" selection-start-line="9" selection-end-line="9" />
-          <folding>
-            <element signature="e#224#233#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -794,20 +659,52 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Educ_RNA/settings.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="340">
-          <caret line="147" lean-forward="true" selection-start-line="147" selection-end-line="147" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/apps/api/urls.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="153">
           <caret line="18" column="14" selection-start-line="18" selection-start-column="14" selection-end-line="18" selection-end-column="14" />
-          <folding>
-            <element signature="e#0#28#0" expanded="true" />
-          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/apps/api/models.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="14" selection-start-line="14" selection-end-line="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/usuarios/calificaciones.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="323">
+          <caret line="19" lean-forward="true" selection-start-line="19" selection-end-line="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/registration/registrar.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="494">
+          <caret line="97" lean-forward="true" selection-end-line="97" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/registration/password_reset_form.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-10">
+          <caret line="46" column="59" lean-forward="true" selection-start-line="46" selection-start-column="59" selection-end-line="46" selection-end-column="59" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/registration/login.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="340">
+          <caret line="113" column="62" lean-forward="true" selection-start-line="113" selection-start-column="62" selection-end-line="113" selection-end-column="62" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/apps/registration/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="731">
+          <caret line="43" column="59" selection-start-line="43" selection-start-column="59" selection-end-line="43" selection-end-column="59" />
         </state>
       </provider>
     </entry>
@@ -818,9 +715,23 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/templates/lecciones/temas.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="595">
+          <caret line="92" lean-forward="true" selection-start-line="92" selection-end-line="92" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/usuarios/perfil.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="221">
+          <caret line="13" lean-forward="true" selection-start-line="13" selection-end-line="13" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/apps/api/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-16">
+        <state relative-caret-position="1785">
           <caret line="115" column="14" selection-start-line="115" selection-start-column="14" selection-end-line="115" selection-end-column="14" />
           <folding>
             <element signature="e#0#44#0" expanded="true" />
@@ -830,34 +741,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/apps/api/models.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="14" selection-start-line="14" selection-end-line="14" />
-          <folding>
-            <element signature="e#0#28#0" expanded="true" />
-            <marker date="1559881140990" expanded="true" signature="116:117" ph="..." />
-            <marker date="1559881140990" expanded="true" signature="143:148" ph="..." />
-            <marker date="1559881140990" expanded="true" signature="143:192" ph="..." />
-            <marker date="1559881140990" expanded="true" signature="220:225" ph="..." />
-            <marker date="1559881140990" expanded="true" signature="513:518" ph="..." />
-            <marker date="1559881140990" expanded="true" signature="764:769" ph="..." />
-            <marker date="1559881140990" expanded="true" signature="1190:1195" ph="..." />
-            <marker date="1559881140990" expanded="true" signature="1288:1293" ph="..." />
-            <marker date="1559881140990" expanded="true" signature="1395:1400" ph="..." />
-            <marker date="1559881140990" expanded="true" signature="1638:1643" ph="..." />
-            <marker date="1559881140990" expanded="true" signature="1840:1845" ph="..." />
-            <marker date="1559881140990" expanded="true" signature="2159:2168" ph="..." />
-            <marker date="1559881140990" expanded="true" signature="2239:2244" ph="..." />
-            <marker date="1559881140990" expanded="true" signature="2501:2510" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/apps/lecciones/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="426">
-          <caret line="67" column="60" lean-forward="true" selection-start-line="67" selection-start-column="60" selection-end-line="67" selection-end-column="60" />
+        <state relative-caret-position="680">
+          <caret line="52" column="43" selection-start-line="52" selection-start-column="43" selection-end-line="52" selection-end-column="43" />
           <folding>
             <element signature="e#0#35#0" expanded="true" />
             <marker date="1560037172983" expanded="true" signature="714:1351" ph="..." />
@@ -879,80 +766,58 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/templates/lecciones/lecciones.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="69" selection-start-line="69" selection-end-line="69" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/lecciones/presentaciones.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="18" selection-start-line="18" selection-end-line="18" />
-          <folding>
-            <element signature="e#2465#2487#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/lecciones/temas.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="595">
-          <caret line="92" lean-forward="true" selection-start-line="92" selection-end-line="92" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/usuarios/perfil.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="221">
-          <caret line="13" lean-forward="true" selection-start-line="13" selection-end-line="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/usuarios/calificaciones.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
-          <caret line="19" lean-forward="true" selection-start-line="19" selection-end-line="19" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/registration/registrar.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="494">
-          <caret line="97" lean-forward="true" selection-end-line="97" />
+        <state relative-caret-position="357">
+          <caret line="77" lean-forward="true" selection-start-line="77" selection-end-line="77" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/templates/base/base.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2788">
-          <caret line="164" column="17" selection-start-line="164" selection-start-column="17" selection-end-line="164" selection-end-column="17" />
+        <state relative-caret-position="1156">
+          <caret line="86" selection-start-line="86" selection-end-line="86" />
           <folding>
             <element signature="n#style#0;n#div#0;n#div#0;n#nav#0;n#body#0;n#html#0;n#!!top" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/templates/registration/password_reset_form.html">
+    <entry file="file://$PROJECT_DIR$/templates/lecciones/cursos.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-10">
-          <caret line="46" column="59" lean-forward="true" selection-start-line="46" selection-start-column="59" selection-end-line="46" selection-end-column="59" />
+        <state relative-caret-position="86">
+          <caret line="46" column="12" selection-start-line="46" selection-start-column="12" selection-end-line="46" selection-end-column="12" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/apps/registration/views.py">
+    <entry file="file://$PROJECT_DIR$/apps/evaluaciones/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="731">
-          <caret line="43" column="59" selection-start-line="43" selection-start-column="59" selection-end-line="43" selection-end-column="59" />
+        <state relative-caret-position="409">
+          <caret line="88" column="51" selection-start-line="88" selection-start-column="51" selection-end-line="88" selection-end-column="51" />
           <folding>
             <element signature="e#0#35#0" expanded="true" />
+            <marker date="1560608602388" expanded="true" signature="539:540" ph="..." />
+            <marker date="1560608602388" expanded="true" signature="3147:3152" ph="..." />
+            <marker date="1560608602388" expanded="true" signature="8585:16182" ph="..." />
+            <marker date="1560608602388" expanded="true" signature="15049:16182" ph="..." />
+            <marker date="1560608602388" expanded="true" signature="16385:16390" ph="..." />
+            <marker date="1560608602388" expanded="true" signature="17836:17841" ph="..." />
+            <marker date="1560608602388" expanded="true" signature="19588:19593" ph="..." />
+            <marker date="1560608602388" expanded="true" signature="20363:20368" ph="..." />
+            <marker date="1560608602388" expanded="true" signature="21505:21510" ph="..." />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/templates/registration/login.html">
+    <entry file="file://$PROJECT_DIR$/Educ_RNA/settings.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="340">
-          <caret line="113" column="62" lean-forward="true" selection-start-line="113" selection-start-column="62" selection-end-line="113" selection-end-column="62" />
+        <state relative-caret-position="428">
+          <caret line="159" selection-start-line="159" selection-end-line="159" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/lecciones/presentaciones.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="15" column="6" lean-forward="true" selection-start-line="15" selection-start-column="6" selection-end-line="15" selection-end-column="6" />
         </state>
       </provider>
     </entry>
